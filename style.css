@@ -77,11 +77,14 @@ header h1 {
     font-weight: bold;
     font-size: 1.1em;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .cta-button:hover {
     background-color: #e06270; /* Slightly darker coral on hover */
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .how-it-works {
@@ -137,14 +140,72 @@ footer {
     font-weight: bold;
     font-size: 1.2em;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .cta-button-footer:hover {
     background-color: #e06270; /* Slightly darker coral on hover */
+    transform: translateY(-2px) scale(1.02); /* Lift and slightly scale */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Enhanced shadow on hover */
+}
+
+/* Message Previews Section */
+.message-previews {
+    padding: 50px 20px;
+    background-color: #2a2a2e; /* Slightly lighter than main background for separation */
+}
+
+.message-previews h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    color: #F8F8F2;
+}
+
+.preview-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch; /* Makes cards same height if content varies */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 20px; /* Adds space between cards */
+}
+
+.message-card {
+    background-color: #1A1A1D; /* Deep charcoal, same as main bg */
+    border: 1px solid #C9B6E4; /* Soft violet border */
+    color: #F8F8F2;
+    padding: 25px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif; /* Or Lato */
+    font-style: italic;
+    font-size: 1em; /* Base size, can adjust */
+    line-height: 1.6;
+    flex-basis: calc(33.333% - 20px); /* Adjust for 3 cards per row, considering gap */
+    min-width: 280px; /* Minimum width before wrapping */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.message-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-color: #F67280; /* Warm coral border on hover */
+}
+
+.message-card p {
+    margin: 0;
 }
 
 /* Responsive adjustments */
+@media (max-width: 960px) { /* Adjust breakpoint for message cards */
+    .message-card {
+        flex-basis: calc(50% - 10px); /* 2 cards per row */
+    }
+}
+
 @media (max-width: 768px) {
     .hero {
         height: auto;
@@ -176,5 +237,4 @@ footer {
     .how-it-works h2 {
         font-size: 1.5em;
     }
-
 } 
