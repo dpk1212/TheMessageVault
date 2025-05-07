@@ -3,76 +3,928 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Message Vault</title>
+    <title>MessageVault | Anonymous Messages That Heal Relationships</title>
+    <meta name="description" content="MessageVault - Send anonymous messages that heal broken relationships, reconnect with loved ones, and build bridges when direct conversation feels impossible.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/envelope-heart.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>💌 The Message Vault</h1>
-            <p class="tagline">“Say everything… without saying it yet.”</p>
+    <!-- Loading Screen -->
+    <div class="loading-overlay">
+        <div class="loader"></div>
+    </div>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor-effect"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="https://img.icons8.com/fluency/48/envelope-heart.png" alt="Message Vault Logo">
+                <span>MessageVault</span>
+            </a>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#" class="nav-cta">Get Started</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <section class="hero">
-            <div class="hero-text-overlay">
-                <div class="container">
-                    <p class="main-quote">"Someone you love needs this.<br>But they don't know how to ask for it."</p>
-                    <p class="subtext">
-                        Finally, a way to show you care from a distance, break the silence, and spark healing—all while you remain anonymous until you choose to reveal yourself.
+    <!-- Hero Section with Video Background -->
+    <section class="hero">
+        <div class="video-background">
+            <video autoplay muted loop id="hero-video">
+                <source src="https://cdn.coverr.co/videos/coverr-someone-writing-on-paper-6412/1080p.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text-overlay">
+                    <span class="hero-pill">Relationship Healing Tool</span>
+                    <h1 class="main-headline">When Words Are Too Difficult To Say Directly</h1>
+                    <p class="hero-subtext">
+                        Send anonymous messages of hope that rebuild broken connections, heal wounds, and restore relationships when face-to-face conversation feels impossible.
                     </p>
-                    <a href="#" class="cta-button">Send a Message, Spark Hope →</a>
+                    <div class="hero-features">
+                        <div class="hero-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>100% Anonymous</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Daily Delivery</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Reveal When Ready</span>
+                        </div>
+                    </div>
+                    <div class="cta-group">
+                        <a href="#pricing" class="cta-button pulse-animation">Start Healing Now <i class="fas fa-arrow-right"></i></a>
+                        <a href="#how-it-works" class="cta-button secondary">See How It Works</a>
+                    </div>
+                    <div class="social-proof-bar">
+                        <p class="social-proof-text"><span class="highlight-text">250+</span> active users &nbsp;•&nbsp; <span class="highlight-text">1,000+</span> messages sent &nbsp;•&nbsp; <span class="highlight-text">98%</span> satisfaction rate</p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="how-it-works">
-            <div class="container">
-                <h2>🖋 How The Message Vault Works</h2>
-                <div class="steps">
-                    <div class="step">
-                        <span>🎯</span>
-                        <p><strong>Choose Your Person</strong><br>Select who you want to send messages to.</p>
-                    </div>
-                    <div class="step">
-                        <span>💌</span>
-                        <p><strong>Send Daily Encouragement</strong><br>We deliver your heartfelt messages anonymously each day.</p>
-                    </div>
-                    <div class="step">
-                        <span>🔓</span>
-                        <p><strong>Reveal Yourself (If You Want)</strong><br>You control when, or if, you reveal your identity.</p>
-                    </div>
+    <!-- Trust Badges -->
+    <section class="trust-badges">
+        <div class="container">
+            <div class="badges-container">
+                <div class="badge fade-in">
+                    <i class="fas fa-lock"></i>
+                    <p>Private & Secure</p>
                 </div>
-                <p class="anonymity-assurance">Your identity is protected until you decide. Send with peace of mind.</p>
+                <div class="badge fade-in">
+                    <i class="fas fa-user-shield"></i>
+                    <p>100% Anonymous</p>
+                </div>
+                <div class="badge fade-in">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Easy to Use</p>
+                </div>
+                <div class="badge fade-in">
+                    <i class="fas fa-heart"></i>
+                    <p>Relationship Focused</p>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="message-previews">
-            <div class="container">
-                <h2>💬 Sneak Peek: Sample Messages</h2>
-                <div class="preview-container">
-                    <div class="message-card">
-                        <p>"Just a little reminder today: you're stronger than you think, and you're not alone in this."</p>
+    <!-- Why MessageVault -->
+    <section class="why-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Choose MessageVault?</h2>
+            <p class="section-description fade-in">Sometimes the most important conversations are the hardest to start</p>
+            
+            <div class="comparison-table fade-in">
+                <div class="comparison-header">
+                    <div class="comparison-cell"></div>
+                    <div class="comparison-cell">Direct Confrontation</div>
+                    <div class="comparison-cell highlight">MessageVault</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Emotional Risk</div>
+                    <div class="comparison-cell">
+                        <i class="fas fa-times negative"></i>
+                        <span>High anxiety & vulnerability</span>
                     </div>
-                    <div class="message-card">
-                        <p>"Thinking of you and sending some quiet strength your way. Keep going, one step at a time."</p>
+                    <div class="comparison-cell highlight">
+                        <i class="fas fa-check positive"></i>
+                        <span>Low pressure, gradual connection</span>
                     </div>
-                    <div class="message-card">
-                        <p>"Hope today brings a moment of peace or a reason to smile. You deserve it."</p>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Rejection Risk</div>
+                    <div class="comparison-cell">
+                        <i class="fas fa-times negative"></i>
+                        <span>Immediate rejection possible</span>
+                    </div>
+                    <div class="comparison-cell highlight">
+                        <i class="fas fa-check positive"></i>
+                        <span>Identity protected until ready</span>
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Relationship Building</div>
+                    <div class="comparison-cell">
+                        <i class="fas fa-times negative"></i>
+                        <span>One hard conversation</span>
+                    </div>
+                    <div class="comparison-cell highlight">
+                        <i class="fas fa-check positive"></i>
+                        <span>Daily positive touchpoints</span>
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Success Rate</div>
+                    <div class="comparison-cell">
+                        <i class="fas fa-times negative"></i>
+                        <span>Unpredictable outcomes</span>
+                    </div>
+                    <div class="comparison-cell highlight">
+                        <i class="fas fa-check positive"></i>
+                        <span>98% satisfaction rate</span>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- Community Validation (replacing "As Seen In") -->
+    <section class="community-validation">
+        <div class="container">
+            <h3 class="section-subtitle fade-in">From Our Community</h3>
+            <div class="highlight-metrics fade-in">
+                <div class="metric">
+                    <span class="metric-number">98%</span>
+                    <span class="metric-label">User Satisfaction</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-number">250+</span>
+                    <span class="metric-label">Active Users</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-number">1,000+</span>
+                    <span class="metric-label">Messages Sent</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title fade-in">How The Message Vault Works</h2>
+            <p class="section-description fade-in">Three simple steps to reconnect with someone special</p>
+            
+            <div class="steps-timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="step-wrapper">
+                    <div class="step-number">1</div>
+                    <div class="step fade-in">
+                        <div class="step-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3>Choose Your Person</h3>
+                        <p>Enter their phone number or email address. They'll never know it's you until you're ready to reveal yourself.</p>
+                        <div class="step-image">
+                            <img src="https://cdn.dribbble.com/users/1615584/screenshots/15571949/media/7e95e5797c02a3758c0936338c3b4c69.jpg?compress=1&resize=400x300" alt="Choose recipient">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-wrapper">
+                    <div class="step-number">2</div>
+                    <div class="step fade-in">
+                        <div class="step-icon">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <h3>Send Daily Encouragement</h3>
+                        <p>Compose messages of hope, love, or encouragement. Schedule them to arrive daily or on your preferred schedule.</p>
+                        <div class="step-image">
+                            <img src="https://cdn.dribbble.com/users/993975/screenshots/4127941/media/2dfebd7bc4dde1a57853a4f1f04c36a6.png?compress=1&resize=400x300" alt="Daily messages">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-wrapper">
+                    <div class="step-number">3</div>
+                    <div class="step fade-in">
+                        <div class="step-icon">
+                            <i class="fas fa-mask"></i>
+                        </div>
+                        <h3>Reveal When Ready</h3>
+                        <p>Stay anonymous for as long as you want. When the time is right, you can reveal your identity with one click.</p>
+                        <div class="step-image">
+                            <img src="https://cdn.dribbble.com/users/2138/screenshots/1650463/media/15a1c1cc54a88248142f503f2ad8c4b7.gif?compress=1&resize=400x300" alt="Reveal identity">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="security-guarantee fade-in">
+                <i class="fas fa-shield-alt"></i>
+                <p>Your identity is protected with enterprise-grade encryption and privacy measures.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Examples Section -->
+    <section class="message-previews" id="examples">
+        <div class="container">
+            <h2 class="section-title fade-in">Message Examples</h2>
+            <p class="section-description fade-in">Here are some examples of the types of messages you can send</p>
+            
+            <div class="category-filters fade-in">
+                <button class="filter active" data-category="all">All</button>
+                <button class="filter" data-category="encouragement">Encouragement</button>
+                <button class="filter" data-category="healing">Healing</button>
+                <button class="filter" data-category="reconnect">Reconnection</button>
+            </div>
+            
+            <div class="preview-container">
+                <div class="message-card fade-in" data-category="encouragement">
+                    <div class="message-header">
+                        <div class="message-type">Encouragement</div>
+                        <div class="message-time">9:15 AM</div>
+                    </div>
+                    <p>"Just a little reminder today: you're stronger than you think, and you're not alone in this."</p>
+                    <div class="send-count"><i class="fas fa-paper-plane"></i> 214 people have sent this</div>
+                </div>
+                
+                <div class="message-card fade-in" data-category="healing" style="transition-delay: 0.15s;">
+                    <div class="message-header">
+                        <div class="message-type">Healing</div>
+                        <div class="message-time">2:30 PM</div>
+                    </div>
+                    <p>"Thinking of you and sending some quiet strength your way. Keep going, one step at a time."</p>
+                    <div class="send-count"><i class="fas fa-paper-plane"></i> 189 people have sent this</div>
+                </div>
+                
+                <div class="message-card fade-in" data-category="reconnect" style="transition-delay: 0.3s;">
+                    <div class="message-header">
+                        <div class="message-type">Reconnection</div>
+                        <div class="message-time">7:45 PM</div>
+                    </div>
+                    <p>"Hope today brings a moment of peace or a reason to smile. You deserve it."</p>
+                    <div class="send-count"><i class="fas fa-paper-plane"></i> 267 people have sent this</div>
+                </div>
+            </div>
+            
+            <a href="#" class="view-more-btn fade-in">Browse Message Library <i class="fas fa-chevron-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title fade-in">What People Are Saying</h2>
+            <p class="section-description fade-in">Real stories from real users</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial fade-in">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah K">
+                        </div>
+                        <div class="testimonial-meta">
+                            <h4>Sarah K.</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quote">
+                        <p>"I'd been estranged from my sister for months after an argument. I started sending her anonymous encouragement, just little things to brighten her day. When I finally revealed it was me, it opened the door to healing our relationship."</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <span class="verified"><i class="fas fa-check-circle"></i> Verified User</span>
+                        <span class="date">April 15, 2023</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial fade-in" style="transition-delay: 0.2s;">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marcus T">
+                        </div>
+                        <div class="testimonial-meta">
+                            <h4>Marcus T.</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quote">
+                        <p>"After a work conflict, I couldn't find the right words to speak to my colleague directly. Using MessageVault, I sent encouraging notes that helped rebuild our professional relationship without the awkwardness of direct confrontation."</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <span class="verified"><i class="fas fa-check-circle"></i> Verified User</span>
+                        <span class="date">March 27, 2023</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial fade-in" style="transition-delay: 0.4s;">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jamie L">
+                        </div>
+                        <div class="testimonial-meta">
+                            <h4>Jamie L.</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quote">
+                        <p>"My friend was going through a tough breakup, and I wanted to support her without being overbearing. These anonymous messages gave her daily encouragement without making her feel like she needed to respond or explain her feelings."</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <span class="verified"><i class="fas fa-check-circle"></i> Verified User</span>
+                        <span class="date">May 3, 2023</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-stats fade-in">
+                <div class="stat">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfied Users</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">250+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1k+</div>
+                    <div class="stat-label">Messages Sent</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title fade-in">Simple, Transparent Pricing</h2>
+            <p class="section-description fade-in">Choose the plan that fits your healing journey</p>
+            
+            <div class="pricing-badge fade-in">
+                <span class="sparkle-icon">✨</span>
+                <span>Limited Time: Beta Launch Pricing Available Now</span>
+                <span class="sparkle-icon">✨</span>
+            </div>
+            
+            <div class="pricing-toggle fade-in">
+                <span>Monthly</span>
+                <label class="switch">
+                    <input type="checkbox" id="billing-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span>Annual <span class="save-badge">Save 20%</span></span>
+            </div>
+            
+            <div class="plans-container">
+                <div class="plan fade-in">
+                    <div class="plan-badge">Starter</div>
+                    <h3 class="plan-name">Essential</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="amount">9</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <div class="plan-annual-price">$7/mo billed annually</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 1 Recipient</li>
+                        <li><i class="fas fa-check"></i> 30 Messages Per Month</li>
+                        <li><i class="fas fa-check"></i> Access to Message Library</li>
+                        <li><i class="fas fa-check"></i> Scheduling Features</li>
+                        <li><i class="fas fa-check"></i> Anonymous Identity</li>
+                        <li class="unavailable"><i class="fas fa-times"></i> Custom Messages</li>
+                        <li class="unavailable"><i class="fas fa-times"></i> Delivery Reports</li>
+                    </ul>
+                    <a href="#" class="plan-button">Get Started</a>
+                    <p class="plan-guarantee">30-day money-back guarantee</p>
+                </div>
+                
+                <div class="plan featured fade-in" style="transition-delay: 0.2s;">
+                    <div class="plan-badge">Most Popular</div>
+                    <div class="best-value-tag"><span>Best Value</span></div>
+                    <h3 class="plan-name">Premium</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="amount">19</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <div class="plan-annual-price">$15/mo billed annually</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 3 Recipients</li>
+                        <li><i class="fas fa-check"></i> Unlimited Messages</li>
+                        <li><i class="fas fa-check"></i> Full Message Library</li>
+                        <li><i class="fas fa-check"></i> Advanced Scheduling</li>
+                        <li><i class="fas fa-check"></i> Anonymous Identity</li>
+                        <li><i class="fas fa-check"></i> Custom Messages</li>
+                        <li><i class="fas fa-check"></i> Delivery Reports</li>
+                    </ul>
+                    <a href="#" class="plan-button">Get Started</a>
+                    <p class="plan-guarantee">30-day money-back guarantee</p>
+                </div>
+                
+                <div class="plan fade-in" style="transition-delay: 0.4s;">
+                    <div class="plan-badge">Family Plan</div>
+                    <h3 class="plan-name">Family</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="amount">39</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <div class="plan-annual-price">$31/mo billed annually</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 10 Recipients</li>
+                        <li><i class="fas fa-check"></i> Unlimited Messages</li>
+                        <li><i class="fas fa-check"></i> Full Message Library</li>
+                        <li><i class="fas fa-check"></i> Advanced Scheduling</li>
+                        <li><i class="fas fa-check"></i> Anonymous Identity</li>
+                        <li><i class="fas fa-check"></i> Custom Messages</li>
+                        <li><i class="fas fa-check"></i> Delivery Reports</li>
+                    </ul>
+                    <a href="#" class="plan-button">Get Started</a>
+                    <p class="plan-guarantee">30-day money-back guarantee</p>
+                </div>
+            </div>
+            
+            <div class="pricing-guarantee fade-in">
+                <i class="fas fa-shield-alt"></i>
+                <p>All plans include our 30-day money-back guarantee. No questions asked.</p>
+            </div>
+            
+            <div class="beta-offer fade-in">
+                <div class="beta-offer-content">
+                    <div class="beta-offer-header">
+                        <i class="fas fa-gift"></i>
+                        <h3>Beta Launch Special Offer</h3>
+                    </div>
+                    <p>Join during our beta period and receive 30% off any plan for the first 3 months.</p>
+                    <div class="beta-spots">
+                        <span class="beta-spots-count">Only 27 beta spots remaining</span>
+                        <div class="beta-progress-bar">
+                            <div class="beta-progress" style="width: 73%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Is it really anonymous?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, completely anonymous until you choose to reveal yourself. We use enterprise-grade encryption and privacy measures to ensure your identity remains hidden. Recipients will receive messages from a neutral phone number or email address that cannot be traced back to you.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in" style="transition-delay: 0.15s;">
+                    <div class="faq-question">
+                        <h3>How are messages delivered?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Messages are delivered via text or email (recipient's choice). They'll receive one message per day at a time you select. Our delivery system ensures timely arrival and tracks when messages are opened without revealing your identity.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in" style="transition-delay: 0.3s;">
+                    <div class="faq-question">
+                        <h3>What if I want to stop sending messages?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can pause or stop your messages at any time from your secure dashboard. Your recipient will never know who started or stopped the messages unless you choose to reveal yourself. You can also schedule a specific end date for your message series.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in" style="transition-delay: 0.45s;">
+                    <div class="faq-question">
+                        <h3>Can recipients reply to messages?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, recipients can reply to messages. You'll receive their replies in your dashboard while maintaining your anonymity. This creates a secure two-way communication channel that protects your identity until you're ready to reveal yourself.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="more-questions fade-in">
+                <p>Have more questions? <a href="#" class="contact-link">Contact our support team</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-box fade-in">
+                <div class="final-cta-content">
+                    <h2>Take The First Step Toward Healing Your Relationship Today</h2>
+                    <p>Sometimes the words we need to say the most are the hardest to speak directly. MessageVault gives you a way to reconnect safely, at your own pace.</p>
+                    
+                    <div class="final-features">
+                        <div class="final-feature">
+                            <i class="fas fa-user-shield"></i>
+                            <div>
+                                <h4>Always Anonymous</h4>
+                                <p>Your identity is protected until you choose to reveal yourself</p>
+                            </div>
+                        </div>
+                        <div class="final-feature">
+                            <i class="fas fa-undo"></i>
+                            <div>
+                                <h4>100% Risk-Free</h4>
+                                <p>30-day money-back guarantee with no questions asked</p>
+                            </div>
+                        </div>
+                        <div class="final-feature">
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <h4>Proven Results</h4>
+                                <p>Join 250+ users who have successfully repaired relationships</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#pricing" class="cta-button large pulse-animation">Begin Your Healing Journey <i class="fas fa-arrow-right"></i></a>
+                    
+                    <div class="trust-indicators">
+                        <div class="trust-item">
+                            <i class="fas fa-lock"></i>
+                            <span>Secure Payments</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-credit-card"></i>
+                            <span>No Contract</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Privacy Guaranteed</span>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-snapshot">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah K" class="snapshot-avatar">
+                        <div class="snapshot-quote">
+                            <p>"The anonymous messages gave me a way to start rebuilding our relationship when I couldn't find the right words to say directly."</p>
+                            <div class="snapshot-author">— Sarah K., MessageVault User</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <div class="container">
-            <a href="#" class="cta-button-footer">Reach Out Anonymously Now 💬</a>
-            <p class="privacy-assurance">Your privacy is sacred to us. All messages are sent securely.</p>
+        <div class="footer-main">
+            <div class="container footer-content">
+                <div class="footer-grid">
+                    <div class="footer-column brand-column">
+                        <a href="#" class="footer-logo">
+                            <img src="https://img.icons8.com/fluency/48/envelope-heart.png" alt="Message Vault Logo">
+                            <span>MessageVault</span>
+                        </a>
+                        <p class="footer-tagline">Anonymous messages that heal relationships.</p>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Navigation</h4>
+                        <ul class="footer-links">
+                            <li><a href="#how-it-works">How It Works</a></li>
+                            <li><a href="#examples">Examples</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Acceptable Use</a></li>
+                            <li><a href="#">GDPR Compliance</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Suggest a Feature</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <a href="#" class="cta-button-footer">Reach Out Anonymously Now <i class="fas fa-arrow-right"></i></a>
+                    <p class="privacy-assurance">Your privacy is sacred to us. All messages are sent securely.</p>
+                    <div class="payment-methods">
+                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-visa-3-226460.png" alt="Visa">
+                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-mastercard-3-226462.png" alt="Mastercard">
+                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-paypal-47-226455.png" alt="PayPal">
+                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-apple-pay-44-675950.png" alt="Apple Pay">
+                    </div>
+                    <p class="copyright">© 2023 The Message Vault. All rights reserved.</p>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <script>
+        // Loading screen
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelector('.loading-overlay').classList.add('hidden');
+            }, 1000);
+            
+            // Initialize all animations after page load
+            initializeAnimations();
+        });
+
+        // Set up all animations and interactions
+        function initializeAnimations() {
+            // Scroll animation
+            const observerOptions = {
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Animate main headline
+            animateTextTyping('.main-headline', 30);
+            
+            // Set up pricing toggle
+            setupPricingToggle();
+            
+            // Set up FAQ accordions
+            setupFaqAccordions();
+            
+            // Set up message category filters
+            setupMessageFilters();
+            
+            // Initialize sticky navigation
+            setupStickyNavigation();
+        }
+        
+        // Cursor effect
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.cursor-effect');
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Link and button hover effect for cursor
+        document.querySelectorAll('a, button').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                document.querySelector('.cursor-effect').style.width = '50px';
+                document.querySelector('.cursor-effect').style.height = '50px';
+                document.querySelector('.cursor-effect').style.backgroundColor = 'rgba(201, 182, 228, 0.4)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                document.querySelector('.cursor-effect').style.width = '20px';
+                document.querySelector('.cursor-effect').style.height = '20px';
+                document.querySelector('.cursor-effect').style.backgroundColor = 'rgba(246, 114, 128, 0.5)';
+            });
+        });
+
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (navMenu.classList.contains('active')) {
+                    navToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Text typing animation
+        function animateTextTyping(selector, speed = 50) {
+            const element = document.querySelector(selector);
+            if (!element) return;
+            
+            const text = element.textContent;
+            element.textContent = '';
+            element.style.visibility = 'visible';
+            
+            let i = 0;
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, speed);
+        }
+
+        // FAQ accordions
+        function setupFaqAccordions() {
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const parent = question.parentElement;
+                    const answer = parent.querySelector('.faq-answer');
+                    const toggle = question.querySelector('.faq-toggle');
+                    
+                    // Close all other open FAQs
+                    document.querySelectorAll('.faq-item.active').forEach(item => {
+                        if (item !== parent) {
+                            item.classList.remove('active');
+                            item.querySelector('.faq-answer').style.maxHeight = '0px';
+                            item.querySelector('.faq-toggle').textContent = '+';
+                        }
+                    });
+                    
+                    // Toggle the clicked FAQ
+                    if (parent.classList.contains('active')) {
+                        parent.classList.remove('active');
+                        answer.style.maxHeight = '0px';
+                        toggle.textContent = '+';
+                    } else {
+                        parent.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        toggle.textContent = '−';
+                    }
+                });
+            });
+        }
+
+        // Pricing toggle
+        function setupPricingToggle() {
+            const billingToggle = document.getElementById('billing-toggle');
+            const planPrices = document.querySelectorAll('.plan-price .amount');
+            const monthlyPrices = [9, 19, 39];
+            const annualPrices = [7, 15, 31];
+            
+            billingToggle.addEventListener('change', () => {
+                planPrices.forEach((price, index) => {
+                    if (billingToggle.checked) {
+                        price.textContent = annualPrices[index];
+                    } else {
+                        price.textContent = monthlyPrices[index];
+                    }
+                });
+                
+                document.querySelectorAll('.plan-annual-price').forEach(el => {
+                    el.classList.toggle('show');
+                });
+            });
+        }
+
+        // Message category filters
+        function setupMessageFilters() {
+            const filterButtons = document.querySelectorAll('.filter');
+            const messageCards = document.querySelectorAll('.message-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const category = button.getAttribute('data-category');
+                    
+                    // Show/hide message cards based on category
+                    messageCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        // Sticky navigation
+        function setupStickyNavigation() {
+            let lastScrollTop = 0;
+            const nav = document.querySelector('.main-nav');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 100) {
+                    nav.classList.add('scrolled');
+                    
+                    if (scrollTop > lastScrollTop && scrollTop > 300) {
+                        // Scrolling down
+                        nav.classList.add('nav-hidden');
+                    } else {
+                        // Scrolling up
+                        nav.classList.remove('nav-hidden');
+                    }
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+        
+        // Add parallax effect to sections with background images
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset;
+            
+            // Add subtle parallax to sections with background images
+            document.querySelectorAll('.pricing, .final-cta').forEach(section => {
+                section.style.backgroundPosition = `center ${50 + (scrollPosition * 0.05)}%`;
+            });
+        });
+    </script>
 </body>
 </html> 
