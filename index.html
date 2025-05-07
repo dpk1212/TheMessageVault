@@ -3,908 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Message Vault | Daily Affirmations, Sent with Care</title>
-    <meta name="description" content="Someone you love needs daily affirmations, even if they'd never ask. Send uplifting messages anonymously with The Message Vault.">
+    <title>The Message Vault - Heartfelt Support, Expertly Delivered</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/envelope-heart.png">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="favicon-apple.png">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-overlay">
-        <div class="loader"></div>
-    </div>
-    
-    <!-- Custom Cursor -->
-    <div class="cursor-effect"></div>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">The Message Vault</div>
+            <nav>
+                <ul>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact" class="cta-button nav-cta">Send Support Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <img src="https://img.icons8.com/fluency/48/envelope-heart.png" alt="Message Vault Logo">
-                <span>The Message Vault</span>
-            </a>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+    <!-- 1. Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <h1>Can't Find the Right Words? Let Us Share Your Heartfelt Support.</h1>
+            <p class="subtitle">When someone you care about is struggling, or it's time to celebrate, finding the perfect words can be tough. The Message Vault delivers personally curated, supportive messages on your behalf, directly to their phone.</p>
+            <a href="#pricing" class="cta-button hero-cta">Choose a Plan & Send Support</a>
+            <p class="hero-sub-cta">Show them they're not alone, even when you're at a loss for words.</p>
+        </div>
+    </section>
+
+    <!-- 2. The Problem / Empathy Section -->
+    <section id="problem" class="problem-section">
+        <div class="container">
+            <h2>We've All Been There...</h2>
+            <div class="problem-points">
+                <div class="point">
+                    <img src="placeholder-icon-heartbreak.svg" alt="Heartbreak icon" class="point-icon">
+                    <h3>Watching Someone Struggle?</h3>
+                    <p>It's painful to see a friend, family member, or colleague go through a tough time – grief, a layoff, a breakup, or immense stress – and feel helpless to provide consistent support.</p>
+                </div>
+                <div class="point">
+                    <img src="placeholder-icon-silence.svg" alt="Silence icon" class="point-icon">
+                    <h3>Words Fail You?</h3>
+                    <p>You want to reach out, but you don't know what to say. You worry about saying the wrong thing, or your messages sounding cliché or repetitive.</p>
+                </div>
+                <div class="point">
+                    <img src="placeholder-icon-busy.svg" alt="Busy icon" class="point-icon">
+                    <h3>Life Gets in the Way?</h3>
+                    <p>Even with the best intentions, remembering to consistently check in and offer encouragement can be challenging amidst your own busy life.</p>
+                </div>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#plans">Plans</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#plans" class="nav-cta">Start Supporting Someone</a></li>
+        </div>
+    </section>
+
+    <!-- 3. Introducing The Solution -->
+    <section id="solution" class="solution-section">
+        <div class="container">
+            <h2>The Message Vault: Simple for You, Meaningful for Them.</h2>
+            <p class="solution-intro">We bridge the gap between your desire to support and the challenge of doing it perfectly and consistently. You tell us their story, and our compassionate team crafts and delivers thoughtful messages of encouragement, motivation, or celebration.</p>
+            <ul>
+                <li><strong>Expertly Crafted Messages:</strong> No more generic quotes. Our team writes or curates messages specifically tailored to their situation.</li>
+                <li><strong>Consistent Support, Delivered:</strong> Choose daily, 3x weekly, or weekly messages sent via SMS directly to their phone.</li>
+                <li><strong>The Personal Touch, Without the Pressure:</strong> We handle the wording and timing, so you can be sure your support feels genuine and timely.</li>
             </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="container">
-                <div class="hero-flex-container">
-                    <div class="hero-text-container">
-                        <h1 class="main-headline">Send Anonymous Daily Support</h1>
-                        
-                        <div class="message-typing-animation">
-                            <div class="phone-preview">
-                                <div class="phone-header">
-                                    <span class="message-time">9:15 AM</span>
-                                </div>
-                                <div class="message-body">
-                                    <p class="typing-text"></p>
-                                    <span class="typing-cursor">|</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="cta-container">
-                            <a href="#plans" class="cta-button pulse-animation">Start Supporting Someone <i class="fas fa-arrow-right"></i></a>
-                            <div class="pricing-preview">
-                                <p>Starting at just <span class="highlight-text">$5/month</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="emotional-state-visual">
-                        <div class="before-after-container">
-                            <div class="emotional-state before">
-                                <div class="state-time">9:14 AM</div>
-                                <div class="state-image">
-                                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=300&h=300" alt="Person looking stressed">
-                                </div>
-                                <div class="state-label">Before</div>
-                            </div>
-                            <div class="emotional-state after">
-                                <div class="state-time">9:15 AM</div>
-                                <div class="state-image">
-                                    <img src="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?auto=format&fit=crop&w=300&h=300" alt="Person feeling relieved">
-                                </div>
-                                <div class="state-label">After</div>
-                            </div>
-                        </div>
-                        <div class="satisfaction-rate">
-                            <span class="rate-number">98%</span>
-                            <span class="rate-label">satisfaction rate</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <a href="#how-it-works" class="cta-button secondary-cta">See How It Works</a>
         </div>
     </section>
 
-    <!-- Social Proof Bar -->
-    <section class="social-proof">
+    <!-- 4. How It Works -->
+    <section id="how-it-works" class="how-it-works-section">
         <div class="container">
-            <div class="social-proof-wrapper">
-                <div class="social-proof-item">
-                    <div class="proof-number">250+</div>
-                    <div class="proof-text">Active Users</div>
+            <h2>Getting Started is Easy</h2>
+            <div class="steps">
+                <div class="step">
+                    <span>1</span>
+                    <h3>Choose a Plan</h3>
+                    <p>Select the message frequency that best suits their needs and your budget.</p>
                 </div>
-                <div class="divider"></div>
-                <div class="social-proof-item">
-                    <div class="proof-number">1,000+</div>
-                    <div class="proof-text">Messages Sent</div>
+                <div class="step">
+                    <span>2</span>
+                    <h3>Tell Us Their Story</h3>
+                    <p>Briefly share what they're going through or celebrating. This helps us personalize their messages.</p>
                 </div>
-                <div class="divider"></div>
-                <div class="social-proof-item">
-                    <div class="proof-number">98%</div>
-                    <div class="proof-text">Satisfaction Rate</div>
+                <div class="step">
+                    <span>3</span>
+                    <h3>We Do the Rest</h3>
+                    <p>Our team gets to work, crafting and scheduling supportive messages delivered directly via SMS.</p>
                 </div>
             </div>
+             <img src="placeholder-how-it-works.png" alt="Visual representation of how Message Vault works" class="how-it-works-visual">
         </div>
     </section>
 
-    <!-- Trust Badges -->
-    <section class="trust-badges">
+    <!-- 5. The "Tell Us Their Story" Deep Dive / Curation Input -->
+    <section id="curation-info" class="curation-info-section">
         <div class="container">
-            <div class="badges-container">
-                <div class="badge fade-in">
-                    <i class="fas fa-lock"></i>
-                    <p>Private & Secure</p>
-                </div>
-                <div class="badge fade-in">
-                    <i class="fas fa-user-shield"></i>
-                    <p>100% Anonymous</p>
-                </div>
-                <div class="badge fade-in">
-                    <i class="fas fa-check-circle"></i>
-                    <p>Easy to Use</p>
-                </div>
-                <div class="badge fade-in">
-                    <i class="fas fa-heart"></i>
-                    <p>Relationship Focused</p>
-                </div>
-            </div>
+            <h2>Your Insight, Our Expertise: Crafting Truly Personal Messages</h2>
+            <p>This isn't an automated bot sending random quotes. The magic of The Message Vault lies in the personal touch. When you sign up, you'll provide brief, key details:</p>
+            <ul>
+                <li>The recipient's situation (e.g., grief, job search, celebration).</li>
+                <li>Their relationship to you.</li>
+                <li>Any preferred tones (e.g., empathetic, motivational).</li>
+                <li>Optional: A few words about their personality.</li>
+            </ul>
+            <p>Our experienced team uses this information to select or craft messages that resonate deeply, offering genuine comfort and encouragement. We honor the context you provide to ensure the support feels authentic and specific.</p>
         </div>
     </section>
 
-    <!-- Streamlined Three-Step Process -->
-    <section class="how-it-works" id="how-it-works">
+    <!-- 6. Pricing Plans -->
+    <section id="pricing" class="pricing-section">
         <div class="container">
-            <h2 class="section-title fade-in">Three Simple Steps</h2>
-            
-            <div class="simplified-steps fade-in">
-                <div class="step-item">
-                    <div class="step-circle">1</div>
-                    <div class="step-icon">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <h3>Choose Recipient</h3>
-                    <div class="learn-more-container">
-                        <button class="learn-more-toggle">Learn More</button>
-                        <div class="learn-more-content">
-                            Enter their phone number or email. Messages are delivered anonymously with no way to trace them back to you.
-                        </div>
-                    </div>
+            <h2>Choose Your Plan</h2>
+            <p class="pricing-subtitle">Transparent, simple pricing. Billed monthly. Cancel anytime.</p>
+            <div class="pricing-plans">
+                <div class="plan">
+                    <h3>The Weekly Spark</h3>
+                    <p class="price">$7<span>/month</span></p>
+                    <p class="frequency">1 Message Per Week</p>
+                    <ul>
+                        <li>Perfect for a gentle, consistent reminder of support.</li>
+                        <li>Expertly curated message.</li>
+                    </ul>
+                    <a href="#" class="cta-button plan-cta">Select Weekly Spark</a>
                 </div>
-                
-                <div class="step-arrow">
-                    <i class="fas fa-chevron-right"></i>
+                <div class="plan popular">
+                     <span class="badge">Most Popular</span>
+                    <h3>The Steady Encouragement</h3>
+                    <p class="price">$14<span>/month</span></p>
+                    <p class="frequency">3 Messages Per Week</p>
+                    <ul>
+                        <li>Our most chosen plan for ongoing support.</li>
+                        <li>Balanced frequency to keep spirits high.</li>
+                        <li>Expertly curated messages.</li>
+                    </ul>
+                    <a href="#" class="cta-button plan-cta">Select Steady Encouragement</a>
                 </div>
-                
-                <div class="step-item">
-                    <div class="step-circle">2</div>
-                    <div class="step-icon">
-                        <i class="fas fa-paper-plane"></i>
-                    </div>
-                    <h3>Set Frequency</h3>
-                    <div class="learn-more-container">
-                        <button class="learn-more-toggle">Learn More</button>
-                        <div class="learn-more-content">
-                            Choose weekly, three times a week, or daily messages. Each builds confidence and provides emotional support.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="step-arrow">
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-                
-                <div class="step-item">
-                    <div class="step-circle">3</div>
-                    <div class="step-icon">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-                    <h3>Stay Anonymous/Reveal</h3>
-                    <div class="learn-more-container">
-                        <button class="learn-more-toggle">Learn More</button>
-                        <div class="learn-more-content">
-                            Remain anonymous for as long as you want, or reveal your identity when the time feels right.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="perfect-for-container fade-in">
-                <div class="perfect-for-item">
-                    <i class="fas fa-heart-broken"></i>
-                    <p>Anyone facing stress, anxiety, or challenges</p>
-                </div>
-                <div class="perfect-for-item">
-                    <i class="fas fa-brain"></i>
-                    <p>People who thrive on daily affirmations</p>
-                </div>
-                <div class="perfect-for-item">
-                    <i class="fas fa-hands-helping"></i>
-                    <p>Support someone from a distance</p>
+                <div class="plan best-value">
+                    <span class="badge">Best Value</span>
+                    <h3>The Daily Uplift</h3>
+                    <p class="price">$19<span>/month</span></p>
+                    <p class="frequency">Daily Messages</p>
+                    <ul>
+                        <li>Maximum support for challenging times or big celebrations.</li>
+                        <li>The best per-message value.</li>
+                        <li>Expertly curated messages.</li>
+                    </ul>
+                    <a href="#" class="cta-button plan-cta">Select Daily Uplift</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why MessageVault -->
-    <section class="why-section">
+    <!-- 7. Testimonials / Social Proof -->
+    <section id="testimonials" class="testimonials-section">
         <div class="container">
-            <h2 class="section-title fade-in">Why Choose MessageVault?</h2>
-            <p class="section-description fade-in">Sometimes the most important conversations are the hardest to start</p>
-            
-            <div class="comparison-table fade-in">
-                <div class="comparison-header">
-                    <div class="comparison-cell"></div>
-                    <div class="comparison-cell">Direct Confrontation</div>
-                    <div class="comparison-cell highlight">MessageVault</div>
+            <h2>Words That Make a Difference</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>"Knowing my friend was getting a thoughtful message each day, even when I was too swamped to write one myself, meant the world. She said they always came at the right moment."</p>
+                    <cite>– Sarah M. (Sender - Aspirational)</cite>
                 </div>
-                <div class="comparison-row">
-                    <div class="comparison-cell feature">Emotional Risk</div>
-                    <div class="comparison-cell">
-                        <i class="fas fa-times negative"></i>
-                        <span>High anxiety & vulnerability</span>
-                    </div>
-                    <div class="comparison-cell highlight">
-                        <i class="fas fa-check positive"></i>
-                        <span>Low pressure, gradual connection</span>
-                    </div>
+                <div class="testimonial">
+                    <p>"After my layoff, those little messages were like a lifeline. They reminded me I wasn't alone and kept me motivated. It was such a thoughtful gift."</p>
+                    <cite>– John B. (Recipient - Aspirational)</cite>
                 </div>
-                <div class="comparison-row">
-                    <div class="comparison-cell feature">Rejection Risk</div>
-                    <div class="comparison-cell">
-                        <i class="fas fa-times negative"></i>
-                        <span>Immediate rejection possible</span>
-                    </div>
-                    <div class="comparison-cell highlight">
-                        <i class="fas fa-check positive"></i>
-                        <span>Identity protected until ready</span>
-                    </div>
-                </div>
-                <div class="comparison-row">
-                    <div class="comparison-cell feature">Relationship Building</div>
-                    <div class="comparison-cell">
-                        <i class="fas fa-times negative"></i>
-                        <span>One hard conversation</span>
-                    </div>
-                    <div class="comparison-cell highlight">
-                        <i class="fas fa-check positive"></i>
-                        <span>Daily positive touchpoints</span>
-                    </div>
-                </div>
-                <div class="comparison-row">
-                    <div class="comparison-cell feature">Success Rate</div>
-                    <div class="comparison-cell">
-                        <i class="fas fa-times negative"></i>
-                        <span>Unpredictable outcomes</span>
-                    </div>
-                    <div class="comparison-cell highlight">
-                        <i class="fas fa-check positive"></i>
-                        <span>98% satisfaction rate</span>
-                    </div>
+                <div class="testimonial">
+                    <p>"I signed up my sister during her recovery. The Message Vault said things I wanted to say but couldn't quite articulate. It was a huge comfort to both of us."</p>
+                    <cite>– Lisa P. (Sender - Aspirational)</cite>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Community Validation (replacing "As Seen In") -->
-    <section class="community-validation">
+    <!-- 8. Who Is This For? / Use Cases -->
+    <section id="use-cases" class="use-cases-section">
         <div class="container">
-            <h3 class="section-subtitle fade-in">From Our Community</h3>
-            <div class="highlight-metrics fade-in">
-                <div class="metric">
-                    <span class="metric-number">98%</span>
-                    <span class="metric-label">User Satisfaction</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-number">250+</span>
-                    <span class="metric-label">Active Users</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-number">1,000+</span>
-                    <span class="metric-label">Messages Sent</span>
-                </div>
+            <h2>Perfect For So Many Moments & People</h2>
+            <div class="use-case-grid">
+                <div class="use-case-item">Grief & Loss</div>
+                <div class="use-case-item">Job Loss or Career Change</div>
+                <div class="use-case-item">Breakups & Divorce</div>
+                <div class="use-case-item">Illness & Recovery</div>
+                <div class="use-case-item">Mental Health Support</div>
+                <div class="use-case-item">Big Life Changes</div>
+                <div class="use-case-item">Motivation for Goals</div>
+                <div class="use-case-item">Birthdays & Anniversaries</div>
+                <div class="use-case-item">New Parents</div>
+                <div class="use-case-item">Student Encouragement</div>
+                <div class="use-case-item">Just Because...</div>
+                <div class="use-case-item">Thank You Messages</div>
             </div>
         </div>
     </section>
 
-    <!-- Message Examples Section -->
-    <section class="message-previews" id="examples">
+    <!-- 9. Our Commitment / The "Personal Touch" Reiteration / Why Us? -->
+    <section id="commitment" class="commitment-section">
         <div class="container">
-            <h2 class="section-title fade-in">Message Preview Generator</h2>
-            
-            <div class="message-generator-container fade-in">
-                <div class="generator-form">
-                    <div class="input-wrapper">
-                        <label for="situation-input">What is their situation?</label>
-                        <select id="situation-input" class="situation-selector">
-                            <option value="" disabled selected>Select a situation...</option>
-                            <option value="stress">Dealing with work stress</option>
-                            <option value="confidence">Struggling with confidence</option>
-                            <option value="lonely">Feeling lonely or isolated</option>
-                            <option value="motivation">Needing motivation</option>
-                            <option value="health">Going through health challenges</option>
-                        </select>
-                    </div>
-                    <button id="generate-message" class="generate-button">
-                        <i class="fas fa-magic"></i> Generate Message
-                    </button>
-                </div>
-                
-                <div class="message-preview-box">
-                    <div class="message-preview-header">
-                        <img src="https://img.icons8.com/fluency/48/envelope-heart.png" alt="Message Vault Logo" class="preview-logo">
-                        <div class="preview-meta">
-                            <p class="preview-sender">The Message Vault</p>
-                            <p class="preview-time">Just Now</p>
-                        </div>
-                    </div>
-                    <div class="message-preview-content">
-                        <p id="preview-text">Select a situation above to generate a personalized message example.</p>
-                    </div>
-                    <div class="preview-cta-container">
-                        <a href="#plans" class="preview-cta-button" id="send-now-button" style="display: none;">
-                            Send This Now <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <h2>Our Care-First Commitment</h2>
+            <p>At The Message Vault, we believe in the power of human connection. Our service is built on empathy and a genuine desire to help you support the people you care about. Every message is chosen or written with the recipient's specific situation in mind by our dedicated team – never by an impersonal algorithm alone. We're here to help you show up when it matters most.</p>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
+    <!-- 10. FAQ Section -->
+    <section id="faq" class="faq-section">
         <div class="container">
-            <h2 class="section-title fade-in">What Our Users Say</h2>
-            
-            <div class="single-testimonial-carousel fade-in">
-                <div class="testimonial-carousel-container">
-                    <div class="testimonial-slide active">
-                        <div class="testimonial-content">
-                            <p>"My friend was going through a tough time. Those messages were sometimes the only positive thing in her day."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah K">
-                            <h4>Sarah K.</h4>
-                        </div>
-                        <div class="testimonial-helpful">
-                            <span>214 people found this helpful</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-slide">
-                        <div class="testimonial-content">
-                            <p>"When I finally revealed it was me sending messages, he broke down and told me how much they meant to him."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marcus T">
-                            <h4>Marcus T.</h4>
-                        </div>
-                        <div class="testimonial-helpful">
-                            <span>189 people found this helpful</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-slide">
-                        <div class="testimonial-content">
-                            <p>"Getting that message at a random time each day is like a gift from a more confident version of myself."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jamie L">
-                            <h4>Jamie L.</h4>
-                        </div>
-                        <div class="testimonial-helpful">
-                            <span>267 people found this helpful</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="carousel-navigation">
-                    <div class="carousel-dot active" data-index="0"></div>
-                    <div class="carousel-dot" data-index="1"></div>
-                    <div class="carousel-dot" data-index="2"></div>
-                </div>
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>How are the messages personalized?</h3>
+                <p>You'll provide key details about the recipient's situation, your relationship, and any preferences when you sign up. Our team uses this "story" to select or craft messages that are relevant and empathetic, ensuring a personal touch.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Who writes the messages?</h3>
+                <p>Our compassionate team of experienced writers and curators. We understand the nuances of different situations and aim for messages that are supportive, not generic.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I see the messages before they are sent?</h3>
+                <p>To maintain the magic of surprise and to allow our team to work efficiently in crafting the best messages based on the flow of support, individual messages are not typically pre-approved. Trust our expertise to convey your care effectively!</p>
+            </div>
+            <div class="faq-item">
+                <h3>How are messages delivered?</h3>
+                <p>Messages are delivered via SMS text message directly to the recipient's mobile phone.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What if the recipient wants to stop receiving messages?</h3>
+                <p>Recipients can easily opt-out of messages at any time by replying "STOP" (or a similar keyword). We'll notify you if this happens.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What if I want to change or cancel my plan?</h3>
+                <p>You can change or cancel your monthly plan at any time through your account dashboard (details will be provided upon signup).</p>
+            </div>
+             <div class="faq-item">
+                <h3>Can the recipient reply to the messages?</h3>
+                <p>The service is designed as a one-way stream of support from The Message Vault on your behalf. While recipients can reply "STOP" to opt-out, general replies do not come back to you or our team.</p>
             </div>
         </div>
     </section>
 
-    <!-- Plans Section -->
-    <section class="pricing" id="plans">
+    <!-- 11. Final Call to Action / Footer -->
+    <footer id="contact" class="main-footer-bottom">
         <div class="container">
-            <h2 class="section-title fade-in">Choose Your Level of Support</h2>
-            <p class="section-description fade-in">All plans include our curated message library and the option to reveal your identity when ready</p>
-            
-            <div class="plans-container">
-                <div class="plan-card fade-in">
-                    <div class="plan-badge">Entry Level</div>
-                    <div class="plan-icon">
-                        <i class="fas fa-feather"></i>
-                    </div>
-                    <h3 class="plan-name">Lite Plan</h3>
-                    <p class="plan-tagline">"A Weekly Boost of Encouragement"</p>
-                    <div class="plan-price">
-                        <span class="currency">$</span>
-                        <span class="amount">5</span>
-                        <span class="period">/month</span>
-                    </div>
-                    <div class="plan-features">
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span><strong>1</strong> uplifting message per week</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Positive affirmations & gentle support</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Option to reveal identity (when ready)</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Anonymous delivery guaranteed</span>
-                        </div>
-                    </div>
-                    <a href="https://matthair.gumroad.com/l/messagevault" class="plan-button">Get Started</a>
-                </div>
-                
-                <div class="plan-card featured fade-in">
-                    <div class="plan-badge">Most Popular</div>
-                    <div class="best-value-tag">Best Value</div>
-                    <div class="plan-icon">
-                        <i class="fas fa-wind"></i>
-                    </div>
-                    <h3 class="plan-name">Medium Plan</h3>
-                    <p class="plan-tagline">"Consistent Support When They Need It Most"</p>
-                    <div class="plan-price">
-                        <span class="currency">$</span>
-                        <span class="amount">12</span>
-                        <span class="period">/month</span>
-                    </div>
-                    <div class="plan-features">
-                        <div class="plan-feature highlighted">
-                            <i class="fas fa-check"></i>
-                            <span><strong>3</strong> messages per week for steady support</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Personalized message themes</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Custom timing for maximum impact</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span>All Lite Plan features included</span>
-                        </div>
-                    </div>
-                    <a href="https://matthair.gumroad.com/l/messagevault" class="plan-button">Get Started</a>
-                </div>
-                
-                <div class="plan-card fade-in">
-                    <div class="plan-badge">Premium</div>
-                    <div class="plan-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="plan-name">Heavy Plan</h3>
-                    <p class="plan-tagline">"The Right Words, at the Right Time—Every Day"</p>
-                    <div class="plan-price">
-                        <span class="currency">$</span>
-                        <span class="amount">19</span>
-                        <span class="period">/month</span>
-                    </div>
-                    <div class="plan-features">
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span><strong>Daily</strong> message for maximum impact</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Fully customized message themes</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Priority support for any questions</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check"></i>
-                            <span>All Medium Plan features included</span>
-                        </div>
-                    </div>
-                    <a href="https://matthair.gumroad.com/l/messagevault" class="plan-button">Get Started</a>
-                </div>
+            <h2>Ready to Send Meaningful Support?</h2>
+            <p>It takes just a few minutes to set up a stream of encouragement for someone you care about.</p>
+            <a href="#pricing" class="cta-button footer-cta">Choose Your Plan Today</a>
+            <div class="footer-links">
+                <a href="#">About Us (Coming Soon)</a>
+                <a href="#">Contact Support</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
             </div>
-            
-            <div class="pricing-guarantee fade-in">
-                <i class="fas fa-shield-alt"></i>
-                <p>All plans include a 7-day free trial and our 30-day money-back guarantee. No questions asked.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
-            
-            <div class="faq-container">
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>Is it really anonymous?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, completely anonymous until you choose to reveal yourself. Recipients receive messages from our system with no way to identify who sent them unless you decide to share your identity.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>How are messages delivered?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Messages are delivered via text message or email (recipient's preference). They'll receive messages at varying times on the schedule you select - weekly, three times a week, or daily.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>How do I reveal myself as the sender?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>When you're ready to reveal your identity, you can do so with a single click through your account dashboard. Your recipient will receive a special message letting them know you've been the one sending the encouragement all along.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>Can I write my own messages?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes! While we have a large library of uplifting messages, you can also customize and create your own. The Medium and Heavy plans include theme options like mindfulness, personal growth, and motivation to help you craft the perfect message.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>Can recipients reply to messages?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, recipients can reply to messages. Their responses will be delivered to your dashboard while maintaining your anonymity, allowing for meaningful two-way communication.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="more-questions fade-in">
-                <p>Have more questions? <a href="#" class="contact-link">Contact our support team</a></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="final-cta">
-        <div class="container">
-            <div class="cta-box fade-in">
-                <div class="final-cta-content">
-                    <h2>Someone You Love Needs This<br><span class="accent-text">Right Now</span></h2>
-                    <p>When words matter most, consistency is key. Make encouragement a part of their routine.</p>
-                    
-                    <div class="cta-features">
-                        <div class="cta-feature">
-                            <i class="fas fa-envelope-open-text"></i>
-                            <span>Uplifting messages starting at just $5/month</span>
-                        </div>
-                        <div class="cta-feature">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>100% anonymous delivery guaranteed</span>
-                        </div>
-                        <div class="cta-feature">
-                            <i class="fas fa-undo"></i>
-                            <span>30-day money-back guarantee</span>
-                        </div>
-                    </div>
-                    
-                    <a href="#plans" class="cta-button large pulse-animation">Choose Your Plan <i class="fas fa-heart"></i></a>
-                    
-                    <p class="trial-note"><i class="fas fa-info-circle"></i> All memberships include a 7-day free trial</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-main">
-            <div class="container footer-content">
-                <div class="footer-grid">
-                    <div class="footer-column brand-column">
-                        <a href="#" class="footer-logo">
-                            <img src="https://img.icons8.com/fluency/48/envelope-heart.png" alt="Message Vault Logo">
-                            <span>The Message Vault</span>
-                        </a>
-                        <p class="footer-tagline">Daily affirmations, sent with care.</p>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="#how-it-works">How It Works</a></li>
-                            <li><a href="#plans">Pricing</a></li>
-                            <li><a href="#testimonials">Testimonials</a></li>
-                            <li><a href="#faq">FAQ</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Legal</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Refund Policy</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Contact</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Business Inquiries</a></li>
-                            <li><a href="#">Feature Requests</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p class="copyright">© 2023 The Message Vault. All rights reserved.</p>
-                </div>
-            </div>
+            <p class="copyright">&copy; <script>document.write(new Date().getFullYear())</script> The Message Vault. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Typing animation
-            const messages = [
-                "Just a reminder that your strength isn't measured by never failing, but by rising every time you fall.",
-                "You're not alone in this. Someone believes in you today.",
-                "Today is one step in your journey. Take it at your own pace."
-            ];
-            
-            const typingText = document.querySelector('.typing-text');
-            const typingCursor = document.querySelector('.typing-cursor');
-            let messageIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            let typingDelay = 100;
-            
-            function typeMessage() {
-                const currentMessage = messages[messageIndex];
-                
-                if (isDeleting) {
-                    // Delete message
-                    typingText.textContent = currentMessage.substring(0, charIndex - 1);
-                    charIndex--;
-                    typingDelay = 30;
-                } else {
-                    // Type message
-                    typingText.textContent = currentMessage.substring(0, charIndex + 1);
-                    charIndex++;
-                    typingDelay = 100;
-                }
-                
-                // Control the typing/deleting flow
-                if (!isDeleting && charIndex === currentMessage.length) {
-                    // Complete message typed - pause before deleting
-                    isDeleting = true;
-                    typingDelay = 2000; // Pause at complete message
-                } else if (isDeleting && charIndex === 0) {
-                    // Complete message deleted - move to next message
-                    isDeleting = false;
-                    messageIndex++;
-                    
-                    // Reset to beginning of messages array if at end
-                    if (messageIndex === messages.length) {
-                        messageIndex = 0;
-                    }
-                    
-                    typingDelay = 500; // Pause before typing new message
-                }
-                
-                setTimeout(typeMessage, typingDelay);
-            }
-            
-            // Start the typing animation
-            setTimeout(typeMessage, 1000);
-            
-            // Learn More Toggles
-            const learnMoreToggles = document.querySelectorAll('.learn-more-toggle');
-            
-            learnMoreToggles.forEach(toggle => {
-                toggle.addEventListener('click', function() {
-                    const container = this.parentElement;
-                    container.classList.toggle('active');
-                    
-                    if (container.classList.contains('active')) {
-                        this.textContent = 'Show Less';
-                    } else {
-                        this.textContent = 'Learn More';
-                    }
-                });
-            });
-            
-            // Message Generator
-            const situationSelect = document.getElementById('situation-input');
-            const generateButton = document.getElementById('generate-message');
-            const previewText = document.getElementById('preview-text');
-            const sendNowButton = document.getElementById('send-now-button');
-            
-            // Message templates for each situation
-            const messageTemplates = {
-                stress: [
-                    "Remember that even in the midst of stress, you have the strength to overcome. Take one breath at a time.",
-                    "Work stress is temporary, but your wellbeing matters most. You're handling this better than you know.",
-                    "Just a reminder that it's okay to set boundaries when work gets overwhelming. Your worth isn't measured by your productivity."
-                ],
-                confidence: [
-                    "The voice of doubt in your head is not the truth about who you are. You have unique gifts that the world needs.",
-                    "Your journey isn't meant to look like anyone else's. Trust your path and the strength within you.",
-                    "Confidence isn't about being perfect—it's about knowing you're worthy even when you're not."
-                ],
-                lonely: [
-                    "Even when it feels like you're alone, there are people who care about you more than you realize.",
-                    "The feeling of loneliness is real, but it isn't the final story. Better connections are ahead.",
-                    "Sometimes the quiet moments feel the heaviest, but you're not walking this path alone. Someone is thinking of you right now."
-                ],
-                motivation: [
-                    "You don't need to see the entire staircase to take the first step. Your progress matters, however small.",
-                    "Don't forget how far you've already come. Each effort builds toward something meaningful.",
-                    "Sometimes motivation follows action rather than leading it. Start small today and the energy will follow."
-                ],
-                health: [
-                    "Your body is fighting for you even when it feels like it's failing you. Be gentle with yourself during this healing journey.",
-                    "Health challenges reveal our deepest strength. You're showing courage every day, even if it doesn't feel that way.",
-                    "Healing isn't linear, and rest is part of recovery. Honor where you are today without judgment."
-                ]
-            };
-            
-            generateButton.addEventListener('click', function() {
-                const selectedSituation = situationSelect.value;
-                
-                if (selectedSituation) {
-                    // Get a random message for the selected situation
-                    const templates = messageTemplates[selectedSituation];
-                    const randomIndex = Math.floor(Math.random() * templates.length);
-                    const generatedMessage = templates[randomIndex];
-                    
-                    // Update the preview text with animation
-                    previewText.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        previewText.textContent = generatedMessage;
-                        previewText.style.opacity = '1';
-                        
-                        // Show the send now button
-                        sendNowButton.style.display = 'inline-block';
-                    }, 300);
+        document.querySelectorAll('a[href^="#"]_selector').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 }
             });
-            
-            // Navigation scroll behavior
-            const nav = document.querySelector('.main-nav');
-            let lastScrollY = window.scrollY;
-            
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 100) {
-                    nav.classList.add('scrolled');
-                    
-                    if (window.scrollY > lastScrollY) {
-                        nav.classList.add('nav-hidden');
-                    } else {
-                        nav.classList.remove('nav-hidden');
-                    }
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-                
-                lastScrollY = window.scrollY;
-            });
-            
-            // Mobile menu toggle
-            const navToggle = document.querySelector('.nav-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            navToggle.addEventListener('click', function() {
-                navToggle.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-            
-            // Custom cursor
-            const cursor = document.querySelector('.cursor-effect');
-            
-            document.addEventListener('mousemove', function(e) {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-            
-            // Hide loading screen when page is loaded
-            window.addEventListener('load', function() {
-                const loadingOverlay = document.querySelector('.loading-overlay');
-                loadingOverlay.classList.add('hidden');
-            });
-            
-            // Fade-in animation for elements when scrolled into view
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            function checkFade() {
-                fadeElements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < window.innerHeight - elementVisible) {
-                        element.classList.add('visible');
-                    }
-                });
-            }
-            
-            window.addEventListener('scroll', checkFade);
-            checkFade(); // Check on initial load
-            
-            // Testimonial Carousel
-            const carouselDots = document.querySelectorAll('.carousel-dot');
-            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-            let currentSlide = 0;
-            let testimonialInterval;
-            
-            function showSlide(index) {
-                // Hide current slide
-                testimonialSlides.forEach(slide => {
-                    slide.classList.remove('active');
-                });
-                
-                // Remove active class from all dots
-                carouselDots.forEach(dot => {
-                    dot.classList.remove('active');
-                });
-                
-                // Show selected slide
-                testimonialSlides[index].classList.add('active');
-                carouselDots[index].classList.add('active');
-                
-                // Update current slide index
-                currentSlide = index;
-            }
-            
-            // Initialize carousel dots click functionality
-            carouselDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    showSlide(index);
-                    resetInterval();
-                });
-            });
-            
-            // Auto-rotate carousel
-            function startInterval() {
-                testimonialInterval = setInterval(() => {
-                    let nextSlide = currentSlide + 1;
-                    if (nextSlide >= testimonialSlides.length) {
-                        nextSlide = 0;
-                    }
-                    showSlide(nextSlide);
-                }, 5000); // Change slide every 5 seconds
-            }
-            
-            function resetInterval() {
-                clearInterval(testimonialInterval);
-                startInterval();
-            }
-            
-            // Start the carousel
-            startInterval();
         });
     </script>
+
 </body>
-</html> 
+</html>
