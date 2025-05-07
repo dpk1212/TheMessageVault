@@ -36,10 +36,10 @@ header h1 {
 }
 
 .hero {
-    background-image: url('https://images.unsplash.com/photo-1534439903836-7c280df38190?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); /* New test image */
-    /* background-size: cover; */ /* Temporarily commented out */
-    /* background-position: center center; */ /* Temporarily commented out */
-    background-color: red; /* Temporary bright background for testing */
+    background-image: url('https://source.unsplash.com/d16red0aCfU/1920x1280'); /* Using source.unsplash.com with image ID and dimensions */
+    background-size: cover; /* Restored */
+    background-position: center center; /* Restored */
+    /* background-color: red; */ /* Removed temporary red background */
     /* background-attachment: fixed; */ 
     min-height: 85vh; /* Increased height */
     display: flex;
