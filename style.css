@@ -1579,4 +1579,228 @@ footer {
 
 body {
     animation: fadeIn 1s ease-out;
+}
+
+/* Hero Section New Styles */
+.hero-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+}
+
+.hero-text-container {
+    flex: 1;
+    text-align: left;
+    max-width: 550px;
+}
+
+.main-headline {
+    font-size: 3.2rem;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+.message-typing-animation {
+    margin-bottom: 30px;
+}
+
+.phone-preview {
+    background: #252529;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 400px;
+}
+
+.phone-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.message-time {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.message-body {
+    background: rgba(246, 114, 128, 0.15);
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.typing-text {
+    margin: 0;
+    display: inline;
+    font-size: 1.1rem;
+}
+
+.typing-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    font-size: 1.2rem;
+    color: #F67280;
+    animation: cursor-blink 1s infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.emotional-state-visual {
+    flex: 1;
+    max-width: 500px;
+}
+
+.before-after-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.emotional-state {
+    flex: 1;
+    background: #252529;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.emotional-state.before {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(135deg, #252529 0%, #1a1a1d 100%);
+}
+
+.emotional-state.after {
+    border: 1px solid rgba(246, 114, 128, 0.2);
+    background: linear-gradient(135deg, #252529 0%, #2a2a30 100%);
+    transform: translateY(-15px);
+}
+
+.state-time {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
+}
+
+.state-image {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.state-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.emotional-state:hover .state-image img {
+    transform: scale(1.05);
+}
+
+.state-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.emotional-state.before .state-label {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.emotional-state.after .state-label {
+    color: #F67280;
+}
+
+.satisfaction-rate {
+    background: rgba(246, 114, 128, 0.1);
+    border: 1px solid rgba(246, 114, 128, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    animation: pulse-subtle 2s infinite;
+}
+
+.rate-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #F67280;
+    margin-bottom: 5px;
+}
+
+.rate-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes pulse-subtle {
+    0%, 100% { box-shadow: 0 0 0 rgba(246, 114, 128, 0.4); }
+    50% { box-shadow: 0 0 20px rgba(246, 114, 128, 0.2); }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 960px) {
+    .hero-flex-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .hero-text-container {
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .cta-container {
+        align-items: center;
+    }
+    
+    .main-headline {
+        font-size: 2.5rem;
+    }
+    
+    .phone-preview, 
+    .emotional-state-visual {
+        max-width: 100%;
+    }
+    
+    .emotional-state.after {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .before-after-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .state-image {
+        height: 120px;
+    }
+    
+    .main-headline {
+        font-size: 2rem;
+    }
 } 

@@ -40,54 +40,61 @@
                 <li><a href="#plans">Plans</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="#plans" class="nav-cta">Subscribe Now</a></li>
+                <li><a href="#plans" class="nav-cta">Start Supporting Someone</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="video-background">
-            <video autoplay muted loop id="hero-video">
-                <source src="https://cdn.coverr.co/videos/coverr-someone-writing-on-paper-6412/1080p.mp4" type="video/mp4">
-            </video>
-        </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="container">
-                <div class="hero-text-overlay">
-                    <h1 class="main-headline">Someone You Love <span class="accent-text">Needs This</span>—Daily Affirmations, Sent with Care.</h1>
-                    
-                    <p class="hero-subtext">
-                        Give someone the gift of daily encouragement with uplifting messages sent straight to their phone. Whether they're struggling, feeling lost, or just need a daily reminder of their strength.
-                    </p>
-                    
-                    <div class="hero-feature-grid">
-                        <div class="hero-feature">
-                            <i class="fas fa-heart-pulse"></i>
-                            <span>Emotional Support</span>
+                <div class="hero-flex-container">
+                    <div class="hero-text-container">
+                        <h1 class="main-headline">Send Anonymous Daily Support</h1>
+                        
+                        <div class="message-typing-animation">
+                            <div class="phone-preview">
+                                <div class="phone-header">
+                                    <span class="message-time">9:15 AM</span>
+                                </div>
+                                <div class="message-body">
+                                    <p class="typing-text"></p>
+                                    <span class="typing-cursor">|</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="hero-feature">
-                            <i class="fas fa-user-secret"></i>
-                            <span>Send Anonymously</span>
-                        </div>
-                        <div class="hero-feature">
-                            <i class="fas fa-calendar-check"></i>
-                            <span>Weekly or Daily Options</span>
-                        </div>
-                        <div class="hero-feature">
-                            <i class="fas fa-face-smile"></i>
-                            <span>Reveal When Ready</span>
+                        
+                        <div class="cta-container">
+                            <a href="#plans" class="cta-button pulse-animation">Start Supporting Someone <i class="fas fa-arrow-right"></i></a>
+                            <div class="pricing-preview">
+                                <p>Starting at just <span class="highlight-text">$5/month</span></p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="cta-group">
-                        <a href="#plans" class="cta-button pulse-animation">Choose Your Plan <i class="fas fa-arrow-right"></i></a>
-                        <a href="#how-it-works" class="cta-button secondary">See How It Works</a>
-                    </div>
-                    
-                    <div class="pricing-preview">
-                        <p>Starting at just <span class="highlight-text">$5/month</span></p>
+                    <div class="emotional-state-visual">
+                        <div class="before-after-container">
+                            <div class="emotional-state before">
+                                <div class="state-time">9:14 AM</div>
+                                <div class="state-image">
+                                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=300&h=300" alt="Person looking stressed">
+                                </div>
+                                <div class="state-label">Before</div>
+                            </div>
+                            <div class="emotional-state after">
+                                <div class="state-time">9:15 AM</div>
+                                <div class="state-image">
+                                    <img src="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?auto=format&fit=crop&w=300&h=300" alt="Person feeling relieved">
+                                </div>
+                                <div class="state-label">After</div>
+                            </div>
+                        </div>
+                        <div class="satisfaction-rate">
+                            <span class="rate-number">98%</span>
+                            <span class="rate-label">satisfaction rate</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -668,163 +675,121 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        // Loading screen
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.querySelector('.loading-overlay').classList.add('hidden');
-            }, 1000);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Typing animation
+            const messages = [
+                "Just a reminder that your strength isn't measured by never failing, but by rising every time you fall.",
+                "You're not alone in this. Someone believes in you today.",
+                "Today is one step in your journey. Take it at your own pace."
+            ];
             
-            // Initialize all animations
-            initializeAnimations();
-        });
-
-        // Set up all animations and interactions
-        function initializeAnimations() {
-            // Scroll animation
-            const observerOptions = {
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.fade-in').forEach(element => {
-                observer.observe(element);
-            });
+            const typingText = document.querySelector('.typing-text');
+            const typingCursor = document.querySelector('.typing-cursor');
+            let messageIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingDelay = 100;
             
-            // Set up FAQ accordions
-            setupFaqAccordions();
-            
-            // Initialize sticky navigation
-            setupStickyNavigation();
-        }
-        
-        // Cursor effect
-        document.addEventListener('mousemove', (e) => {
-            const cursor = document.querySelector('.cursor-effect');
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Link and button hover effect for cursor
-        document.querySelectorAll('a, button').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                document.querySelector('.cursor-effect').style.width = '50px';
-                document.querySelector('.cursor-effect').style.height = '50px';
-                document.querySelector('.cursor-effect').style.backgroundColor = 'rgba(201, 182, 228, 0.4)';
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                document.querySelector('.cursor-effect').style.width = '20px';
-                document.querySelector('.cursor-effect').style.height = '20px';
-                document.querySelector('.cursor-effect').style.backgroundColor = 'rgba(246, 114, 128, 0.5)';
-            });
-        });
-
-        // Mobile Navigation Toggle
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+            function typeMessage() {
+                const currentMessage = messages[messageIndex];
                 
-                // Close mobile menu if open
-                if (navMenu.classList.contains('active')) {
-                    navToggle.classList.remove('active');
-                    navMenu.classList.remove('active');
+                if (isDeleting) {
+                    // Delete message
+                    typingText.textContent = currentMessage.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingDelay = 30;
+                } else {
+                    // Type message
+                    typingText.textContent = currentMessage.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingDelay = 100;
                 }
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // FAQ accordions
-        function setupFaqAccordions() {
-            document.querySelectorAll('.faq-question').forEach(question => {
-                question.addEventListener('click', () => {
-                    const parent = question.parentElement;
-                    const answer = parent.querySelector('.faq-answer');
-                    const toggle = question.querySelector('.faq-toggle');
+                // Control the typing/deleting flow
+                if (!isDeleting && charIndex === currentMessage.length) {
+                    // Complete message typed - pause before deleting
+                    isDeleting = true;
+                    typingDelay = 2000; // Pause at complete message
+                } else if (isDeleting && charIndex === 0) {
+                    // Complete message deleted - move to next message
+                    isDeleting = false;
+                    messageIndex++;
                     
-                    // Close all other open FAQs
-                    document.querySelectorAll('.faq-item.active').forEach(item => {
-                        if (item !== parent) {
-                            item.classList.remove('active');
-                            item.querySelector('.faq-answer').style.maxHeight = '0px';
-                            item.querySelector('.faq-toggle').textContent = '+';
-                        }
-                    });
-                    
-                    // Toggle the clicked FAQ
-                    if (parent.classList.contains('active')) {
-                        parent.classList.remove('active');
-                        answer.style.maxHeight = '0px';
-                        toggle.textContent = '+';
-                    } else {
-                        parent.classList.add('active');
-                        answer.style.maxHeight = answer.scrollHeight + 'px';
-                        toggle.textContent = '−';
+                    // Reset to beginning of messages array if at end
+                    if (messageIndex === messages.length) {
+                        messageIndex = 0;
                     }
-                });
-            });
-        }
-
-        // Sticky navigation
-        function setupStickyNavigation() {
-            let lastScrollTop = 0;
+                    
+                    typingDelay = 500; // Pause before typing new message
+                }
+                
+                setTimeout(typeMessage, typingDelay);
+            }
+            
+            // Start the typing animation
+            setTimeout(typeMessage, 1000);
+            
+            // Navigation scroll behavior
             const nav = document.querySelector('.main-nav');
+            let lastScrollY = window.scrollY;
             
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                if (scrollTop > 100) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
                     nav.classList.add('scrolled');
                     
-                    if (scrollTop > lastScrollTop && scrollTop > 300) {
-                        // Scrolling down
+                    if (window.scrollY > lastScrollY) {
                         nav.classList.add('nav-hidden');
                     } else {
-                        // Scrolling up
                         nav.classList.remove('nav-hidden');
                     }
                 } else {
                     nav.classList.remove('scrolled');
                 }
                 
-                lastScrollTop = scrollTop;
+                lastScrollY = window.scrollY;
             });
-        }
-        
-        // Add parallax effect to sections with background images
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.pageYOffset;
             
-            // Add subtle parallax to sections with background images
-            document.querySelectorAll('.pricing, .final-cta').forEach(section => {
-                section.style.backgroundPosition = `center ${50 + (scrollPosition * 0.05)}%`;
+            // Mobile menu toggle
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            navToggle.addEventListener('click', function() {
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
             });
+            
+            // Custom cursor
+            const cursor = document.querySelector('.cursor-effect');
+            
+            document.addEventListener('mousemove', function(e) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            
+            // Hide loading screen when page is loaded
+            window.addEventListener('load', function() {
+                const loadingOverlay = document.querySelector('.loading-overlay');
+                loadingOverlay.classList.add('hidden');
+            });
+            
+            // Fade-in animation for elements when scrolled into view
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkFade() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkFade);
+            checkFade(); // Check on initial load
         });
     </script>
 </body>
