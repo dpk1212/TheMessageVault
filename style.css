@@ -121,6 +121,13 @@ header h1 {
     line-height: 1.5;
 }
 
+.anonymity-assurance {
+    font-size: 0.9em;
+    color: #C9B6E4; /* Soft violet */
+    margin-top: 30px;
+    font-style: italic;
+}
+
 footer {
     background-color: #1A1A1D; /* Matches body background */
     padding: 30px 20px;
@@ -148,6 +155,12 @@ footer {
     background-color: #e06270; /* Slightly darker coral on hover */
     transform: translateY(-2px) scale(1.02); /* Lift and slightly scale */
     box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Enhanced shadow on hover */
+}
+
+.privacy-assurance {
+    font-size: 0.85em;
+    color: #C9B6E4; /* Soft violet */
+    margin-top: 20px;
 }
 
 /* Message Previews Section */
