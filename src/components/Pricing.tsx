@@ -20,7 +20,8 @@ export function Pricing() {
       ],
       popular: false,
       cta: "Send Weekly Support",
-      color: "from-indigo-400/40 to-transparent"
+      color: "from-indigo-400/40 to-transparent",
+      paymentLink: "https://buy.stripe.com/3cs6s236wfFU3ZK8ww"
     },
     {
       id: "steady",
@@ -40,7 +41,8 @@ export function Pricing() {
       ],
       popular: true,
       cta: "Send Steady Support",
-      color: "from-primary/40 to-transparent"
+      color: "from-primary/40 to-transparent",
+      paymentLink: "https://buy.stripe.com/cN29Ee36w8ds2VGbIJ"
     },
     {
       id: "daily",
@@ -61,7 +63,8 @@ export function Pricing() {
       ],
       popular: false,
       cta: "Send Daily Support",
-      color: "from-purple-400/40 to-transparent"
+      color: "from-purple-400/40 to-transparent",
+      paymentLink: "https://buy.stripe.com/9AQ2bMePeeBQbsceUW"
     },
   ];
 
@@ -158,6 +161,7 @@ export function Pricing() {
                       ? 'bg-primary hover:bg-primary/90 shadow-primary/20' 
                       : 'bg-card border border-primary/40 text-primary hover:bg-primary/5'
                   }`}
+                  onClick={() => window.location.href = plan.paymentLink}
                 >
                   {plan.cta}
                 </Button>
