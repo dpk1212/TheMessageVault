@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { StepProcess } from "./components/StepProcess";
@@ -8,8 +9,9 @@ import { TrustSection } from "./components/TrustSection";
 import { FAQ } from "./components/FAQ";
 import { CallToAction } from "./components/CallToAction";
 import { Footer } from "./components/Footer";
+import PaymentSuccessPage from "./PaymentSuccessPage";
 
-export default function App() {
+function HomePage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -25,5 +27,16 @@ export default function App() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/payment-success" element={<PaymentSuccessPage />} />
+      </Routes>
+    </Router>
   );
 } 

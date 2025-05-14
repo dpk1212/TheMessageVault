@@ -22,7 +22,7 @@ export function FAQ() {
     },
     {
       question: "Can I review messages before they're sent?",
-      answer: "Yes! With our Steady Echo and Daily Glow plans, you can opt to review messages before they're sent. You'll receive them 24 hours in advance and can approve, edit, or request a new message. The Weekly Whisper plan offers this feature as an add-on."
+      answer: "To ensure timely delivery and maintain the genuine nature of support, messages are sent directly once crafted by our writers. This approach helps preserve the spontaneous feeling of receiving a thoughtful message. Our writers are trained to understand your relationship dynamic and the recipient's situation to create messages that feel authentic to your voice."
     },
     {
       question: "How is this different from sending texts myself?",

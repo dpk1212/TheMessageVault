@@ -6,6 +6,11 @@ export function CallToAction() {
     document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleInputClick = () => {
+    // Scroll to pricing section when any input is clicked
+    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="py-24 px-4 relative overflow-hidden">
       {/* Background gradient */}
@@ -79,7 +84,7 @@ export function CallToAction() {
                 Start Supporting Someone Today
               </h3>
               <p className="text-muted-foreground mb-6">
-                Set up in less than 5 minutes.
+                Choose a plan to get started.
               </p>
 
               <div className="grid gap-4 mb-6">
@@ -93,8 +98,10 @@ export function CallToAction() {
                   <input
                     type="text"
                     id="yourName"
-                    className="w-full h-10 px-3 rounded-lg border bg-input-background focus:ring-2 focus:ring-primary/20 focus:border-primary/60 outline-none transition-all"
+                    className="w-full h-10 px-3 rounded-lg border bg-input-background focus:ring-2 focus:ring-primary/20 focus:border-primary/60 outline-none transition-all cursor-pointer"
                     placeholder="Your name"
+                    onClick={handleInputClick}
+                    readOnly
                   />
                 </div>
                 <div>
@@ -107,8 +114,10 @@ export function CallToAction() {
                   <input
                     type="email"
                     id="email"
-                    className="w-full h-10 px-3 rounded-lg border bg-input-background focus:ring-2 focus:ring-primary/20 focus:border-primary/60 outline-none transition-all"
+                    className="w-full h-10 px-3 rounded-lg border bg-input-background focus:ring-2 focus:ring-primary/20 focus:border-primary/60 outline-none transition-all cursor-pointer"
                     placeholder="you@example.com"
+                    onClick={handleInputClick}
+                    readOnly
                   />
                 </div>
                 <div>
@@ -120,7 +129,8 @@ export function CallToAction() {
                   </label>
                   <select
                     id="situation"
-                    className="w-full h-10 px-3 rounded-lg border bg-input-background focus:ring-2 focus:ring-primary/20 focus:border-primary/60 outline-none transition-all"
+                    className="w-full h-10 px-3 rounded-lg border bg-input-background focus:ring-2 focus:ring-primary/20 focus:border-primary/60 outline-none transition-all cursor-pointer"
+                    onClick={handleInputClick}
                   >
                     <option value="">Select a situation</option>
                     <option value="illness">
@@ -156,10 +166,12 @@ export function CallToAction() {
                         value="text"
                         className="peer absolute opacity-0"
                         defaultChecked
+                        onClick={handleInputClick}
                       />
                       <label
                         htmlFor="textDelivery"
                         className="flex justify-center items-center h-10 w-full cursor-pointer bg-input-background peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:font-medium transition-all"
+                        onClick={handleInputClick}
                       >
                         Text Message
                       </label>
@@ -171,10 +183,12 @@ export function CallToAction() {
                         name="deliveryMethod"
                         value="email"
                         className="peer absolute opacity-0"
+                        onClick={handleInputClick}
                       />
                       <label
                         htmlFor="emailDelivery"
                         className="flex justify-center items-center h-10 w-full cursor-pointer bg-input-background peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:font-medium transition-all"
+                        onClick={handleInputClick}
                       >
                         Email
                       </label>
@@ -187,11 +201,11 @@ export function CallToAction() {
                 className="h-12 rounded-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all mb-4"
                 onClick={handleBeginSupport}
               >
-                Begin Their Support
+                Choose Support Plan
               </Button>
 
               <p className="text-xs text-center text-muted-foreground">
-                By clicking "Begin Their Support", you agree to
+                By clicking "Choose Support Plan", you agree to
                 our Terms of Service and Privacy Policy.
               </p>
             </div>

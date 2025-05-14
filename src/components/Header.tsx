@@ -50,7 +50,6 @@ export function Header() {
           
           <nav className="hidden md:flex items-center gap-6">
             <a href="#how-it-works" className="text-foreground/80 hover:text-primary transition-colors">How It Works</a>
-            <a href="#testimonials" className="text-foreground/80 hover:text-primary transition-colors">Real Stories</a>
             <a href="#pricing" className="text-foreground/80 hover:text-primary transition-colors">Support Plans</a>
             <a href="#faq" className="text-foreground/80 hover:text-primary transition-colors">FAQ</a>
           </nav>
@@ -59,8 +58,9 @@ export function Header() {
             <Button 
               variant="ghost" 
               className="rounded-full hidden sm:flex hover:bg-primary/5 hover:text-primary"
+              onClick={() => window.open("https://billing.stripe.com/p/login/14kfZ49IJg8letOfYY", "_blank")}
             >
-              Sign In
+              Manage Subscription
             </Button>
             <Button 
               className="rounded-full shadow-md shadow-primary/20 bg-primary hover:bg-primary/90 transition-all"
