@@ -32,6 +32,7 @@ export function Hero() {
               <Button
                 className="h-14 px-8 rounded-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 transition-all"
                 size="lg"
+                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Send Support Now →
               </Button>
@@ -39,6 +40,7 @@ export function Hero() {
                 variant="outline"
                 className="h-14 px-8 rounded-full border-primary/20 text-primary hover:bg-primary/5 transition-all"
                 size="lg"
+                onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 How It Works
               </Button>

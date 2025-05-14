@@ -64,6 +64,7 @@ export function Header() {
             </Button>
             <Button 
               className="rounded-full shadow-md shadow-primary/20 bg-primary hover:bg-primary/90 transition-all"
+              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Send Support
             </Button>
@@ -75,6 +76,7 @@ export function Header() {
       <div className="fixed bottom-6 right-6 z-50 md:hidden animate-float">
         <Button 
           className="rounded-full h-14 px-6 shadow-lg shadow-primary/30 bg-primary hover:bg-primary/90 transition-all"
+          onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
         >
           Send Support
         </Button>

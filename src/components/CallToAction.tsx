@@ -1,6 +1,11 @@
 import { Button } from "./ui/button";
 
 export function CallToAction() {
+  const handleBeginSupport = () => {
+    // Scroll to pricing section when the button is clicked
+    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="py-24 px-4 relative overflow-hidden">
       {/* Background gradient */}
@@ -178,7 +183,10 @@ export function CallToAction() {
                 </div>
               </div>
 
-              <Button className="h-12 rounded-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all mb-4">
+              <Button 
+                className="h-12 rounded-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all mb-4"
+                onClick={handleBeginSupport}
+              >
                 Begin Their Support
               </Button>
 
