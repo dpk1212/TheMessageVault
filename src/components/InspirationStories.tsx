@@ -103,7 +103,7 @@ export function InspirationStories() {
         
         <div className="max-w-5xl mx-auto">
           {/* Story cards */}
-          <div className="relative h-[420px] sm:h-[360px]">
+          <div className="relative h-[480px] sm:h-[420px] md:h-[380px]">
             {inspirationStories.map((story, idx) => (
               <div 
                 key={story.id}
@@ -116,7 +116,7 @@ export function InspirationStories() {
                 }`}
               >
                 <Card className="h-full border border-primary/10 shadow-xl overflow-hidden">
-                  <CardContent className="p-8 md:p-10 h-full flex flex-col">
+                  <CardContent className="p-6 md:p-12 h-full flex flex-col">
                     <div className="flex flex-col md:flex-row gap-8 h-full">
                       {/* Icon column */}
                       <div className="flex justify-center md:justify-start">
@@ -130,7 +130,7 @@ export function InspirationStories() {
                         <h3 className="text-2xl mb-4">{story.situation}</h3>
                         <p className="mb-6 text-muted-foreground flex-grow">{story.story}</p>
                         
-                        <div className="bg-muted p-4 rounded-lg mt-auto">
+                        <div className="bg-muted p-5 md:p-6 rounded-lg mt-auto">
                           <div className="flex gap-3 items-start">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +142,7 @@ export function InspirationStories() {
                               strokeWidth="2"
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                              className="text-primary mt-1"
+                              className="text-primary mt-1 shrink-0"
                             >
                               <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
                               <path d="m9 12 2 2 4-4"></path>
