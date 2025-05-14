@@ -99,8 +99,8 @@ export function Pricing() {
               
               {/* Popular badge */}
               {plan.popular && (
-                <div className="absolute -top-3 inset-x-0 flex justify-center">
-                  <Badge variant="secondary" className="bg-primary text-white shadow-md">
+                <div className="absolute -top-4 inset-x-0 flex justify-center z-20">
+                  <Badge variant="secondary" className="bg-primary text-white shadow-md px-4 py-1">
                     MOST POPULAR
                   </Badge>
                 </div>
