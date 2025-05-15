@@ -1,5 +1,4 @@
 import { Button } from "./ui/button";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function Hero() {
   return (
