@@ -62,6 +62,7 @@ export function Pricing() {
         "1 recipient"
       ],
       popular: false,
+      bestValue: true,
       cta: "Send Daily Support",
       color: "from-purple-400/40 to-transparent",
       paymentLink: "https://buy.stripe.com/9AQ2bMePeeBQbsceUW"
@@ -106,16 +107,16 @@ export function Pricing() {
                 </div>
               )}
               
-              {/* Promo badge */}
-              {plan.popular && (
-                <div className="absolute top-4 right-4">
-                  <Badge variant="secondary" className="bg-accent text-primary shadow-sm">
-                    25% OFF
+              {/* Best Value badge */}
+              {plan.bestValue && (
+                <div className="absolute -top-6 inset-x-0 flex justify-center z-20">
+                  <Badge variant="secondary" className="bg-purple-600 text-white shadow-md px-5 py-1.5 text-xs font-medium">
+                    BEST VALUE
                   </Badge>
                 </div>
               )}
               
-              <CardHeader className={`relative z-10 ${plan.popular ? 'pt-10' : 'pt-6'}`}>
+              <CardHeader className={`relative z-10 ${plan.popular || plan.bestValue ? 'pt-10' : 'pt-6'}`}>
                 <div className="mb-2">
                   <CardTitle>{plan.name}</CardTitle>
                   <p className="text-muted-foreground text-sm mt-1">{plan.description}</p>
