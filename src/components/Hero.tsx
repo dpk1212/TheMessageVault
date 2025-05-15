@@ -8,6 +8,21 @@ export function Hero() {
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/20 rounded-full filter blur-3xl opacity-30 animate-pulse-slow"></div>
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/30 rounded-full filter blur-3xl opacity-30"></div>
       
+      {/* Our Promise Banner */}
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="bg-secondary/50 rounded-3xl p-8 text-center">
+          <div className="bg-primary text-white inline-flex rounded-full px-5 py-1.5 text-sm font-medium mb-4">
+            <span>OUR PROMISE</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-primary mb-4">
+            Flowers fade. Support doesn't have to.
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Send a stream of strength, not just a single card.
+          </p>
+        </div>
+      </div>
+      
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12">
           {/* Left side content */}
@@ -141,12 +156,23 @@ export function Hero() {
                     {/* Person receiving care illustration */}
                     <div className="pt-4 px-4 bg-white">
                       <div className="rounded-xl bg-secondary/50 p-4 mb-4 flex items-center gap-3">
-                        <div className="flex-shrink-0 h-14 w-14 rounded-full overflow-hidden">
-                          <ImageWithFallback
-                            src="https://images.unsplash.com/photo-1542454433-a8bff9f28fd2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80"
-                            alt="Person facing difficult time"
-                            className="w-full h-full object-cover"
-                          />
+                        <div className="flex-shrink-0 h-14 w-14 rounded-full overflow-hidden bg-primary/10 flex items-center justify-center">
+                          <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            width="32" 
+                            height="32" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            strokeWidth="1.5" 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            className="text-primary"
+                          >
+                            <path d="M18 20a6 6 0 0 0-12 0" />
+                            <circle cx="12" cy="10" r="4" />
+                            <circle cx="12" cy="12" r="10" />
+                          </svg>
                         </div>
                         <div>
                           <h4 className="text-sm">Sarah's Recovery Journey</h4>
@@ -291,6 +317,40 @@ export function Hero() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Flowers vs Ongoing Support Comparison */}
+        <div className="mt-20 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
+          <div className="bg-white rounded-2xl p-6 shadow-md flex items-center gap-4 w-full md:w-auto">
+            <div className="h-16 w-16 bg-red-100 rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 10c3.314 0 6-2.686 6-6 0 3.314 2.686 6 6 6-3.314 0-6 2.686-6 6 0-3.314-2.686-6-6-6 3.314 0 6-2.686 6-6 0 3.314 2.686 6 6 6-3.314 0-6 2.686-6 6 0-3.314-2.686-6-6-6z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-lg font-medium">One-time flowers</h3>
+              <p className="text-muted-foreground">Last 5-7 days then wither</p>
+            </div>
+          </div>
+          
+          <div className="flex justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </div>
+          
+          <div className="bg-secondary/60 rounded-2xl p-6 shadow-md flex items-center gap-4 w-full md:w-auto">
+            <div className="h-16 w-16 bg-primary/20 rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-lg font-medium">Stream of support</h3>
+              <p className="text-muted-foreground">Consistent care for weeks & months</p>
             </div>
           </div>
         </div>
