@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#f5f7ff" />
+  <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#f5f7ff" />
+    <stop offset="100%" stop-color="#e5eaff" />
+  </linearGradient>
+  <rect width="1200" height="630" fill="url(#bg-gradient)" />
+  
+  <!-- Decorative circles -->
+  <circle cx="100" cy="100" r="200" fill="#7c3aed" fill-opacity="0.1" />
+  <circle cx="1100" cy="530" r="150" fill="#a855f7" fill-opacity="0.1" />
+  
+  <!-- Logo -->
+  <g transform="translate(440, 130)">
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="80" 
+      height="80" 
+      viewBox="0 0 24 24" 
+      fill="#7c3aed"
+      stroke="#7c3aed" 
+      stroke-width="1.5" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+    >
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+    </svg>
+    
+    <text x="100" y="50" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="48" font-weight="bold" fill="#7c3aed">The Message Vault</text>
+  </g>
+  
+  <!-- Headline -->
+  <text x="600" y="260" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="56" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Be there for someone</text>
+  <text x="600" y="325" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="56" font-weight="bold" text-anchor="middle" fill="#1a1a1a">when they need it most</text>
+  
+  <!-- Subheadline -->
+  <text x="600" y="385" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" text-anchor="middle" fill="#555555">Consistent, heartfelt messages for people going through hard times</text>
+  
+  <!-- Message preview -->
+  <rect x="350" y="425" width="500" height="120" rx="16" ry="16" fill="white" stroke="#e5e7eb" stroke-width="1" />
+  <text x="370" y="465" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" fill="#333333">I know today might be tough. Just remember—this</text>
+  <text x="370" y="495" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" fill="#333333">moment will pass, but my support won't. I'm here for you.</text>
+  <text x="370" y="525" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" fill="#777777">themessagevault.com</text>
+</svg> 
