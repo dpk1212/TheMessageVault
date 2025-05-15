@@ -100,7 +100,7 @@ export function Pricing() {
               
               {/* Popular badge */}
               {plan.popular && (
-                <div className="absolute -top-6 inset-x-0 flex justify-center z-20">
+                <div className="absolute -top-3 inset-x-0 flex justify-center z-20 mt-1">
                   <Badge variant="secondary" className="bg-primary text-white shadow-md px-5 py-1.5 text-xs font-medium">
                     MOST POPULAR
                   </Badge>
@@ -109,14 +109,14 @@ export function Pricing() {
               
               {/* Best Value badge */}
               {plan.bestValue && (
-                <div className="absolute -top-6 inset-x-0 flex justify-center z-20">
+                <div className="absolute -top-3 inset-x-0 flex justify-center z-20 mt-1">
                   <Badge variant="secondary" className="bg-purple-600 text-white shadow-md px-5 py-1.5 text-xs font-medium">
                     BEST VALUE
                   </Badge>
                 </div>
               )}
               
-              <CardHeader className={`relative z-10 ${plan.popular || plan.bestValue ? 'pt-10' : 'pt-6'}`}>
+              <CardHeader className={`relative z-10 ${plan.popular || plan.bestValue ? 'pt-8' : 'pt-6'}`}>
                 <div className="mb-2">
                   <CardTitle>{plan.name}</CardTitle>
                   <p className="text-muted-foreground text-sm mt-1">{plan.description}</p>
