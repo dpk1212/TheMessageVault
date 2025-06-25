@@ -203,15 +203,6 @@ export default function App() {
               </div>
             </div>
           </div>
-
-            {/* Subtle scroll indicator */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-              <div className="flex flex-col items-center space-y-2 text-vault-violet/60">
-                <div className="w-px h-8 bg-vault-violet/30"></div>
-                <div className="w-1 h-1 bg-vault-violet/30 rounded-full animate-pulse"></div>
-              </div>
-            </div>
-          </div>
         )}
 
         {/* Revealing State */}
