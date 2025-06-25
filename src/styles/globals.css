@@ -132,6 +132,57 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Atmospheric background effects */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(216, 180, 160, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(145, 137, 161, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(139, 87, 66, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: subtle-shift 20s ease-in-out infinite;
+  }
+
+  /* Subtle floating animation for atmospheric effect */
+  @keyframes subtle-shift {
+    0%, 100% { 
+      transform: translateX(0px) translateY(0px); 
+      opacity: 0.7;
+    }
+    50% { 
+      transform: translateX(10px) translateY(-5px); 
+      opacity: 1;
+    }
+  }
+
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(244, 241, 236, 0.05);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(216, 180, 160, 0.3);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(216, 180, 160, 0.5);
   }
 }
 
@@ -238,4 +289,147 @@ html {
   .border-vault-rosewood { border-color: var(--vault-rosewood); }
   .border-vault-bone { border-color: var(--vault-bone-white); }
   .border-vault-charcoal { border-color: var(--vault-deep-charcoal); }
+
+  /* Enhanced visual effects */
+  .card-glow {
+    box-shadow: 
+      0 4px 20px rgba(216, 180, 160, 0.1),
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(244, 241, 236, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .card-glow:hover {
+    box-shadow: 
+      0 8px 30px rgba(216, 180, 160, 0.15),
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(244, 241, 236, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .button-glow {
+    box-shadow: 
+      0 2px 8px rgba(216, 180, 160, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  .button-glow:hover {
+    box-shadow: 
+      0 4px 12px rgba(216, 180, 160, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .text-shimmer {
+    background: linear-gradient(
+      45deg,
+      var(--vault-bone-white),
+      var(--vault-warm-coral),
+      var(--vault-bone-white)
+    );
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .fade-in {
+    animation: fade-in 0.6s ease-out;
+  }
+
+  @keyframes fade-in {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  .slide-up {
+    animation: slide-up 0.4s ease-out;
+  }
+
+  @keyframes slide-up {
+    from { 
+      opacity: 0; 
+      transform: translateY(30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  .pulse-gentle {
+    animation: pulse-gentle 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-gentle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  .backdrop-blur-soft {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .glass-effect {
+    background: rgba(244, 241, 236, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(244, 241, 236, 0.1);
+  }
+
+  .message-card-enter {
+    animation: message-card-enter 0.5s ease-out;
+  }
+
+  @keyframes message-card-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .heart-bounce {
+    animation: heart-bounce 0.3s ease-in-out;
+  }
+
+  @keyframes heart-bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  /* Improved focus states */
+  .focus-visible:focus-visible {
+    outline: 2px solid var(--vault-warm-coral);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Enhanced text selection */
+  ::selection {
+    background: rgba(216, 180, 160, 0.3);
+    color: var(--vault-bone-white);
+  }
+
+  ::-moz-selection {
+    background: rgba(216, 180, 160, 0.3);
+    color: var(--vault-bone-white);
+  }
 } 

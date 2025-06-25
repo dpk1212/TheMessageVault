@@ -22,6 +22,13 @@ export function MessageCard({ message, onTakeAnother }: MessageCardProps) {
     if (!hasLiked) {
       setHasLiked(true);
       setHeartCount(prev => prev + 1);
+      
+      // Add heart bounce animation
+      const heartElement = document.querySelector(`[data-heart-${message.id}]`);
+      if (heartElement) {
+        heartElement.classList.add('heart-bounce');
+        setTimeout(() => heartElement.classList.remove('heart-bounce'), 300);
+      }
     }
   };
 
@@ -48,22 +55,22 @@ export function MessageCard({ message, onTakeAnother }: MessageCardProps) {
 
   return (
     <div className="w-full max-w-2xl mx-auto px-4">
-      <Card className="bg-card/80 backdrop-blur-sm border-border/20 shadow-2xl">
+      <Card className="bg-card/80 backdrop-blur-sm border-border/20 shadow-2xl card-glow message-card-enter glass-effect">
         <CardContent className="p-8 md:p-12">
           {/* Tag */}
           <div className="mb-6">
-            <span className="inline-block px-3 py-1 bg-vault-violet/20 text-vault-violet rounded-full text-xs tracking-wider uppercase">
+            <span className="inline-block px-3 py-1 bg-vault-violet/20 text-vault-violet rounded-full text-xs tracking-wider uppercase slide-up">
               {message.tag}
             </span>
           </div>
 
           {/* Message Text */}
-          <blockquote className="message-text text-vault-bone mb-8 leading-relaxed">
+          <blockquote className="message-text text-vault-bone mb-8 leading-relaxed slide-up" style={{ animationDelay: '0.1s' }}>
             "{message.text}"
           </blockquote>
 
           {/* Signoff */}
-          <div className="text-vault-violet mb-8 italic">
+          <div className="text-vault-violet mb-8 italic slide-up" style={{ animationDelay: '0.2s' }}>
             — {message.signoff}
           </div>
 
@@ -74,11 +81,14 @@ export function MessageCard({ message, onTakeAnother }: MessageCardProps) {
                 variant="ghost"
                 size="sm"
                 onClick={handleHeart}
-                className={`flex items-center gap-2 hover:bg-vault-coral/10 ${
+                className={`flex items-center gap-2 hover:bg-vault-coral/10 transition-all duration-200 ${
                   hasLiked ? 'text-vault-coral' : 'text-vault-violet'
                 }`}
               >
-                <Heart className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
+                <Heart 
+                  className={`w-4 h-4 transition-all duration-200 ${hasLiked ? 'fill-current' : ''}`} 
+                  data-heart={message.id}
+                />
                 <span>{heartCount} This helped</span>
               </Button>
 
@@ -95,7 +105,7 @@ export function MessageCard({ message, onTakeAnother }: MessageCardProps) {
 
             <Button
               onClick={onTakeAnother}
-              className="bg-vault-coral hover:bg-vault-coral/90 text-vault-charcoal flex items-center gap-2"
+              className="bg-vault-coral hover:bg-vault-coral/90 text-vault-charcoal flex items-center gap-2 button-glow"
             >
               <RotateCcw className="w-4 h-4" />
               Take another

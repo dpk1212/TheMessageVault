@@ -118,12 +118,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Background gradient */}
-      <div className="fixed inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-charcoal to-vault-deep-charcoal/95" />
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* Enhanced background with depth */}
+      <div className="fixed inset-0 bg-gradient-to-br from-vault-deep-charcoal via-vault-deep-charcoal to-black" />
       
-      {/* Subtle texture overlay - rain on glass aesthetic */}
-      <div className="fixed inset-0 opacity-15">
+      {/* Atmospheric texture overlay */}
+      <div className="fixed inset-0 opacity-20">
         <ImageWithFallback
           src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=1920&h=1080&fit=crop&auto=format"
           alt="Rain on glass texture"
@@ -131,28 +131,38 @@ export default function App() {
         />
       </div>
 
+      {/* Floating particles effect */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-vault-coral/20 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '3s' }} />
+        <div className="absolute top-3/4 right-1/3 w-0.5 h-0.5 bg-vault-violet/30 rounded-full animate-pulse" style={{ animationDelay: '1s', animationDuration: '4s' }} />
+        <div className="absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-vault-rosewood/15 rounded-full animate-pulse" style={{ animationDelay: '2s', animationDuration: '5s' }} />
+        <div className="absolute top-1/3 right-1/4 w-0.5 h-0.5 bg-vault-coral/25 rounded-full animate-pulse" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }} />
+      </div>
+
       <div className="relative z-10">
         {/* Landing State */}
         {currentState === 'landing' && (
           <div className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
-            <div className="max-w-2xl mx-auto space-y-8 animate-in fade-in duration-1000">
-              <h1 className="text-vault-bone mb-6">The Message Vault</h1>
-              <p className="tagline text-vault-violet text-lg max-w-lg mx-auto mb-12">
+            <div className="max-w-2xl mx-auto space-y-8 fade-in">
+              <h1 className="text-vault-bone mb-6 text-shimmer">The Message Vault</h1>
+              <p className="tagline text-vault-violet text-lg max-w-lg mx-auto mb-12 slide-up">
                 Take a message. Leave a message. Heal each other, quietly.
               </p>
               
-              <VaultCounter messagesTaken={35491} messagesLeft={12202} />
+              <div className="slide-up" style={{ animationDelay: '0.2s' }}>
+                <VaultCounter messagesTaken={35491} messagesLeft={12202} />
+              </div>
               
-              <div className="pt-12">
+              <div className="pt-12 slide-up" style={{ animationDelay: '0.4s' }}>
                 <Button
                   onClick={handleTakeMessage}
                   size="lg"
-                  className="bg-vault-coral hover:bg-vault-coral/90 text-vault-charcoal px-8 py-4 text-lg group transition-all duration-300 hover:scale-105"
+                  className="bg-vault-coral hover:bg-vault-coral/90 text-vault-charcoal px-8 py-4 text-lg group button-glow"
                 >
                   Need a kind word?
                   <ArrowDown className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
                 </Button>
-                <p className="text-sm text-vault-violet mt-4 opacity-80">
+                <p className="text-sm text-vault-violet mt-4 opacity-80 pulse-gentle">
                   Take one — and leave one for someone else.
                 </p>
               </div>
