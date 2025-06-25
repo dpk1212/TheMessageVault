@@ -329,6 +329,189 @@ export const statsService = {
 
 // Seed data for initial setup
 export const seedService = {
+  async addAdditionalMessages(): Promise<void> {
+    try {
+      const messagesRef = collection(db, 'messages');
+      
+      // Force add new messages regardless of existing data
+      const newSeedMessages = [
+        // Messages from Dale the creator
+        {
+          text: "I built this space because I know what it feels like to need a message and not know where to find one. You're not alone in whatever you're facing.",
+          signoff: "Dale, creator of The Message Vault",
+          tag: "Connection",
+          hearts: 178,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "Every single person who finds this vault deserves to feel seen, heard, and valued. That includes you, right now, reading this.",
+          signoff: "Dale, creator of The Message Vault",
+          tag: "Worth",
+          hearts: 245,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "Sometimes the bravest thing you can do is simply keep going when everything feels impossible. You're braver than you know.",
+          signoff: "Dale, creator of The Message Vault",
+          tag: "Courage",
+          hearts: 134,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+
+        // Messages from The Message Vault Team
+        {
+          text: "We moderate every message with love, ensuring this remains a safe space for healing. Your vulnerability here is protected and honored.",
+          signoff: "The Message Vault Team",
+          tag: "Safety",
+          hearts: 167,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "Thousands of messages flow through this vault daily. Each one carries someone's hope, love, or healing. You're part of something beautiful.",
+          signoff: "The Message Vault Team",
+          tag: "Community",
+          hearts: 221,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "Your story matters. Your pain has purpose. Your healing will inspire others. Thank you for being part of this community.",
+          signoff: "The Message Vault Team",
+          tag: "Purpose",
+          hearts: 189,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "We see you taking the time to read these words when you're hurting. That takes courage. We're proud of you for seeking hope.",
+          signoff: "The Message Vault Team",
+          tag: "Recognition",
+          hearts: 156,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+
+        // Messages from The Universe
+        {
+          text: "You were placed on this earth at exactly the right time, in exactly the right circumstances, to become exactly who you're meant to be.",
+          signoff: "The Universe",
+          tag: "Destiny",
+          hearts: 298,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "Every challenge you've faced has been preparing you for something greater. Trust the process, even when you can't see the destination.",
+          signoff: "The Universe",
+          tag: "Trust",
+          hearts: 267,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "The same energy that moves the stars through the sky flows through your heart. You are made of the same stuff as miracles.",
+          signoff: "The Universe",
+          tag: "Magic",
+          hearts: 312,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "Nothing in your life has been wasted. Every tear, every laugh, every moment of confusion - it's all been part of your becoming.",
+          signoff: "The Universe",
+          tag: "Meaning",
+          hearts: 234,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "You are not an accident. You are a carefully crafted response to the world's need for your unique brand of light.",
+          signoff: "The Universe",
+          tag: "Purpose",
+          hearts: 289,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+
+        // Messages from The Stranger On The Bus
+        {
+          text: "I see you wearing that smile that doesn't quite reach your eyes. It's okay to not be okay. Your feelings are valid.",
+          signoff: "The Stranger On The Bus",
+          tag: "Validation",
+          hearts: 143,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "You looked out the window today like you were searching for something. Maybe it's hope. I hope you find it.",
+          signoff: "The Stranger On The Bus",
+          tag: "Hope",
+          hearts: 176,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "I noticed you helped that elderly person with their bag. In a world that can be cold, your kindness was a warm light.",
+          signoff: "The Stranger On The Bus",
+          tag: "Kindness",
+          hearts: 198,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "You've been on this bus every day this week, and every day you choose to keep going. That's not small. That's everything.",
+          signoff: "The Stranger On The Bus",
+          tag: "Perseverance",
+          hearts: 165,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "I heard you on the phone trying to comfort someone. You have a gift for making people feel less alone. Don't forget that about yourself.",
+          signoff: "The Stranger On The Bus",
+          tag: "Gift",
+          hearts: 187,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        },
+        {
+          text: "We're all just strangers sharing the same journey for a few stops. But in this moment, you matter to me. You matter.",
+          signoff: "The Stranger On The Bus",
+          tag: "Connection",
+          hearts: 209,
+          createdAt: Timestamp.now(),
+          status: 'active' as const
+        }
+      ];
+
+      for (const message of newSeedMessages) {
+        await addDoc(messagesRef, message);
+      }
+      
+      console.log(`Added ${newSeedMessages.length} additional seed messages to Firebase`);
+      
+      // Update messagesLeft count
+      try {
+        const snapshot = await getDocs(query(collection(db, 'analytics'), limit(1)));
+        if (!snapshot.empty) {
+          const statsRef = doc(db, 'analytics', snapshot.docs[0].id);
+          await updateDoc(statsRef, {
+            messagesLeft: increment(newSeedMessages.length),
+            lastUpdated: Timestamp.now()
+          });
+        }
+      } catch (error) {
+        console.warn('Failed to update stats after adding messages:', error);
+      }
+    } catch (error) {
+      console.error('Error adding additional seed messages:', error);
+    }
+  },
+
   async addInitialMessages(): Promise<void> {
     try {
       const messagesRef = collection(db, 'messages');

@@ -33,6 +33,15 @@ export default function App() {
         // Add seed messages if database is empty
         await seedService.addInitialMessages();
         
+        // ONE-TIME: Add additional diverse messages to existing vault
+        // Check if we've already done this expansion
+        const hasExpanded = localStorage.getItem('vaultExpanded');
+        if (!hasExpanded) {
+          console.log('Expanding vault with additional diverse messages...');
+          await seedService.addAdditionalMessages();
+          localStorage.setItem('vaultExpanded', 'true');
+        }
+        
         // Load stats
         const stats = await statsService.getVaultStats();
         setVaultStats({
