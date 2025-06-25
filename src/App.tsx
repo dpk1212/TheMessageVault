@@ -119,54 +119,90 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Enhanced background with depth */}
-      <div className="fixed inset-0 bg-gradient-to-br from-vault-deep-charcoal via-vault-deep-charcoal to-black" />
+      {/* Sophisticated background layers */}
+      <div className="fixed inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-charcoal to-vault-deep-blue/20" />
       
-      {/* Atmospheric texture overlay */}
-      <div className="fixed inset-0 opacity-20">
+      {/* Atmospheric texture with elegant overlay */}
+      <div className="fixed inset-0 opacity-15">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=1920&h=1080&fit=crop&auto=format"
-          alt="Rain on glass texture"
-          className="w-full h-full object-cover mix-blend-soft-light"
+          src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1920&h=1080&fit=crop&auto=format"
+          alt="Elegant paper texture"
+          className="w-full h-full object-cover mix-blend-overlay"
         />
       </div>
 
-      {/* Floating particles effect */}
+      {/* Refined light effects */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-vault-coral/20 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '3s' }} />
-        <div className="absolute top-3/4 right-1/3 w-0.5 h-0.5 bg-vault-violet/30 rounded-full animate-pulse" style={{ animationDelay: '1s', animationDuration: '4s' }} />
-        <div className="absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-vault-rosewood/15 rounded-full animate-pulse" style={{ animationDelay: '2s', animationDuration: '5s' }} />
-        <div className="absolute top-1/3 right-1/4 w-0.5 h-0.5 bg-vault-coral/25 rounded-full animate-pulse" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }} />
+        {/* Golden accent lights */}
+        <div className="absolute top-20 left-20 w-32 h-32 bg-vault-gold/5 rounded-full blur-xl" />
+        <div className="absolute bottom-32 right-20 w-40 h-40 bg-vault-coral/8 rounded-full blur-2xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-vault-sage/4 rounded-full blur-3xl" />
+        
+        {/* Subtle floating elements */}
+        <div className="absolute top-1/4 left-1/5 w-2 h-2 bg-vault-gold/20 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '4s' }} />
+        <div className="absolute top-3/5 right-1/4 w-1 h-1 bg-vault-coral/30 rounded-full animate-pulse" style={{ animationDelay: '2s', animationDuration: '6s' }} />
+        <div className="absolute bottom-1/3 left-3/4 w-1.5 h-1.5 bg-vault-sage/25 rounded-full animate-pulse" style={{ animationDelay: '4s', animationDuration: '5s' }} />
       </div>
 
+      {/* Elegant border frame */}
+      <div className="fixed inset-4 border border-vault-coral/10 rounded-lg pointer-events-none z-10" />
+      <div className="fixed inset-8 border border-vault-gold/5 rounded-md pointer-events-none z-10" />
+
       <div className="relative z-10">
-        {/* Landing State */}
+        {/* Landing State - Completely Redesigned */}
         {currentState === 'landing' && (
-          <div className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
-            <div className="max-w-2xl mx-auto space-y-8 fade-in">
-              <h1 className="text-vault-bone mb-6 text-shimmer">The Message Vault</h1>
-              <p className="tagline text-vault-violet text-lg max-w-lg mx-auto mb-12 slide-up">
-                Take a message. Leave a message. Heal each other, quietly.
-              </p>
+          <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center relative">
+            {/* Elegant content container */}
+            <div className="max-w-4xl mx-auto space-y-12 fade-in">
+              {/* Hero Title with refined typography */}
+              <div className="space-y-6">
+                <h1 className="text-vault-bone mb-4 text-shimmer font-light tracking-wide">
+                  The Message Vault
+                </h1>
+                <div className="w-24 h-px bg-gradient-to-r from-transparent via-vault-gold to-transparent mx-auto opacity-60" />
+              </div>
               
-              <div className="slide-up" style={{ animationDelay: '0.2s' }}>
+              {/* Refined tagline */}
+              <div className="slide-up space-y-4">
+                <p className="tagline text-vault-violet max-w-2xl mx-auto leading-relaxed">
+                  A sanctuary for anonymous kindness, where words become bridges between hearts.
+                </p>
+                <p className="text-vault-violet/70 text-base max-w-xl mx-auto font-light">
+                  Take a message when you need hope. Leave one when you have love to give.
+                </p>
+              </div>
+              
+              {/* Enhanced counter with better spacing */}
+              <div className="slide-up py-8" style={{ animationDelay: '0.2s' }}>
                 <VaultCounter messagesTaken={35491} messagesLeft={12202} />
               </div>
               
-              <div className="pt-12 slide-up" style={{ animationDelay: '0.4s' }}>
+              {/* Redesigned call-to-action */}
+              <div className="pt-8 slide-up space-y-8" style={{ animationDelay: '0.4s' }}>
                 <Button
                   onClick={handleTakeMessage}
                   size="lg"
-                  className="bg-vault-coral hover:bg-vault-coral/90 text-vault-charcoal px-8 py-4 text-lg group button-glow"
+                  className="bg-gradient-to-r from-vault-coral to-vault-coral/90 hover:from-vault-coral/90 hover:to-vault-coral text-vault-charcoal px-12 py-6 text-lg group button-glow rounded-full font-light tracking-wide border border-vault-gold/20"
                 >
-                  Need a kind word?
-                  <ArrowDown className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
+                  Begin Your Journey
+                  <ArrowDown className="ml-3 w-5 h-5 group-hover:translate-y-1 transition-all duration-300" />
                 </Button>
-                <p className="text-sm text-vault-violet mt-4 opacity-80 pulse-gentle">
-                  Take one — and leave one for someone else.
+                
+                {/* Subtle instruction */}
+                <p className="text-vault-violet/60 text-sm font-light tracking-wider uppercase">
+                  Your healing awaits
                 </p>
               </div>
             </div>
+
+            {/* Decorative elements */}
+            <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 opacity-40">
+              <div className="flex flex-col items-center space-y-3">
+                <div className="w-px h-16 bg-gradient-to-b from-vault-gold/40 to-transparent"></div>
+                <div className="w-2 h-2 rounded-full bg-vault-gold/30 animate-pulse"></div>
+              </div>
+            </div>
+          </div>
 
             {/* Subtle scroll indicator */}
             <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Lora:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&family=Merriweather:wght@300;400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,12 +9,15 @@
 :root {
   --font-size: 14px;
   
-  /* The Message Vault Brand Colors */
-  --vault-deep-charcoal: #1E1E1E;
-  --vault-bone-white: #F4F1EC;
-  --vault-warm-coral: #D8B4A0;
-  --vault-soft-violet-gray: #9189A1;
+  /* The Message Vault Brand Colors - Refined Palette */
+  --vault-deep-charcoal: #0D0D0D;
+  --vault-bone-white: #FDFCF8;
+  --vault-warm-coral: #E6C2A6;
+  --vault-soft-violet-gray: #A69CAE;
   --vault-rosewood: #8B5742;
+  --vault-deep-blue: #1A237E;
+  --vault-gold: #D4AF37;
+  --vault-sage: #87A96B;
   
   /* Base theme using brand colors */
   --background: var(--vault-deep-charcoal);
@@ -131,12 +134,14 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     position: relative;
     overflow-x: hidden;
+    font-weight: 300;
+    letter-spacing: 0.025em;
   }
 
-  /* Atmospheric background effects */
+  /* Enhanced atmospheric background effects */
   body::before {
     content: '';
     position: fixed;
@@ -145,12 +150,30 @@
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(circle at 20% 20%, rgba(216, 180, 160, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(145, 137, 161, 0.06) 0%, transparent 50%),
-      radial-gradient(circle at 40% 60%, rgba(139, 87, 66, 0.04) 0%, transparent 50%);
+      radial-gradient(circle at 10% 20%, rgba(230, 194, 166, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 90% 80%, rgba(166, 156, 174, 0.12) 0%, transparent 60%),
+      radial-gradient(circle at 50% 50%, rgba(26, 35, 126, 0.08) 0%, transparent 70%),
+      linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
     pointer-events: none;
     z-index: -1;
-    animation: subtle-shift 20s ease-in-out infinite;
+    animation: subtle-shift 30s ease-in-out infinite;
+  }
+
+  /* Add noise texture for depth */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 50px 50px, 80px 80px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.7;
   }
 
   /* Subtle floating animation for atmospheric effect */
@@ -187,82 +210,91 @@
 }
 
 /**
- * Brand Typography System
+ * Refined Typography System
  */
 @layer base {
   :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
     h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Crimson Text', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--vault-bone-white);
+    }
+
+    h2 {
+      font-family: 'Crimson Text', serif;
       font-size: 2.5rem;
-      font-weight: 500;
+      font-weight: 400;
       line-height: 1.2;
       letter-spacing: -0.02em;
     }
 
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 500;
+    h3 {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.875rem;
+      font-weight: 400;
       line-height: 1.3;
       letter-spacing: -0.01em;
     }
 
-    h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 500;
-      line-height: 1.4;
-    }
-
     h4 {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.125rem;
-      font-weight: 500;
-      line-height: 1.5;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: 0.01em;
     }
 
     p {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.6;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 300;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
     }
 
     label {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
       line-height: 1.5;
+      letter-spacing: 0.02em;
     }
 
     button {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
       line-height: 1.5;
+      letter-spacing: 0.025em;
     }
 
     input, textarea {
-      font-family: 'Lora', serif;
-      font-size: 1rem;
-      font-weight: 400;
+      font-family: 'Merriweather', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
       line-height: 1.6;
+      letter-spacing: 0.01em;
     }
 
     .message-text {
-      font-family: 'Lora', serif;
-      font-size: 1.125rem;
-      font-weight: 400;
+      font-family: 'Merriweather', serif;
+      font-size: 1.35rem;
+      font-weight: 300;
       line-height: 1.8;
       color: var(--vault-bone-white);
+      letter-spacing: 0.01em;
     }
 
     .tagline {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 300;
       line-height: 1.6;
       color: var(--vault-soft-violet-gray);
+      letter-spacing: 0.02em;
     }
   }
 }
