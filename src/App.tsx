@@ -149,81 +149,137 @@ export default function App() {
       <div className="fixed inset-8 border border-vault-gold/5 rounded-md pointer-events-none z-10" />
 
       <div className="relative z-10">
-        {/* Landing State - Completely Redesigned */}
+        {/* Landing State - Mobile-Optimized Emotional Journey */}
         {currentState === 'landing' && (
-          <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center relative">
-            {/* Elegant content container */}
-            <div className="max-w-4xl mx-auto space-y-12 fade-in">
-              {/* Hero Title with refined typography */}
-              <div className="space-y-6">
-                <h1 className="text-vault-bone mb-4 text-shimmer font-light tracking-wide">
+          <div className="min-h-screen flex flex-col items-center justify-center px-4 md:px-6 text-center relative">
+            {/* Mobile-first content container */}
+            <div className="w-full max-w-5xl mx-auto space-y-8 md:space-y-12 fade-in">
+              {/* Hero Title with mobile-responsive typography */}
+              <div className="space-y-4 md:space-y-6">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl text-vault-bone text-shimmer font-light tracking-wide leading-tight px-2">
                   The Message Vault
                 </h1>
-                <div className="w-24 h-px bg-gradient-to-r from-transparent via-vault-gold to-transparent mx-auto opacity-60" />
+                <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-vault-gold to-transparent mx-auto opacity-60" />
               </div>
               
-              {/* Refined tagline */}
-              <div className="slide-up space-y-4">
-                <p className="tagline text-vault-violet max-w-2xl mx-auto leading-relaxed">
+              {/* Mobile-optimized tagline */}
+              <div className="slide-up space-y-4 md:space-y-6">
+                <p className="text-lg md:text-xl lg:text-2xl text-vault-violet max-w-4xl mx-auto leading-relaxed font-light px-4">
                   A sanctuary for anonymous kindness, where words become bridges between hearts.
                 </p>
-                <p className="text-vault-violet/70 text-base max-w-xl mx-auto font-light">
+                <p className="text-base md:text-lg text-vault-violet/70 max-w-2xl mx-auto font-light leading-relaxed px-4">
                   Take a message when you need hope. Leave one when you have love to give.
                 </p>
               </div>
               
-              {/* Enhanced counter with better spacing */}
-              <div className="slide-up py-8" style={{ animationDelay: '0.2s' }}>
+              {/* Mobile-responsive counter */}
+              <div className="slide-up py-6 md:py-8" style={{ animationDelay: '0.2s' }}>
                 <VaultCounter messagesTaken={35491} messagesLeft={12202} />
               </div>
               
-              {/* Redesigned call-to-action */}
-              <div className="pt-8 slide-up space-y-8" style={{ animationDelay: '0.4s' }}>
+              {/* Mobile-optimized call-to-action */}
+              <div className="pt-6 md:pt-8 slide-up space-y-6 md:space-y-8" style={{ animationDelay: '0.4s' }}>
                 <Button
                   onClick={handleTakeMessage}
                   size="lg"
-                  className="bg-gradient-to-r from-vault-coral to-vault-coral/90 hover:from-vault-coral/90 hover:to-vault-coral text-vault-charcoal px-12 py-6 text-lg group button-glow rounded-full font-light tracking-wide border border-vault-gold/20"
+                  className="w-full max-w-sm md:max-w-md bg-gradient-to-r from-vault-coral to-vault-coral/90 hover:from-vault-coral/90 hover:to-vault-coral text-vault-charcoal px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl group button-glow rounded-full font-light tracking-wide border border-vault-gold/20 mx-auto"
                 >
                   Begin Your Journey
-                  <ArrowDown className="ml-3 w-5 h-5 group-hover:translate-y-1 transition-all duration-300" />
+                  <ArrowDown className="ml-2 md:ml-3 w-5 h-5 md:w-6 md:h-6 group-hover:translate-y-1 transition-all duration-300" />
                 </Button>
                 
-                {/* Subtle instruction */}
-                <p className="text-vault-violet/60 text-sm font-light tracking-wider uppercase">
+                {/* Mobile-friendly instruction */}
+                <p className="text-xs md:text-sm text-vault-violet/60 font-light tracking-wider uppercase px-4">
                   Your healing awaits
                 </p>
               </div>
             </div>
 
-            {/* Decorative elements */}
-            <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 opacity-40">
-              <div className="flex flex-col items-center space-y-3">
-                <div className="w-px h-16 bg-gradient-to-b from-vault-gold/40 to-transparent"></div>
-                <div className="w-2 h-2 rounded-full bg-vault-gold/30 animate-pulse"></div>
+            {/* Mobile-optimized decorative elements */}
+            <div className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 opacity-40">
+              <div className="flex flex-col items-center space-y-2 md:space-y-3">
+                <div className="w-px h-12 md:h-16 bg-gradient-to-b from-vault-gold/40 to-transparent"></div>
+                <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-vault-gold/30 animate-pulse"></div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Revealing State */}
+        {/* Revealing State - Emotionally Powerful Mobile-Optimized Experience */}
         {currentState === 'revealing' && (
-          <div className="min-h-screen flex flex-col items-center justify-center px-4">
-            <div className="max-w-2xl mx-auto text-center space-y-8">
-              <div className="animate-in fade-in duration-1000 slide-in-from-bottom-4">
-                <h2 className="text-vault-bone mb-4">Someone left this for you...</h2>
-                <div className="flex items-center justify-center space-x-2 text-vault-coral">
-                  <div className="w-2 h-2 bg-current rounded-full animate-pulse" />
-                  <div className="w-2 h-2 bg-current rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
-                  <div className="w-2 h-2 bg-current rounded-full animate-pulse" style={{ animationDelay: '0.6s' }} />
+          <div className="min-h-screen relative overflow-hidden">
+            {/* Dramatic background with emotional depth */}
+            <div className="absolute inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-blue/30 to-vault-deep-charcoal">
+              {/* Emotional light effects */}
+              <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-vault-gold/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+              <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-vault-coral/8 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }} />
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-vault-sage/6 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s', animationDelay: '1s' }} />
+            </div>
+
+            {/* Sacred moment container */}
+            <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 md:px-6">
+              {/* Emotional buildup sequence */}
+              <div className="w-full max-w-5xl mx-auto text-center space-y-8 md:space-y-12">
+                
+                {/* Sacred introduction - mobile optimized */}
+                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '0.5s' }}>
+                  <div className="space-y-4">
+                    <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide leading-tight px-4">
+                      Someone left this message
+                    </h2>
+                    <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-coral font-light tracking-wide leading-tight px-4">
+                      just for you
+                    </h2>
+                  </div>
+                  
+                  {/* Sacred pause element */}
+                  <div className="flex items-center justify-center space-x-3 md:space-x-4">
+                    <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent via-vault-gold to-transparent opacity-60" />
+                    <div className="w-2 h-2 bg-vault-gold rounded-full animate-pulse" style={{ animationDuration: '2s' }} />
+                    <div className="w-12 md:w-16 h-px bg-gradient-to-l from-transparent via-vault-gold to-transparent opacity-60" />
+                  </div>
+                  
+                  <p className="text-base md:text-xl text-vault-violet/80 max-w-2xl mx-auto leading-relaxed font-light px-4">
+                    In this moment, across time and space, a stranger's heart reaches yours
+                  </p>
+                </div>
+
+                {/* Emotional breathing space */}
+                <div className="h-8 md:h-16" />
+
+                {/* The sacred reveal - mobile optimized */}
+                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '2.5s' }}>
+                  {/* Anticipation dots */}
+                  <div className="flex items-center justify-center space-x-2 md:space-x-3">
+                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s' }} />
+                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s', animationDelay: '0.5s' }} />
+                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s', animationDelay: '1s' }} />
+                  </div>
+                  
+                  {/* The moment of revelation */}
+                  <div className="ethereal-glow" style={{ animationDelay: '3s' }}>
+                    <MessageCard 
+                      message={currentMessage} 
+                      onTakeAnother={handleTakeAnother}
+                    />
+                  </div>
+                </div>
+
+                {/* Sacred closing */}
+                <div className="text-reveal pt-8 md:pt-12" style={{ animationDelay: '4s' }}>
+                  <p className="text-sm md:text-base text-vault-sage/70 max-w-lg mx-auto font-light italic leading-relaxed px-4">
+                    "In the depths of winter, I finally learned that within me there lay an invincible summer." — Camus
+                  </p>
                 </div>
               </div>
-              
-              <div className="animate-in fade-in duration-1000 delay-500 slide-in-from-bottom-8">
-                <MessageCard 
-                  message={currentMessage} 
-                  onTakeAnother={handleTakeAnother}
-                />
-              </div>
+            </div>
+
+            {/* Floating elements for emotional atmosphere - mobile optimized */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-20 left-4 w-1 h-1 bg-vault-gold/30 rounded-full animate-pulse floating" style={{ animationDelay: '1s', animationDuration: '8s' }} />
+              <div className="absolute top-1/3 right-8 w-1.5 h-1.5 bg-vault-coral/20 rounded-full animate-pulse floating" style={{ animationDelay: '3s', animationDuration: '10s' }} />
+              <div className="absolute bottom-1/4 left-8 w-0.5 h-0.5 bg-vault-sage/40 rounded-full animate-pulse floating" style={{ animationDelay: '5s', animationDuration: '12s' }} />
+              <div className="absolute bottom-20 right-4 w-1 h-1 bg-vault-violet/25 rounded-full animate-pulse floating" style={{ animationDelay: '2s', animationDuration: '9s' }} />
             </div>
           </div>
         )}
