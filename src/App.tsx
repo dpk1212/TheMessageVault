@@ -30,14 +30,8 @@ export default function App() {
   useEffect(() => {
     const loadStats = async () => {
       try {
-        // Add seed messages if database is empty
+        // Only seed if database is completely empty
         await seedService.addInitialMessages();
-        
-        // FORCE: Add additional diverse messages to existing vault
-        // Always run until we confirm all messages are in Firebase
-        console.log('Force-expanding vault with additional diverse messages...');
-        await seedService.addAdditionalMessages();
-        // Temporarily removed localStorage check to ensure messages get added
         
         // Load initial stats from Firebase
         await refreshStatsFromFirebase();
