@@ -391,7 +391,7 @@ export const analyticsService = {
         lastActivity: Timestamp.now()
       };
 
-      const docRef = await addDoc(collection(db, 'visitor_sessions'), sessionData);
+      await addDoc(collection(db, 'visitor_sessions'), sessionData);
       console.log('Started new visitor session:', sessionId);
       
       // Store session ID in sessionStorage for this tab
@@ -578,12 +578,12 @@ export const analyticsService = {
         avgTimeOnSite: Math.round(avgTimeOnSite),
         avgMessagesPerVisitor: Math.round(avgMessagesPerVisitor * 10) / 10,
         topReferrers: Object.entries(referrerStats)
-          .map(([ref, count]) => ({ referrer: ref, visitors: count }))
-          .sort((a: any, b: any) => b.visitors - a.visitors)
+          .map(([ref, count]) => ({ referrer: ref, visitors: count as number }))
+          .sort((a, b) => b.visitors - a.visitors)
           .slice(0, 10),
         popularTags: Object.entries(tagStats)
-          .map(([tag, views]) => ({ tag, views }))
-          .sort((a: any, b: any) => b.views - a.views)
+          .map(([tag, views]) => ({ tag, views: views as number }))
+          .sort((a, b) => b.views - a.views)
           .slice(0, 10),
         engagementRate: Math.round((totalHeartsGiven + totalMessagesLeft) / totalVisitors * 100),
         sessions: sessions.slice(0, 50), // Recent 50 sessions
