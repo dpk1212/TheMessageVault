@@ -165,7 +165,7 @@ export class ModerationService {
 
   // Check with Google's Perspective API
   private async checkWithPerspectiveAPI(text: string): Promise<ModerationResult> {
-    if (!PERSPECTIVE_API_KEY || PERSPECTIVE_API_KEY === 'your-perspective-api-key') {
+    if (!PERSPECTIVE_API_KEY) {
       console.warn('Perspective API key not configured, using pre-filter only');
       return this.preFilterCheck(text);
     }
