@@ -233,20 +233,34 @@ export default function App() {
                 <VaultCounter messagesTaken={vaultStats.messagesTaken} messagesLeft={vaultStats.messagesLeft} />
               </div>
               
-              {/* COMMANDING CALL-TO-ACTION */}
+              {/* PROMINENT DUAL ACTION BUTTONS */}
               <div className="space-y-12 md:space-y-16 pb-16 md:pb-24">
-                <Button
-                  onClick={handleTakeMessage}
-                  size="lg"
-                  className="w-full max-w-2xl bg-gradient-to-r from-vault-coral via-vault-coral to-vault-coral/90 hover:from-vault-coral/95 hover:to-vault-coral text-vault-charcoal px-16 md:px-24 py-6 md:py-8 text-2xl md:text-3xl group rounded-full font-light tracking-wide border-2 border-vault-gold/40 mx-auto shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500"
-                >
-                  Begin Your Journey
-                  <ArrowDown className="ml-4 md:ml-6 w-7 h-7 md:w-8 md:h-8 group-hover:translate-y-2 transition-all duration-500" />
-                </Button>
+                <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+                  {/* TAKE A MESSAGE BUTTON */}
+                  <Button
+                    onClick={handleTakeMessage}
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-vault-coral via-vault-coral to-vault-coral/90 hover:from-vault-coral/95 hover:to-vault-coral text-vault-charcoal px-12 md:px-16 py-6 md:py-8 text-xl md:text-2xl group rounded-full font-light tracking-wide border-2 border-vault-gold/40 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500"
+                  >
+                    Take a Message
+                    <ArrowDown className="ml-4 w-6 h-6 md:w-7 md:h-7 group-hover:translate-y-2 transition-all duration-500" />
+                  </Button>
+                  
+                  {/* LEAVE A MESSAGE BUTTON */}
+                  <Button
+                    onClick={() => setCurrentState('leaving')}
+                    size="lg"
+                    variant="outline"
+                    className="w-full bg-gradient-to-r from-vault-deep-charcoal/80 to-vault-deep-charcoal/60 hover:from-vault-deep-charcoal/90 hover:to-vault-deep-charcoal/70 text-vault-bone hover:text-vault-bone px-12 md:px-16 py-6 md:py-8 text-xl md:text-2xl group rounded-full font-light tracking-wide border-2 border-vault-sage/60 hover:border-vault-sage/80 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500"
+                  >
+                    Leave a Message
+                    <Heart className="ml-4 w-6 h-6 md:w-7 md:h-7 group-hover:scale-110 transition-all duration-500" />
+                  </Button>
+                </div>
                 
                 {/* Refined instruction */}
                 <p className="text-lg md:text-xl text-vault-violet/80 font-light tracking-wide">
-                  Your healing awaits
+                  Choose your path to healing
                 </p>
               </div>
             </div>
