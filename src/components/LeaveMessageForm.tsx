@@ -126,7 +126,7 @@ export function LeaveMessageForm({ onSubmit, onCancel }: LeaveMessageFormProps) 
                 className={`min-h-40 resize-none bg-vault-deep-charcoal/90 backdrop-blur-sm border-vault-gold/20 text-vault-bone placeholder:text-vault-violet/50 focus:border-vault-coral/40 focus:ring-vault-coral/20 focus:bg-vault-deep-charcoal/95 transition-all duration-300 rounded-lg text-lg leading-relaxed ${
                   showModerationError ? 'border-red-400/50 bg-red-900/20' : ''
                 }`}
-                style={{ color: '#FDFCF8' }}
+                style={{ color: '#FDFCF8 !important', backgroundColor: 'rgba(45, 49, 66, 0.9) !important' }}
                 maxLength={500}
               />
               <div className="flex justify-between items-center pt-2">
@@ -168,7 +168,7 @@ export function LeaveMessageForm({ onSubmit, onCancel }: LeaveMessageFormProps) 
             <div className="space-y-4">
               <Label htmlFor="tag" className="text-vault-bone text-lg font-light tracking-wide">Tag Your Message</Label>
               <Select value={selectedTag} onValueChange={setSelectedTag}>
-                <SelectTrigger className="bg-vault-deep-charcoal/90 backdrop-blur-sm border-vault-gold/20 text-vault-bone focus:border-vault-coral/40 focus:ring-vault-coral/20 focus:bg-vault-deep-charcoal/95 transition-all duration-300 rounded-lg h-12 text-lg" style={{ color: '#FDFCF8' }}>
+                <SelectTrigger className="bg-vault-deep-charcoal/90 backdrop-blur-sm border-vault-gold/20 text-vault-bone focus:border-vault-coral/40 focus:ring-vault-coral/20 focus:bg-vault-deep-charcoal/95 transition-all duration-300 rounded-lg h-12 text-lg" style={{ color: '#FDFCF8 !important', backgroundColor: 'rgba(45, 49, 66, 0.9) !important' }}>
                   <SelectValue placeholder="What kind of message is this?" />
                 </SelectTrigger>
                 <SelectContent className="bg-vault-charcoal/95 backdrop-blur-xl border-vault-gold/20 rounded-xl">
@@ -195,7 +195,7 @@ export function LeaveMessageForm({ onSubmit, onCancel }: LeaveMessageFormProps) 
                   onChange={(e) => setSignoff(e.target.value)}
                   placeholder="From someone who cares"
                   className="bg-vault-deep-charcoal/90 backdrop-blur-sm border-vault-gold/20 text-vault-bone placeholder:text-vault-violet/50 focus:border-vault-coral/40 focus:ring-vault-coral/20 focus:bg-vault-deep-charcoal/95 transition-all duration-300 rounded-lg h-12 text-lg"
-                  style={{ color: '#FDFCF8' }}
+                  style={{ color: '#FDFCF8 !important', backgroundColor: 'rgba(45, 49, 66, 0.9) !important' }}
                   maxLength={50}
                 />
                 <div className="flex flex-wrap gap-3">

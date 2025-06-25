@@ -437,6 +437,14 @@ export default function App() {
               >
                 Sponsor this space
               </button>
+              <a 
+                href="https://billing.stripe.com/p/login/14kfZ49IJg8letOfYY" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-vault-coral transition-colors"
+              >
+                Manage subscription
+              </a>
             </div>
             
             <p className="text-xs text-vault-violet/60">
