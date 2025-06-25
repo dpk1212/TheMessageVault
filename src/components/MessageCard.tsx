@@ -140,8 +140,8 @@ export function MessageCard({ message, onTakeAnother }: MessageCardProps) {
                 className="flex-1 bg-gradient-to-r from-vault-coral to-vault-coral/90 hover:from-vault-coral/90 hover:to-vault-coral text-vault-charcoal px-6 md:px-10 py-3 md:py-4 rounded-full font-light tracking-wide border border-vault-gold/20 button-glow"
               >
                 <RotateCcw className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3" />
-                <span className="hidden sm:inline">Continue Journey</span>
-                <span className="sm:hidden">Continue</span>
+                <span className="hidden sm:inline">Take another</span>
+                <span className="sm:hidden">Take another</span>
               </Button>
             </div>
           </div>

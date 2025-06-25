@@ -221,8 +221,8 @@ export default function App() {
               {/* Emotional buildup sequence */}
               <div className="w-full max-w-5xl mx-auto text-center space-y-8 md:space-y-12">
                 
-                {/* Sacred introduction - mobile optimized */}
-                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '0.5s' }}>
+                {/* Sacred introduction - mobile optimized with longer duration */}
+                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '1s' }}>
                   <div className="space-y-4">
                     <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide leading-tight px-4">
                       Someone left this message
@@ -244,20 +244,20 @@ export default function App() {
                   </p>
                 </div>
 
-                {/* Emotional breathing space */}
-                <div className="h-8 md:h-16" />
+                {/* Extended emotional breathing space */}
+                <div className="h-12 md:h-20" />
 
-                {/* The sacred reveal - mobile optimized */}
-                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '2.5s' }}>
-                  {/* Anticipation dots */}
+                {/* The sacred reveal - mobile optimized with longer anticipation */}
+                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '4s' }}>
+                  {/* Extended anticipation dots */}
                   <div className="flex items-center justify-center space-x-2 md:space-x-3">
-                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s' }} />
-                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s', animationDelay: '0.5s' }} />
-                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s', animationDelay: '1s' }} />
+                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '2s' }} />
+                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '2s', animationDelay: '0.7s' }} />
+                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '2s', animationDelay: '1.4s' }} />
                   </div>
                   
                   {/* The moment of revelation */}
-                  <div className="ethereal-glow" style={{ animationDelay: '3s' }}>
+                  <div className="ethereal-glow" style={{ animationDelay: '5.5s' }}>
                     <MessageCard 
                       message={currentMessage} 
                       onTakeAnother={handleTakeAnother}
@@ -266,7 +266,7 @@ export default function App() {
                 </div>
 
                 {/* Sacred closing */}
-                <div className="text-reveal pt-8 md:pt-12" style={{ animationDelay: '4s' }}>
+                <div className="text-reveal pt-8 md:pt-12" style={{ animationDelay: '7s' }}>
                   <p className="text-sm md:text-base text-vault-sage/70 max-w-lg mx-auto font-light italic leading-relaxed px-4">
                     "In the depths of winter, I finally learned that within me there lay an invincible summer." — Camus
                   </p>
@@ -284,17 +284,15 @@ export default function App() {
           </div>
         )}
 
-        {/* Taking State */}
+        {/* Taking State - Focus on Message */}
         {currentState === 'taking' && (
           <>
-            {/* Header */}
-            <header className="text-center py-12 px-4">
+            {/* Minimal Header - No Counter */}
+            <header className="text-center py-8 px-4">
               <h1 className="text-vault-bone mb-4">The Message Vault</h1>
-              <p className="tagline text-vault-violet max-w-md mx-auto mb-8">
+              <p className="tagline text-vault-violet max-w-md mx-auto">
                 Take a message. Leave a message. Heal each other, quietly.
               </p>
-              
-              <VaultCounter messagesTaken={35491} messagesLeft={12202} />
             </header>
 
             <main className="pb-12">
