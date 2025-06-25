@@ -66,17 +66,22 @@ export const messageService = {
       );
       
       const snapshot = await getDocs(q);
-      if (snapshot.empty) return null;
+      if (snapshot.empty) {
+        console.log('No messages found in database');
+        return null;
+      }
       
       const messages = snapshot.docs.map((doc: any) => ({
         id: doc.id,
         ...doc.data()
       } as Message));
       
+      console.log(`Found ${messages.length} messages, selecting random one`);
       return messages[Math.floor(Math.random() * messages.length)];
     } catch (error) {
-      console.error('Error getting random message:', error);
-      throw error; // Re-throw to handle in app
+      console.error('Firebase error getting random message:', error);
+      // Return null instead of throwing to allow fallback handling
+      return null;
     }
   },
 
@@ -87,6 +92,7 @@ export const messageService = {
     tag: string;
   }): Promise<string | null> {
     try {
+      console.log('Attempting to add message to Firebase:', messageData);
       const docRef = await addDoc(collection(db, 'messages'), {
         ...messageData,
         hearts: 0,
@@ -94,26 +100,34 @@ export const messageService = {
         status: 'active'
       });
       
-      // Update stats
-      await statsService.incrementMessagesLeft();
+      console.log('Message added successfully with ID:', docRef.id);
+      
+      // Try to update stats, but don't fail if this doesn't work
+      try {
+        await statsService.incrementMessagesLeft();
+      } catch (statsError) {
+        console.warn('Failed to update stats, but message was saved:', statsError);
+      }
       
       return docRef.id;
     } catch (error) {
-      console.error('Error adding message:', error);
-      throw error; // Re-throw to handle in app
+      console.error('Firebase error adding message:', error);
+      return null; // Return null instead of throwing
     }
   },
 
   // Increment heart count
   async addHeart(messageId: string): Promise<boolean> {
     try {
+      console.log('Attempting to add heart to message:', messageId);
       const messageRef = doc(db, 'messages', messageId);
       await updateDoc(messageRef, {
         hearts: increment(1)
       });
+      console.log('Heart added successfully to message:', messageId);
       return true;
     } catch (error) {
-      console.error('Error adding heart:', error);
+      console.error('Firebase error adding heart:', error);
       return false;
     }
   },

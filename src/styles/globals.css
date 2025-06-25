@@ -669,4 +669,105 @@ html {
 /* Additional utility animations */
 .stage-1-reveal {
   animation: fadeInOut 4s ease-in-out forwards;
+}
+
+/* Delayed fade in for second stage */
+@keyframes delayedFadeIn {
+  0% { 
+    opacity: 0; 
+    transform: translateY(20px);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   ABSOLUTE FORM ELEMENT VISIBILITY GUARANTEE
+   ============================================ */
+
+/* Nuclear option - override ALL form input styling to prevent white-on-white */
+textarea, 
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+input[type="search"], 
+input[type="url"], 
+input[type="tel"], 
+input[type="number"], 
+select,
+textarea[data-slot="textarea"],
+input[data-slot="input"] {
+  color: #FFFFFF !important;
+  background-color: #2D3142 !important;
+  border: 1px solid rgba(183, 159, 124, 0.3) !important;
+}
+
+/* Placeholders */
+textarea::placeholder,
+input::placeholder,
+textarea[data-slot="textarea"]::placeholder,
+input[data-slot="input"]::placeholder {
+  color: #B7A082 !important;
+  opacity: 0.7 !important;
+}
+
+/* Focus states */
+textarea:focus,
+input:focus,
+select:focus,
+textarea[data-slot="textarea"]:focus,
+input[data-slot="input"]:focus {
+  color: #FFFFFF !important;
+  background-color: #2D3142 !important;
+  border-color: rgba(183, 159, 124, 0.6) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(183, 159, 124, 0.2) !important;
+}
+
+/* Browser autofill prevention */
+textarea:-webkit-autofill,
+input:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #2D3142 inset !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  -webkit-background-clip: text !important;
+}
+
+/* Firefox specific */
+textarea:-moz-autofill,
+input:-moz-autofill,
+select:-moz-autofill {
+  background-color: #2D3142 !important;
+  color: #FFFFFF !important;
+}
+
+/* Force visibility on the leave message form specifically */
+.message-form textarea,
+.message-form input,
+.message-form select {
+  color: #FFFFFF !important;
+  background-color: #2D3142 !important;
+  border: 1px solid rgba(183, 159, 124, 0.3) !important;
+}
+
+/* Dark mode overrides */
+.dark textarea,
+.dark input,
+.dark select {
+  color: #FFFFFF !important;
+  background-color: #2D3142 !important;
+  border: 1px solid rgba(183, 159, 124, 0.3) !important;
+}
+
+/* System dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  textarea,
+  input,
+  select {
+    color: #FFFFFF !important;
+    background-color: #2D3142 !important;
+    border: 1px solid rgba(183, 159, 124, 0.3) !important;
+  }
 } 
