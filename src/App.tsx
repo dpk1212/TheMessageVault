@@ -195,79 +195,74 @@ export default function App() {
         {/* Landing State - Mobile-Optimized Emotional Journey */}
         {currentState === 'landing' && (
           <div className="min-h-screen flex flex-col items-center justify-center px-4 md:px-6 text-center relative">
-            {/* Mobile-first content container */}
-            <div className="w-full max-w-5xl mx-auto space-y-8 md:space-y-12 fade-in">
-              {/* Hero Title with mobile-responsive typography */}
-              <div className="space-y-4 md:space-y-6">
-                <h1 className="text-4xl md:text-6xl lg:text-7xl text-vault-bone text-shimmer font-light tracking-wide leading-tight px-2">
-                  The Message Vault
-                </h1>
-                <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-vault-gold to-transparent mx-auto opacity-60" />
+            {/* Professional content container - no animations */}
+            <div className="w-full max-w-6xl mx-auto space-y-12 md:space-y-16">
+              {/* Elegant Hero Title - NO ANIMATIONS */}
+              <div className="space-y-6 md:space-y-8">
+                <div className="relative">
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl text-vault-bone font-light tracking-wider leading-tight px-2 relative z-10">
+                    The Message Vault
+                  </h1>
+                  {/* Subtle elegant glow behind title */}
+                  <div className="absolute inset-0 text-5xl md:text-7xl lg:text-8xl text-vault-gold/20 font-light tracking-wider leading-tight px-2 blur-sm">
+                    The Message Vault
+                  </div>
+                </div>
+                <div className="w-24 md:w-32 h-px bg-gradient-to-r from-transparent via-vault-gold/80 to-transparent mx-auto" />
               </div>
               
-              {/* Mobile-optimized tagline */}
-              <div className="slide-up space-y-4 md:space-y-6">
-                <p className="text-lg md:text-xl lg:text-2xl text-vault-violet max-w-4xl mx-auto leading-relaxed font-light px-4">
+              {/* Refined tagline with better hierarchy */}
+              <div className="space-y-6 md:space-y-8 mt-12 md:mt-16">
+                <p className="text-xl md:text-2xl lg:text-3xl text-vault-bone/90 max-w-4xl mx-auto leading-relaxed font-light px-4">
                   A sanctuary for anonymous kindness, where words become bridges between hearts.
                 </p>
-                <p className="text-base md:text-lg text-vault-violet/70 max-w-2xl mx-auto font-light leading-relaxed px-4">
+                <p className="text-lg md:text-xl text-vault-violet/80 max-w-3xl mx-auto font-light leading-relaxed px-4">
                   Take a message when you need hope. Leave one when you have love to give.
                 </p>
               </div>
               
-              {/* Mobile-responsive counter */}
-              <div className="slide-up py-6 md:py-8" style={{ animationDelay: '0.2s' }}>
+              {/* Clean counter section */}
+              <div className="py-8 md:py-12">
                 <VaultCounter messagesTaken={vaultStats.messagesTaken} messagesLeft={vaultStats.messagesLeft} />
               </div>
               
-              {/* Mobile-optimized call-to-action */}
-              <div className="pt-6 md:pt-8 slide-up space-y-6 md:space-y-8" style={{ animationDelay: '0.4s' }}>
+              {/* Elevated call-to-action */}
+              <div className="pt-6 md:pt-8 space-y-8 md:space-y-10">
                 <Button
                   onClick={handleTakeMessage}
                   size="lg"
-                  className="w-full max-w-sm md:max-w-md bg-gradient-to-r from-vault-coral to-vault-coral/90 hover:from-vault-coral/90 hover:to-vault-coral text-vault-charcoal px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl group button-glow rounded-full font-light tracking-wide border border-vault-gold/20 mx-auto"
+                  className="w-full max-w-lg bg-gradient-to-r from-vault-coral to-vault-coral/90 hover:from-vault-coral/90 hover:to-vault-coral text-vault-charcoal px-12 md:px-16 py-5 md:py-7 text-xl md:text-2xl group rounded-full font-light tracking-wide border border-vault-gold/30 mx-auto shadow-xl hover:shadow-2xl transition-all duration-300"
                 >
                   Begin Your Journey
-                  <ArrowDown className="ml-2 md:ml-3 w-5 h-5 md:w-6 md:h-6 group-hover:translate-y-1 transition-all duration-300" />
+                  <ArrowDown className="ml-3 md:ml-4 w-6 h-6 md:w-7 md:h-7 group-hover:translate-y-1 transition-all duration-300" />
                 </Button>
                 
-                {/* Mobile-friendly instruction */}
-                <p className="text-xs md:text-sm text-vault-violet/60 font-light tracking-wider uppercase px-4">
+                {/* Elegant instruction */}
+                <p className="text-sm md:text-base text-vault-violet/70 font-light tracking-wide px-4">
                   Your healing awaits
                 </p>
               </div>
             </div>
 
-            {/* Mobile-optimized decorative elements */}
-            <div className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 opacity-40">
-              <div className="flex flex-col items-center space-y-2 md:space-y-3">
-                <div className="w-px h-12 md:h-16 bg-gradient-to-b from-vault-gold/40 to-transparent"></div>
-                <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-vault-gold/30 animate-pulse"></div>
-              </div>
+            {/* Minimal decorative element - no animation */}
+            <div className="absolute bottom-12 md:bottom-16 left-1/2 transform -translate-x-1/2 opacity-30">
+              <div className="w-px h-16 md:h-20 bg-gradient-to-b from-vault-gold/50 to-transparent"></div>
             </div>
           </div>
         )}
 
-        {/* Transitioning State - Dramatic Pause */}
+        {/* Transitioning State - Simple Dark Pause */}
         {currentState === 'transitioning' && (
           <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
-            {/* Intense dramatic background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-blue/40 to-vault-deep-charcoal">
-              <div className="absolute inset-0 bg-gradient-radial from-vault-gold/5 via-transparent to-transparent animate-pulse" style={{ animationDuration: '3s' }} />
-            </div>
-
-            <div className="relative z-10 text-center px-4 md:px-6">
-              <div className="space-y-8 md:space-y-12">
-                <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide fade-in">
-                  Another soul is reaching out...
-                </h2>
-                
-                {/* Dramatic anticipation elements */}
-                <div className="flex items-center justify-center space-x-3 md:space-x-4">
-                  <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-vault-coral to-transparent opacity-60" />
-                  <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s' }} />
-                  <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-vault-coral to-transparent opacity-60" />
-                </div>
+            {/* Simple dark background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-charcoal to-vault-deep-charcoal" />
+            
+            {/* Just a simple loading indicator */}
+            <div className="relative z-10 text-center px-4">
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-2 h-2 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s' }} />
+                <div className="w-2 h-2 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s', animationDelay: '0.5s' }} />
+                <div className="w-2 h-2 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s', animationDelay: '1s' }} />
               </div>
             </div>
           </div>
