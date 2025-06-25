@@ -4,10 +4,11 @@ import { LeaveMessageForm } from './components/LeaveMessageForm';
 import { SupporterModal } from './components/SupporterModal';
 import { VaultCounter } from './components/VaultCounter';
 import { SupporterWall } from './components/SupporterWall';
+import { AnalyticsDashboard } from './components/AnalyticsDashboard';
 import { Button } from './components/ui/button';
 import { PenTool, MessageCircle, Heart, ArrowDown } from 'lucide-react';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
-import { messageService, statsService, seedService, type Message as FirebaseMessage } from './services/firebase';
+import { messageService, statsService, seedService, analyticsService, type Message as FirebaseMessage } from './services/firebase';
 
 // Convert Firebase message to component message format
 const convertFirebaseMessage = (fbMessage: FirebaseMessage) => ({
@@ -18,7 +19,7 @@ const convertFirebaseMessage = (fbMessage: FirebaseMessage) => ({
   hearts: fbMessage.hearts
 });
 
-type AppState = 'landing' | 'revealing' | 'taking' | 'leaving' | 'wall' | 'thank-you' | 'transitioning';
+type AppState = 'landing' | 'revealing' | 'taking' | 'leaving' | 'wall' | 'thank-you' | 'transitioning' | 'analytics';
 
 export default function App() {
   const [currentState, setCurrentState] = useState<AppState>('landing');
@@ -26,10 +27,23 @@ export default function App() {
   const [showSupporterModal, setShowSupporterModal] = useState(false);
   const [vaultStats, setVaultStats] = useState({ messagesTaken: 0, messagesLeft: 0 });
 
+  // Check for analytics route
+  useEffect(() => {
+    if (window.location.pathname === '/analytics' || window.location.hash === '#analytics') {
+      setCurrentState('analytics');
+      return;
+    }
+  }, []);
+
   // Load initial vault stats and seed data
   useEffect(() => {
+    if (currentState === 'analytics') return; // Skip for analytics view
+    
     const loadStats = async () => {
       try {
+        // Initialize analytics session
+        await analyticsService.startSession();
+        
         // Only seed if database is completely empty
         await seedService.addInitialMessages();
         
@@ -40,7 +54,7 @@ export default function App() {
       }
     };
     loadStats();
-  }, []);
+  }, [currentState]);
 
   // Simulate visit tracking
   useEffect(() => {
@@ -82,6 +96,14 @@ export default function App() {
       if (fbMessage) {
         const message = convertFirebaseMessage(fbMessage);
         setCurrentMessage(message);
+        
+        // Track message view in analytics
+        await analyticsService.trackMessageInteraction(
+          fbMessage.id,
+          'viewed',
+          fbMessage.signoff,
+          fbMessage.tag
+        );
         
         // Increment messages taken counter in Firebase
         console.log('Incrementing messagesTaken in Firebase...');
@@ -152,6 +174,14 @@ export default function App() {
       const messageId = await messageService.addMessage(newMessage);
       if (messageId) {
         console.log('Message saved to Firebase with ID:', messageId);
+        
+        // Track message submission in analytics
+        await analyticsService.trackMessageSubmission(
+          newMessage.text,
+          newMessage.signoff,
+          newMessage.tag
+        );
+        
         setCurrentState('thank-you');
         
         // Refresh stats from Firebase (addMessage already increments messagesLeft)
@@ -431,6 +461,11 @@ export default function App() {
               </div>
             </div>
           </div>
+        )}
+
+        {/* Analytics Dashboard */}
+        {currentState === 'analytics' && (
+          <AnalyticsDashboard />
         )}
 
         {/* Footer - only show on taking, leaving, and wall states */}

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Heart, Share2, RotateCcw } from 'lucide-react';
-import { messageService } from '../services/firebase';
+import { messageService, analyticsService } from '../services/firebase';
 
 interface MessageCardProps {
   message: {
@@ -42,6 +42,14 @@ export function MessageCard({ message, onTakeAnother }: MessageCardProps) {
           if (success) {
             setHasLiked(true);
             setHeartCount(prev => prev + 1);
+            
+            // Track heart interaction in analytics
+            await analyticsService.trackMessageInteraction(
+              message.id,
+              'hearted',
+              message.signoff,
+              message.tag
+            );
             
             // Add heart bounce animation
             const heartElement = document.querySelector(`[data-heart-${message.id}]`);

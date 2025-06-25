@@ -52,6 +52,39 @@ export interface VaultStats {
   lastUpdated: Timestamp;
 }
 
+export interface VisitorSession {
+  id: string;
+  sessionId: string;
+  timestamp: Timestamp;
+  userAgent: string;
+  referrer: string;
+  messagesViewed: number;
+  heartsGiven: number;
+  messageLeft: boolean;
+  timeOnSite: number; // in seconds
+  lastActivity: Timestamp;
+}
+
+export interface MessageInteraction {
+  id: string;
+  sessionId: string;
+  messageId: string;
+  action: 'viewed' | 'hearted' | 'reported';
+  timestamp: Timestamp;
+  messageSignoff: string;
+  messageTag: string;
+}
+
+export interface MessageSubmission {
+  id: string;
+  sessionId: string;
+  timestamp: Timestamp;
+  messageText: string;
+  signoff: string;
+  tag: string;
+  approved: boolean;
+}
+
 // Message operations
 export const messageService = {
   // Get random message for taking
@@ -330,6 +363,235 @@ export const statsService = {
       }
     } catch (error) {
       console.error('Error incrementing messages left:', error);
+    }
+  }
+};
+
+// Analytics and visitor tracking
+export const analyticsService = {
+  // Generate unique session ID for tracking
+  generateSessionId(): string {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  },
+
+  // Start a new visitor session
+  async startSession(): Promise<string> {
+    try {
+      const sessionId = this.generateSessionId();
+      
+      const sessionData = {
+        sessionId,
+        timestamp: Timestamp.now(),
+        userAgent: navigator.userAgent || 'Unknown',
+        referrer: document.referrer || 'Direct',
+        messagesViewed: 0,
+        heartsGiven: 0,
+        messageLeft: false,
+        timeOnSite: 0,
+        lastActivity: Timestamp.now()
+      };
+
+      const docRef = await addDoc(collection(db, 'visitor_sessions'), sessionData);
+      console.log('Started new visitor session:', sessionId);
+      
+      // Store session ID in sessionStorage for this tab
+      sessionStorage.setItem('vaultSessionId', sessionId);
+      sessionStorage.setItem('vaultSessionStart', Date.now().toString());
+      
+      return sessionId;
+    } catch (error) {
+      console.error('Error starting visitor session:', error);
+      // Return a fallback session ID even if Firebase fails
+      const fallbackId = this.generateSessionId();
+      sessionStorage.setItem('vaultSessionId', fallbackId);
+      return fallbackId;
+    }
+  },
+
+  // Get current session ID (create if doesn't exist)
+  async getCurrentSessionId(): Promise<string> {
+    let sessionId = sessionStorage.getItem('vaultSessionId');
+    if (!sessionId) {
+      sessionId = await this.startSession();
+    }
+    return sessionId;
+  },
+
+  // Track message view/interaction
+  async trackMessageInteraction(
+    messageId: string, 
+    action: 'viewed' | 'hearted' | 'reported',
+    messageSignoff: string,
+    messageTag: string
+  ): Promise<void> {
+    try {
+      const sessionId = await this.getCurrentSessionId();
+      
+      const interactionData = {
+        sessionId,
+        messageId,
+        action,
+        timestamp: Timestamp.now(),
+        messageSignoff,
+        messageTag
+      };
+
+      await addDoc(collection(db, 'message_interactions'), interactionData);
+      
+      // Update session stats
+      await this.updateSessionStats(sessionId, action);
+      
+      console.log(`Tracked ${action} interaction for message:`, messageId);
+    } catch (error) {
+      console.error('Error tracking message interaction:', error);
+    }
+  },
+
+  // Track message submission
+  async trackMessageSubmission(
+    messageText: string,
+    signoff: string,
+    tag: string
+  ): Promise<void> {
+    try {
+      const sessionId = await this.getCurrentSessionId();
+      
+      const submissionData = {
+        sessionId,
+        timestamp: Timestamp.now(),
+        messageText,
+        signoff,
+        tag,
+        approved: true // Default to approved, can be changed later
+      };
+
+      await addDoc(collection(db, 'message_submissions'), submissionData);
+      
+      // Update session to mark that user left a message
+      await this.updateSessionStats(sessionId, 'message_left');
+      
+      console.log('Tracked message submission for session:', sessionId);
+    } catch (error) {
+      console.error('Error tracking message submission:', error);
+    }
+  },
+
+  // Update session statistics
+  async updateSessionStats(sessionId: string, action: string): Promise<void> {
+    try {
+      const sessionsRef = collection(db, 'visitor_sessions');
+      const q = query(sessionsRef, where('sessionId', '==', sessionId));
+      const snapshot = await getDocs(q);
+      
+      if (!snapshot.empty) {
+        const sessionDoc = snapshot.docs[0];
+        const updateData: any = {
+          lastActivity: Timestamp.now()
+        };
+
+        if (action === 'viewed') {
+          updateData.messagesViewed = increment(1);
+        } else if (action === 'hearted') {
+          updateData.heartsGiven = increment(1);
+        } else if (action === 'message_left') {
+          updateData.messageLeft = true;
+        }
+
+        // Calculate time on site
+        const sessionStart = sessionStorage.getItem('vaultSessionStart');
+        if (sessionStart) {
+          const timeOnSite = Math.floor((Date.now() - parseInt(sessionStart)) / 1000);
+          updateData.timeOnSite = timeOnSite;
+        }
+
+        await updateDoc(doc(db, 'visitor_sessions', sessionDoc.id), updateData);
+      }
+    } catch (error) {
+      console.error('Error updating session stats:', error);
+    }
+  },
+
+  // Get visitor analytics (for dashboard viewing)
+  async getVisitorAnalytics(days: number = 7) {
+    try {
+      const cutoffDate = new Date();
+      cutoffDate.setDate(cutoffDate.getDate() - days);
+      const cutoffTimestamp = Timestamp.fromDate(cutoffDate);
+
+      // Get recent sessions
+      const sessionsRef = collection(db, 'visitor_sessions');
+      const sessionsQuery = query(
+        sessionsRef, 
+        where('timestamp', '>=', cutoffTimestamp),
+        orderBy('timestamp', 'desc')
+      );
+      const sessionsSnapshot = await getDocs(sessionsQuery);
+
+      // Get recent interactions
+      const interactionsRef = collection(db, 'message_interactions');
+      const interactionsQuery = query(
+        interactionsRef,
+        where('timestamp', '>=', cutoffTimestamp),
+        orderBy('timestamp', 'desc')
+      );
+      const interactionsSnapshot = await getDocs(interactionsQuery);
+
+      const sessions = sessionsSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      } as VisitorSession));
+
+      const interactions = interactionsSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      } as MessageInteraction));
+
+      // Calculate metrics
+      const totalVisitors = sessions.length;
+      const totalMessagesViewed = sessions.reduce((sum, s) => sum + (s.messagesViewed || 0), 0);
+      const totalHeartsGiven = sessions.reduce((sum, s) => sum + (s.heartsGiven || 0), 0);
+      const totalMessagesLeft = sessions.filter(s => s.messageLeft).length;
+      const avgTimeOnSite = sessions.reduce((sum, s) => sum + (s.timeOnSite || 0), 0) / sessions.length;
+      const avgMessagesPerVisitor = totalMessagesViewed / totalVisitors;
+
+      // Top referrers
+      const referrerStats = sessions.reduce((acc: any, session) => {
+        const ref = session.referrer || 'Direct';
+        acc[ref] = (acc[ref] || 0) + 1;
+        return acc;
+      }, {});
+
+      // Most popular message tags from interactions
+      const tagStats = interactions.reduce((acc: any, interaction) => {
+        if (interaction.action === 'viewed') {
+          const tag = interaction.messageTag;
+          acc[tag] = (acc[tag] || 0) + 1;
+        }
+        return acc;
+      }, {});
+
+      return {
+        totalVisitors,
+        totalMessagesViewed,
+        totalHeartsGiven,
+        totalMessagesLeft,
+        avgTimeOnSite: Math.round(avgTimeOnSite),
+        avgMessagesPerVisitor: Math.round(avgMessagesPerVisitor * 10) / 10,
+        topReferrers: Object.entries(referrerStats)
+          .map(([ref, count]) => ({ referrer: ref, visitors: count }))
+          .sort((a: any, b: any) => b.visitors - a.visitors)
+          .slice(0, 10),
+        popularTags: Object.entries(tagStats)
+          .map(([tag, views]) => ({ tag, views }))
+          .sort((a: any, b: any) => b.views - a.views)
+          .slice(0, 10),
+        engagementRate: Math.round((totalHeartsGiven + totalMessagesLeft) / totalVisitors * 100),
+        sessions: sessions.slice(0, 50), // Recent 50 sessions
+        interactions: interactions.slice(0, 100) // Recent 100 interactions
+      };
+    } catch (error) {
+      console.error('Error getting visitor analytics:', error);
+      return null;
     }
   }
 };
