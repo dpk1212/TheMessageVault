@@ -373,32 +373,34 @@ html {
   }
 
   .fade-in {
-    animation: fade-in 0.6s ease-out;
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
   }
 
-  @keyframes fade-in {
-    from { 
-      opacity: 0; 
-      transform: translateY(20px); 
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
   .slide-up {
-    animation: slide-up 0.4s ease-out;
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
   }
 
-  @keyframes slide-up {
-    from { 
-      opacity: 0; 
-      transform: translateY(30px); 
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
     }
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
@@ -424,27 +426,33 @@ html {
   }
 
   .message-card-enter {
-    animation: message-card-enter 0.5s ease-out;
+    animation: etherealGlow 2s ease-out forwards;
   }
 
-  @keyframes message-card-enter {
-    from {
+  @keyframes etherealGlow {
+    0% {
       opacity: 0;
-      transform: scale(0.95) translateY(20px);
+      transform: scale(0.95);
+      filter: blur(2px);
     }
-    to {
+    100% {
       opacity: 1;
-      transform: scale(1) translateY(0);
+      transform: scale(1);
+      filter: blur(0);
     }
   }
 
   .heart-bounce {
-    animation: heart-bounce 0.3s ease-in-out;
+    animation: heartBounce 0.6s ease-in-out;
   }
 
-  @keyframes heart-bounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+  @keyframes heartBounce {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+    }
   }
 
   /* Improved focus states */
@@ -456,49 +464,52 @@ html {
 
   /* Enhanced emotional animations */
   .floating {
-    animation: floating 6s ease-in-out infinite;
+    animation: floating var(--duration, 10s) ease-in-out infinite;
   }
 
   @keyframes floating {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-8px) rotate(2deg); }
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+      transform: translate(30px, -30px) rotate(120deg);
+    }
+    66% {
+      transform: translate(-20px, 20px) rotate(240deg);
+    }
   }
 
   .ethereal-glow {
-    animation: ethereal-glow 4s ease-in-out infinite;
+    animation: etherealGlow 1.5s ease-out forwards;
+    opacity: 0;
   }
 
-  @keyframes ethereal-glow {
-    0%, 100% { 
-      filter: brightness(1) saturate(1);
-      transform: scale(1);
+  @keyframes etherealGlow {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+      filter: blur(2px);
     }
-    50% { 
-      filter: brightness(1.15) saturate(1.3);
-      transform: scale(1.02);
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
     }
   }
 
   .text-reveal {
-    animation: text-reveal 2s ease-out forwards;
+    animation: textReveal 1s ease-out forwards;
     opacity: 0;
   }
 
-  @keyframes text-reveal {
-    0% { 
-      opacity: 0; 
-      transform: translateY(40px) scale(0.95);
-      filter: blur(3px);
+  @keyframes textReveal {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
     }
-    50% {
-      opacity: 0.7;
-      transform: translateY(20px) scale(0.98);
-      filter: blur(1px);
-    }
-    100% { 
-      opacity: 1; 
-      transform: translateY(0) scale(1);
-      filter: blur(0px);
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
@@ -512,4 +523,150 @@ html {
     background: rgba(216, 180, 160, 0.3);
     color: var(--vault-bone-white);
   }
+}
+
+/* Animation keyframes */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes etherealGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes heartBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(120deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(240deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(236, 114, 100, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(236, 114, 100, 0.5);
+  }
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    box-shadow: 0 0 40px rgba(209, 168, 89, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(209, 168, 89, 0.2);
+  }
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.text-reveal {
+  animation: textReveal 1s ease-out forwards;
+  opacity: 0;
+}
+
+.ethereal-glow {
+  animation: etherealGlow 1.5s ease-out forwards;
+  opacity: 0;
+}
+
+.heart-bounce {
+  animation: heartBounce 0.6s ease-in-out;
+}
+
+.floating {
+  animation: floating var(--duration, 10s) ease-in-out infinite;
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.button-glow {
+  animation: buttonGlow 2s ease-in-out infinite;
+}
+
+.card-glow {
+  animation: cardGlow 3s ease-in-out infinite;
+}
+
+.message-card-enter {
+  animation: etherealGlow 2s ease-out forwards;
+}
+
+/* Additional utility animations */
+.stage-1-reveal {
+  animation: fadeInOut 4s ease-in-out forwards;
 } 

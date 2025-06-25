@@ -276,52 +276,48 @@ export default function App() {
         {/* Revealing State - Two-Stage Dramatic Reveal */}
         {currentState === 'revealing' && (
           <div className="min-h-screen relative overflow-hidden">
-            {/* Dramatic background with emotional depth */}
-            <div className="absolute inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-blue/30 to-vault-deep-charcoal">
-              {/* Emotional light effects */}
+            {/* Same dramatic background as transitioning state */}
+            <div className="absolute inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-blue/40 to-vault-deep-charcoal">
+              <div className="absolute inset-0 bg-gradient-radial from-vault-gold/5 via-transparent to-transparent animate-pulse" style={{ animationDuration: '3s' }} />
+              {/* Additional emotional light effects */}
               <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-vault-gold/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
               <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-vault-coral/8 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }} />
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-vault-sage/6 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s', animationDelay: '1s' }} />
             </div>
 
-            {/* Sacred moment container */}
-            <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 md:px-6">
-              {/* Emotional buildup sequence */}
-              <div className="w-full max-w-5xl mx-auto text-center space-y-8 md:space-y-12">
-                
-                {/* STAGE 1: Reveal who it's from (dramatic signoff reveal) */}
-                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '0.5s' }}>
-                  <div className="space-y-4">
-                    <h2 className="text-xl md:text-3xl lg:text-4xl text-vault-sage/80 font-light tracking-wide leading-tight px-4">
-                      This message comes
-                    </h2>
-                    <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-coral font-light tracking-wide leading-tight px-4">
-                      {currentMessage.signoff}
-                    </h2>
+            {/* STAGE 1: Dramatic reveal of who it's from - Same styling as transitioning */}
+            <div className="absolute inset-0 flex items-center justify-center z-20 stage-1-reveal" style={{ animation: 'fadeInOut 4s ease-in-out' }}>
+              <div className="text-center px-4 md:px-6">
+                <div className="space-y-8 md:space-y-12">
+                  <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide fade-in">
+                    This message comes
+                  </h2>
+                  <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-coral font-light tracking-wide fade-in" style={{ animationDelay: '0.5s' }}>
+                    {currentMessage?.signoff}
+                  </h2>
+                  
+                  {/* Same dramatic anticipation elements */}
+                  <div className="flex items-center justify-center space-x-3 md:space-x-4 fade-in" style={{ animationDelay: '1s' }}>
+                    <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-vault-coral to-transparent opacity-60" />
+                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s' }} />
+                    <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-vault-coral to-transparent opacity-60" />
                   </div>
                   
-                  {/* Sacred pause element */}
-                  <div className="flex items-center justify-center space-x-3 md:space-x-4">
-                    <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent via-vault-gold to-transparent opacity-60" />
-                    <div className="w-2 h-2 bg-vault-gold rounded-full animate-pulse" style={{ animationDuration: '2s' }} />
-                    <div className="w-12 md:w-16 h-px bg-gradient-to-l from-transparent via-vault-gold to-transparent opacity-60" />
-                  </div>
-                  
-                  <p className="text-base md:text-xl text-vault-violet/80 max-w-2xl mx-auto leading-relaxed font-light px-4">
+                  <p className="text-base md:text-xl text-vault-violet/80 max-w-2xl mx-auto leading-relaxed font-light fade-in" style={{ animationDelay: '1.5s' }}>
                     They chose to share these words with your heart
                   </p>
                 </div>
+              </div>
+            </div>
 
-                {/* Extended emotional breathing space */}
-                <div className="h-16 md:h-24" />
-
-                {/* STAGE 2: The sacred message reveal */}
-                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '4s' }}>
-                  <div className="space-y-4">
-                    <h3 className="text-lg md:text-2xl text-vault-bone/90 font-light tracking-wide px-4">
-                      Their message for you:
-                    </h3>
-                  </div>
+            {/* STAGE 2: Message reveal container - Appears after Stage 1 fades */}
+            <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 md:px-6">
+              <div className="w-full max-w-5xl mx-auto text-center space-y-8 md:space-y-12">
+                
+                {/* Message introduction */}
+                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '4.5s' }}>
+                  <h3 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide px-4">
+                    Their message for you:
+                  </h3>
                   
                   {/* Extended anticipation dots */}
                   <div className="flex items-center justify-center space-x-2 md:space-x-3">
@@ -329,18 +325,18 @@ export default function App() {
                     <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '2s', animationDelay: '0.7s' }} />
                     <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '2s', animationDelay: '1.4s' }} />
                   </div>
-                  
-                  {/* The moment of revelation */}
-                  <div className="ethereal-glow" style={{ animationDelay: '6s' }}>
-                    <MessageCard 
-                      message={currentMessage} 
-                      onTakeAnother={handleTakeAnother}
-                    />
-                  </div>
+                </div>
+                
+                {/* The moment of revelation */}
+                <div className="ethereal-glow" style={{ animationDelay: '6.5s' }}>
+                  <MessageCard 
+                    message={currentMessage} 
+                    onTakeAnother={handleTakeAnother}
+                  />
                 </div>
 
                 {/* Sacred closing */}
-                <div className="text-reveal pt-8 md:pt-12" style={{ animationDelay: '7.5s' }}>
+                <div className="text-reveal pt-8 md:pt-12" style={{ animationDelay: '8s' }}>
                   <p className="text-sm md:text-base text-vault-sage/70 max-w-lg mx-auto font-light italic leading-relaxed px-4">
                     "In the depths of winter, I finally learned that within me there lay an invincible summer." — Camus
                   </p>
@@ -348,8 +344,8 @@ export default function App() {
               </div>
             </div>
 
-            {/* Floating elements for emotional atmosphere - mobile optimized */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Floating elements for emotional atmosphere */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden z-30">
               <div className="absolute top-20 left-4 w-1 h-1 bg-vault-gold/30 rounded-full animate-pulse floating" style={{ animationDelay: '1s', animationDuration: '8s' }} />
               <div className="absolute top-1/3 right-8 w-1.5 h-1.5 bg-vault-coral/20 rounded-full animate-pulse floating" style={{ animationDelay: '3s', animationDuration: '10s' }} />
               <div className="absolute bottom-1/4 left-8 w-0.5 h-0.5 bg-vault-sage/40 rounded-full animate-pulse floating" style={{ animationDelay: '5s', animationDuration: '12s' }} />
