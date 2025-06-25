@@ -41,7 +41,7 @@ export interface ModerationResult {
 
 // Perspective API configuration
 const PERSPECTIVE_API_URL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze';
-const PERSPECTIVE_API_KEY = process.env.REACT_APP_PERSPECTIVE_API_KEY || 'your-perspective-api-key';
+const PERSPECTIVE_API_KEY = 'AIzaSyA0dTiwl9ErQIuWaXFwXgAgIHZeqOgKLtE';
 
 // Moderation thresholds (0-1, where 1 is most toxic)
 const MODERATION_THRESHOLDS = {
