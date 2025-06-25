@@ -60,9 +60,8 @@ export const messageService = {
       const messagesRef = collection(db, 'messages');
       const q = query(
         messagesRef, 
-        where('status', '==', 'active'),
-        orderBy('createdAt', 'desc'),
-        limit(50) // Get 50 recent messages and pick random from those
+        where('status', '==', 'active')
+        // Removed orderBy and limit to get ALL active messages for true randomness
       );
       
       const snapshot = await getDocs(q);
@@ -76,8 +75,16 @@ export const messageService = {
         ...doc.data()
       } as Message));
       
-      console.log(`Found ${messages.length} messages, selecting random one`);
-      return messages[Math.floor(Math.random() * messages.length)];
+      console.log(`Found ${messages.length} messages, selecting random one from ALL active messages`);
+      
+      // Log signoffs for debugging
+      const signoffs = messages.map(msg => msg.signoff);
+      console.log('Available signoffs:', [...new Set(signoffs)]);
+      
+      const selectedMessage = messages[Math.floor(Math.random() * messages.length)];
+      console.log(`Selected message from: "${selectedMessage.signoff}"`);
+      
+      return selectedMessage;
     } catch (error) {
       console.error('Firebase error getting random message:', error);
       // Return null instead of throwing to allow fallback handling

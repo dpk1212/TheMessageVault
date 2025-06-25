@@ -33,14 +33,11 @@ export default function App() {
         // Add seed messages if database is empty
         await seedService.addInitialMessages();
         
-        // ONE-TIME: Add additional diverse messages to existing vault
-        // Check if we've already done this expansion
-        const hasExpanded = localStorage.getItem('vaultExpanded');
-        if (!hasExpanded) {
-          console.log('Expanding vault with additional diverse messages...');
-          await seedService.addAdditionalMessages();
-          localStorage.setItem('vaultExpanded', 'true');
-        }
+        // FORCE: Add additional diverse messages to existing vault
+        // Always run until we confirm all messages are in Firebase
+        console.log('Force-expanding vault with additional diverse messages...');
+        await seedService.addAdditionalMessages();
+        // Temporarily removed localStorage check to ensure messages get added
         
         // Load stats
         const stats = await statsService.getVaultStats();
