@@ -14,14 +14,14 @@ import {
   Timestamp 
 } from 'firebase/firestore';
 
-// Firebase config - replace with your actual config
+// Firebase config - using actual project details from Firebase Console
 const firebaseConfig = {
-  apiKey: "your-api-key",
+  apiKey: "AIzaSyDOGN_l0kFF7YfVhGLZjtHDLLxCPInvRKc",
   authDomain: "themessagevault-84ea0.firebaseapp.com",
   projectId: "themessagevault-84ea0",
-  storageBucket: "themessagevault-84ea0.appspot.com",
+  storageBucket: "themessagevault-84ea0.firebasestorage.app",
   messagingSenderId: "362976942819",
-  appId: "your-app-id"
+  appId: "1:362976942819:web:b8da2a10ba12176e45c3d6"
 };
 
 // Initialize Firebase
@@ -76,7 +76,7 @@ export const messageService = {
       return messages[Math.floor(Math.random() * messages.length)];
     } catch (error) {
       console.error('Error getting random message:', error);
-      return null;
+      throw error; // Re-throw to handle in app
     }
   },
 
@@ -100,7 +100,7 @@ export const messageService = {
       return docRef.id;
     } catch (error) {
       console.error('Error adding message:', error);
-      return null;
+      throw error; // Re-throw to handle in app
     }
   },
 
@@ -176,7 +176,7 @@ export const statsService = {
   // Get vault statistics
   async getVaultStats(): Promise<VaultStats> {
     try {
-      const snapshot = await getDocs(collection(db, 'analytics'));
+      const snapshot = await getDocs(query(collection(db, 'analytics'), limit(1)));
       
       if (snapshot.empty) {
         // Initialize stats if they don't exist
@@ -203,11 +203,22 @@ export const statsService = {
   // Increment messages taken
   async incrementMessagesTaken(): Promise<void> {
     try {
-      const statsRef = doc(db, 'analytics', 'stats');
-      await updateDoc(statsRef, {
-        messagesTaken: increment(1),
-        lastUpdated: Timestamp.now()
-      });
+      const snapshot = await getDocs(query(collection(db, 'analytics'), limit(1)));
+      
+      if (snapshot.empty) {
+        // Create initial stats document
+        await addDoc(collection(db, 'analytics'), {
+          messagesTaken: 1,
+          messagesLeft: 0,
+          lastUpdated: Timestamp.now()
+        });
+      } else {
+        const statsRef = doc(db, 'analytics', snapshot.docs[0].id);
+        await updateDoc(statsRef, {
+          messagesTaken: increment(1),
+          lastUpdated: Timestamp.now()
+        });
+      }
     } catch (error) {
       console.error('Error incrementing messages taken:', error);
     }
@@ -216,13 +227,95 @@ export const statsService = {
   // Increment messages left
   async incrementMessagesLeft(): Promise<void> {
     try {
-      const statsRef = doc(db, 'analytics', 'stats');
-      await updateDoc(statsRef, {
-        messagesLeft: increment(1),
-        lastUpdated: Timestamp.now()
-      });
+      const snapshot = await getDocs(query(collection(db, 'analytics'), limit(1)));
+      
+      if (snapshot.empty) {
+        // Create initial stats document
+        await addDoc(collection(db, 'analytics'), {
+          messagesTaken: 0,
+          messagesLeft: 1,
+          lastUpdated: Timestamp.now()
+        });
+      } else {
+        const statsRef = doc(db, 'analytics', snapshot.docs[0].id);
+        await updateDoc(statsRef, {
+          messagesLeft: increment(1),
+          lastUpdated: Timestamp.now()
+        });
+      }
     } catch (error) {
       console.error('Error incrementing messages left:', error);
+    }
+  }
+};
+
+// Seed data for initial setup
+export const seedService = {
+  async addInitialMessages(): Promise<void> {
+    try {
+      const messagesRef = collection(db, 'messages');
+      const snapshot = await getDocs(query(messagesRef, limit(1)));
+      
+      // Only add seed data if no messages exist
+      if (snapshot.empty) {
+        const seedMessages = [
+          {
+            text: "You are not broken. You are breaking open, and that's how the light gets in. Every crack in your heart is a place where love can enter.",
+            signoff: "From someone who survived the darkness",
+            tag: "Hope",
+            hearts: 127,
+            createdAt: Timestamp.now(),
+            status: 'active' as const
+          },
+          {
+            text: "Starting over isn't giving up. It's having the courage to begin again, with all the wisdom your scars have taught you.",
+            signoff: "From a fellow traveler",
+            tag: "Starting over",
+            hearts: 89,
+            createdAt: Timestamp.now(),
+            status: 'active' as const
+          },
+          {
+            text: "Your feelings are valid. Your pain is real. And you deserve all the gentleness you're afraid to give yourself.",
+            signoff: "From someone learning to be kind to themselves",
+            tag: "Self-love",
+            hearts: 203,
+            createdAt: Timestamp.now(),
+            status: 'active' as const
+          },
+          {
+            text: "The person you're becoming is someone worth fighting for. Don't give up on them.",
+            signoff: "From someone who believes in you",
+            tag: "Encouragement",
+            hearts: 156,
+            createdAt: Timestamp.now(),
+            status: 'active' as const
+          },
+          {
+            text: "Grief doesn't have a timeline. Take all the time you need to honor what you've lost and who you're becoming.",
+            signoff: "From someone who knows",
+            tag: "Loss",
+            hearts: 94,
+            createdAt: Timestamp.now(),
+            status: 'active' as const
+          }
+        ];
+
+        for (const message of seedMessages) {
+          await addDoc(messagesRef, message);
+        }
+        
+        console.log('Added initial seed messages to Firebase');
+        
+        // Initialize stats
+        await addDoc(collection(db, 'analytics'), {
+          messagesTaken: 0,
+          messagesLeft: seedMessages.length,
+          lastUpdated: Timestamp.now()
+        });
+      }
+    } catch (error) {
+      console.error('Error adding seed messages:', error);
     }
   }
 };

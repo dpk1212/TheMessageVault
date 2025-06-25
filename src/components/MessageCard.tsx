@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Heart, Share2, RotateCcw } from 'lucide-react';
+import { messageService } from '../services/firebase';
 
 interface MessageCardProps {
   message: {
@@ -17,17 +18,28 @@ interface MessageCardProps {
 export function MessageCard({ message, onTakeAnother }: MessageCardProps) {
   const [hasLiked, setHasLiked] = useState(false);
   const [heartCount, setHeartCount] = useState(message.hearts);
+  const [isUpdatingHeart, setIsUpdatingHeart] = useState(false);
 
-  const handleHeart = () => {
-    if (!hasLiked) {
-      setHasLiked(true);
-      setHeartCount(prev => prev + 1);
-      
-      // Add heart bounce animation
-      const heartElement = document.querySelector(`[data-heart-${message.id}]`);
-      if (heartElement) {
-        heartElement.classList.add('heart-bounce');
-        setTimeout(() => heartElement.classList.remove('heart-bounce'), 500);
+  const handleHeart = async () => {
+    if (!hasLiked && !isUpdatingHeart) {
+      setIsUpdatingHeart(true);
+      try {
+        const success = await messageService.addHeart(message.id);
+        if (success) {
+          setHasLiked(true);
+          setHeartCount(prev => prev + 1);
+          
+          // Add heart bounce animation
+          const heartElement = document.querySelector(`[data-heart-${message.id}]`);
+          if (heartElement) {
+            heartElement.classList.add('heart-bounce');
+            setTimeout(() => heartElement.classList.remove('heart-bounce'), 500);
+          }
+        }
+      } catch (error) {
+        console.error('Error adding heart:', error);
+      } finally {
+        setIsUpdatingHeart(false);
       }
     }
   };

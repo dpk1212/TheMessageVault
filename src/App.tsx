@@ -7,60 +7,44 @@ import { SupporterWall } from './components/SupporterWall';
 import { Button } from './components/ui/button';
 import { PenTool, MessageCircle, Heart, ArrowDown } from 'lucide-react';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
+import { messageService, statsService, seedService, type Message as FirebaseMessage } from './services/firebase';
 
-interface Message {
-  id: string;
-  text: string;
-  signoff: string;
-  tag: string;
-  hearts: number;
-}
-
-// Mock messages data
-const mockMessages: Message[] = [
-  {
-    id: '1',
-    text: "You are not broken. You are breaking open, and that's how the light gets in. Every crack in your heart is a place where love can enter.",
-    signoff: "From someone who survived the darkness",
-    tag: "Hope",
-    hearts: 127
-  },
-  {
-    id: '2', 
-    text: "Starting over isn't giving up. It's having the courage to begin again, with all the wisdom your scars have taught you.",
-    signoff: "From a fellow traveler",
-    tag: "Starting over",
-    hearts: 89
-  },
-  {
-    id: '3',
-    text: "Your feelings are valid. Your pain is real. And you deserve all the gentleness you're afraid to give yourself.",
-    signoff: "From someone learning to be kind to themselves",
-    tag: "Self-love",
-    hearts: 203
-  },
-  {
-    id: '4',
-    text: "The person you're becoming is someone worth fighting for. Don't give up on them.",
-    signoff: "From someone who believes in you",
-    tag: "Encouragement", 
-    hearts: 156
-  },
-  {
-    id: '5',
-    text: "Grief doesn't have a timeline. Take all the time you need to honor what you've lost and who you're becoming.",
-    signoff: "From someone who knows",
-    tag: "Loss",
-    hearts: 94
-  }
-];
+// Convert Firebase message to component message format
+const convertFirebaseMessage = (fbMessage: FirebaseMessage) => ({
+  id: fbMessage.id,
+  text: fbMessage.text,
+  signoff: fbMessage.signoff,
+  tag: fbMessage.tag,
+  hearts: fbMessage.hearts
+});
 
 type AppState = 'landing' | 'revealing' | 'taking' | 'leaving' | 'wall' | 'thank-you' | 'transitioning';
 
 export default function App() {
   const [currentState, setCurrentState] = useState<AppState>('landing');
-  const [currentMessage, setCurrentMessage] = useState<Message>(mockMessages[0]);
+  const [currentMessage, setCurrentMessage] = useState<any>(null);
   const [showSupporterModal, setShowSupporterModal] = useState(false);
+  const [vaultStats, setVaultStats] = useState({ messagesTaken: 0, messagesLeft: 0 });
+
+  // Load initial vault stats and seed data
+  useEffect(() => {
+    const loadStats = async () => {
+      try {
+        // Add seed messages if database is empty
+        await seedService.addInitialMessages();
+        
+        // Load stats
+        const stats = await statsService.getVaultStats();
+        setVaultStats({
+          messagesTaken: stats.messagesTaken,
+          messagesLeft: stats.messagesLeft
+        });
+      } catch (error) {
+        console.error('Error loading vault stats:', error);
+      }
+    };
+    loadStats();
+  }, []);
 
   // Simulate visit tracking
   useEffect(() => {
@@ -77,23 +61,59 @@ export default function App() {
 
     // For returning visitors, skip landing and go straight to taking
     if (visits > 1) {
-      setCurrentState('taking');
+      handleTakeMessage();
     }
   }, []);
 
-  const getRandomMessage = () => {
-    const availableMessages = mockMessages.filter(m => m.id !== currentMessage.id);
-    return availableMessages[Math.floor(Math.random() * availableMessages.length)];
+  const loadRandomMessage = async () => {
+    try {
+      const fbMessage = await messageService.getRandomMessage();
+      if (fbMessage) {
+        const message = convertFirebaseMessage(fbMessage);
+        setCurrentMessage(message);
+        // Increment messages taken counter
+        await statsService.incrementMessagesTaken();
+        // Update local stats
+        setVaultStats(prev => ({
+          ...prev,
+          messagesTaken: prev.messagesTaken + 1
+        }));
+        return message;
+      } else {
+        // Fallback to a default message if Firebase is empty
+        const fallbackMessage = {
+          id: 'fallback',
+          text: "You are stronger than you know, braver than you feel, and more loved than you can imagine.",
+          signoff: "From the Message Vault team",
+          tag: "Encouragement",
+          hearts: 0
+        };
+        setCurrentMessage(fallbackMessage);
+        return fallbackMessage;
+      }
+    } catch (error) {
+      console.error('Error loading message:', error);
+      // Fallback message on error
+      const errorMessage = {
+        id: 'error',
+        text: "Even when technology fails us, human kindness endures. You matter, and your story isn't over.",
+        signoff: "From someone who believes in resilience",
+        tag: "Hope",
+        hearts: 0
+      };
+      setCurrentMessage(errorMessage);
+      return errorMessage;
+    }
   };
 
-  const handleTakeMessage = () => {
-    setCurrentMessage(getRandomMessage());
+  const handleTakeMessage = async () => {
+    await loadRandomMessage();
     setCurrentState('revealing');
     
     // Transition to taking state after reveal animation
     setTimeout(() => {
       setCurrentState('taking');
-    }, 1500);
+    }, 8000);
   };
 
   const handleTakeAnother = () => {
@@ -101,8 +121,8 @@ export default function App() {
     setCurrentState('transitioning');
     
     // Get new message after dramatic pause
-    setTimeout(() => {
-      setCurrentMessage(getRandomMessage());
+    setTimeout(async () => {
+      await loadRandomMessage();
       setCurrentState('revealing');
       
       // Move to taking state after full reveal
@@ -112,15 +132,32 @@ export default function App() {
     }, 1500);
   };
 
-  const handleLeaveMessage = (newMessage: { text: string; tag: string; signoff: string }) => {
-    console.log('New message submitted:', newMessage);
-    setCurrentState('thank-you');
-    
-    // Auto redirect after thank you
-    setTimeout(() => {
-      setCurrentState('taking');
-      setCurrentMessage(getRandomMessage());
-    }, 3000);
+  const handleLeaveMessage = async (newMessage: { text: string; tag: string; signoff: string }) => {
+    try {
+      const messageId = await messageService.addMessage(newMessage);
+      if (messageId) {
+        console.log('Message saved to Firebase with ID:', messageId);
+        setCurrentState('thank-you');
+        
+        // Update local stats
+        setVaultStats(prev => ({
+          ...prev,
+          messagesLeft: prev.messagesLeft + 1
+        }));
+        
+        // Auto redirect after thank you
+        setTimeout(async () => {
+          await loadRandomMessage();
+          setCurrentState('taking');
+        }, 3000);
+      } else {
+        throw new Error('Failed to save message');
+      }
+    } catch (error) {
+      console.error('Error saving message:', error);
+      // Could add error state/notification here
+      alert('Sorry, there was an error saving your message. Please try again.');
+    }
   };
 
   return (
@@ -180,7 +217,7 @@ export default function App() {
               
               {/* Mobile-responsive counter */}
               <div className="slide-up py-6 md:py-8" style={{ animationDelay: '0.2s' }}>
-                <VaultCounter messagesTaken={35491} messagesLeft={12202} />
+                <VaultCounter messagesTaken={vaultStats.messagesTaken} messagesLeft={vaultStats.messagesLeft} />
               </div>
               
               {/* Mobile-optimized call-to-action */}
@@ -398,7 +435,7 @@ export default function App() {
                   </Button>
                 </div>
               </div>
-            </main>
+      </main>
           </>
         )}
 
