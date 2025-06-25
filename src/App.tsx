@@ -110,10 +110,10 @@ export default function App() {
     await loadRandomMessage();
     setCurrentState('revealing');
     
-    // Transition to taking state after 3 simple phases (5s total)
+    // Transition to taking state after just 2 phases (4.5s total)
     setTimeout(() => {
       setCurrentState('taking');
-    }, 5000);
+    }, 4500);
   };
 
   const handleTakeAnother = () => {
@@ -125,10 +125,10 @@ export default function App() {
       await loadRandomMessage();
       setCurrentState('revealing');
       
-      // Move to taking state after simple 3 phases
+      // Move to taking state after just 2 phases
       setTimeout(() => {
         setCurrentState('taking');
-      }, 5000);
+      }, 4500);
     }, 1500);
   };
 
@@ -181,10 +181,10 @@ export default function App() {
         <div className="absolute bottom-32 right-20 w-40 h-40 bg-vault-coral/8 rounded-full blur-2xl" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-vault-sage/4 rounded-full blur-3xl" />
         
-        {/* Subtle floating elements */}
-        <div className="absolute top-1/4 left-1/5 w-2 h-2 bg-vault-gold/20 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '4s' }} />
-        <div className="absolute top-3/5 right-1/4 w-1 h-1 bg-vault-coral/30 rounded-full animate-pulse" style={{ animationDelay: '2s', animationDuration: '6s' }} />
-        <div className="absolute bottom-1/3 left-3/4 w-1.5 h-1.5 bg-vault-sage/25 rounded-full animate-pulse" style={{ animationDelay: '4s', animationDuration: '5s' }} />
+        {/* Much more subtle floating elements - no constant blinking */}
+        <div className="absolute top-1/4 left-1/5 w-1 h-1 bg-vault-gold/10 rounded-full" />
+        <div className="absolute top-3/5 right-1/4 w-0.5 h-0.5 bg-vault-coral/15 rounded-full" />
+        <div className="absolute bottom-1/3 left-3/4 w-1 h-1 bg-vault-sage/10 rounded-full" />
       </div>
 
       {/* Elegant border frame */}
@@ -279,7 +279,7 @@ export default function App() {
             {/* Background */}
             <div className="absolute inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-blue/40 to-vault-deep-charcoal" />
 
-            {/* PHASE 1: Soul reaching out (0-2s) */}
+            {/* PHASE 1: Soul reaching out (0-2s) - COMPLETELY FADES OUT */}
             <div className="absolute inset-0 flex items-center justify-center z-30" style={{ animation: 'fadeInOut 2s ease-in-out forwards' }}>
               <div className="text-center px-4">
                 <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide">
@@ -288,8 +288,8 @@ export default function App() {
               </div>
             </div>
 
-            {/* PHASE 2: Who it's from (2s-4s) */}
-            <div className="absolute inset-0 flex items-center justify-center z-20" style={{ animation: 'fadeInOut 2s ease-in-out forwards', animationDelay: '2s' }}>
+            {/* PHASE 2: Who it's from (2.5s-4.5s) - STARTS AFTER PHASE 1 IS GONE */}
+            <div className="absolute inset-0 flex items-center justify-center z-20" style={{ animation: 'fadeInOut 2s ease-in-out forwards', animationDelay: '2.5s', opacity: 0 }}>
               <div className="text-center px-4">
                 <div className="space-y-6">
                   <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide">
@@ -302,15 +302,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* PHASE 3: Message card (4s+) */}
-            <div className="absolute inset-0 flex items-center justify-center z-10" style={{ animation: 'fadeIn 1s ease-out forwards', animationDelay: '4s', opacity: 0 }}>
-              <div className="w-full max-w-5xl mx-auto px-4">
-                <MessageCard 
-                  message={currentMessage} 
-                  onTakeAnother={handleTakeAnother}
-                />
-              </div>
-            </div>
+            {/* PHASE 3: SKIP THE GLITCHY TRANSITION - GO STRAIGHT TO TAKING STATE */}
           </div>
         )}
 
