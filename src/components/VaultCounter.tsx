@@ -4,7 +4,9 @@ interface VaultCounterProps {
 }
 
 export function VaultCounter({ messagesTaken, messagesLeft }: VaultCounterProps) {
-  const connectionPercentage = 74; // Enhanced visualization
+  // Calculate actual connection percentage based on messages taken vs total available
+  const totalMessages = messagesTaken + messagesLeft;
+  const connectionPercentage = totalMessages > 0 ? Math.round((messagesTaken / totalMessages) * 100) : 0;
 
   return (
     <div className="relative mx-auto max-w-2xl">
