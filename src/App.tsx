@@ -192,61 +192,63 @@ export default function App() {
       <div className="fixed inset-8 border border-vault-gold/5 rounded-md pointer-events-none z-10" />
 
       <div className="relative z-10">
-        {/* Landing State - Mobile-Optimized Emotional Journey */}
+        {/* Landing State - STUNNING PROFESSIONAL DESIGN */}
         {currentState === 'landing' && (
-          <div className="min-h-screen flex flex-col items-center justify-center px-4 md:px-6 text-center relative">
-            {/* Professional content container - no animations */}
-            <div className="w-full max-w-6xl mx-auto space-y-12 md:space-y-16">
-              {/* Elegant Hero Title - NO ANIMATIONS */}
-              <div className="space-y-6 md:space-y-8">
+          <div className="min-h-screen flex flex-col justify-center px-4 md:px-6 text-center relative">
+            {/* WORLD-CLASS HERO SECTION */}
+            <div className="w-full max-w-7xl mx-auto space-y-16 md:space-y-20 pt-8 md:pt-16">
+              
+              {/* MAGNIFICENT TITLE SECTION */}
+              <div className="space-y-8 md:space-y-12">
                 <div className="relative">
-                  <h1 className="text-5xl md:text-7xl lg:text-8xl text-vault-bone font-light tracking-wider leading-tight px-2 relative z-10">
+                  <h1 className="text-6xl md:text-8xl lg:text-9xl text-vault-bone font-extralight tracking-widest leading-none px-2 relative z-10">
                     The Message Vault
                   </h1>
-                  {/* Subtle elegant glow behind title */}
-                  <div className="absolute inset-0 text-5xl md:text-7xl lg:text-8xl text-vault-gold/20 font-light tracking-wider leading-tight px-2 blur-sm">
+                  {/* Elegant golden glow */}
+                  <div className="absolute inset-0 text-6xl md:text-8xl lg:text-9xl text-vault-gold/15 font-extralight tracking-widest leading-none px-2 blur-md">
                     The Message Vault
                   </div>
                 </div>
-                <div className="w-24 md:w-32 h-px bg-gradient-to-r from-transparent via-vault-gold/80 to-transparent mx-auto" />
+                
+                {/* Refined golden accent line */}
+                <div className="flex items-center justify-center space-x-6">
+                  <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent to-vault-gold/70"></div>
+                  <div className="w-3 h-3 rounded-full bg-vault-gold/70"></div>
+                  <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent to-vault-gold/70"></div>
+                </div>
               </div>
               
-              {/* Refined tagline with better hierarchy */}
-              <div className="space-y-6 md:space-y-8 mt-12 md:mt-16">
-                <p className="text-xl md:text-2xl lg:text-3xl text-vault-bone/90 max-w-4xl mx-auto leading-relaxed font-light px-4">
+              {/* ELEVATED MESSAGING */}
+              <div className="space-y-8 md:space-y-12">
+                <p className="text-2xl md:text-3xl lg:text-4xl text-vault-bone font-light max-w-5xl mx-auto leading-relaxed px-4">
                   A sanctuary for anonymous kindness, where words become bridges between hearts.
                 </p>
-                <p className="text-lg md:text-xl text-vault-violet/80 max-w-3xl mx-auto font-light leading-relaxed px-4">
+                <p className="text-xl md:text-2xl text-vault-violet/90 max-w-4xl mx-auto font-light leading-relaxed px-4">
                   Take a message when you need hope. Leave one when you have love to give.
                 </p>
               </div>
               
-              {/* Clean counter section */}
-              <div className="py-8 md:py-12">
+              {/* PREMIUM COUNTER SECTION */}
+              <div className="py-12 md:py-16">
                 <VaultCounter messagesTaken={vaultStats.messagesTaken} messagesLeft={vaultStats.messagesLeft} />
               </div>
               
-              {/* Elevated call-to-action */}
-              <div className="pt-6 md:pt-8 space-y-8 md:space-y-10">
+              {/* COMMANDING CALL-TO-ACTION */}
+              <div className="space-y-12 md:space-y-16 pb-16 md:pb-24">
                 <Button
                   onClick={handleTakeMessage}
                   size="lg"
-                  className="w-full max-w-lg bg-gradient-to-r from-vault-coral to-vault-coral/90 hover:from-vault-coral/90 hover:to-vault-coral text-vault-charcoal px-12 md:px-16 py-5 md:py-7 text-xl md:text-2xl group rounded-full font-light tracking-wide border border-vault-gold/30 mx-auto shadow-xl hover:shadow-2xl transition-all duration-300"
+                  className="w-full max-w-2xl bg-gradient-to-r from-vault-coral via-vault-coral to-vault-coral/90 hover:from-vault-coral/95 hover:to-vault-coral text-vault-charcoal px-16 md:px-24 py-6 md:py-8 text-2xl md:text-3xl group rounded-full font-light tracking-wide border-2 border-vault-gold/40 mx-auto shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500"
                 >
                   Begin Your Journey
-                  <ArrowDown className="ml-3 md:ml-4 w-6 h-6 md:w-7 md:h-7 group-hover:translate-y-1 transition-all duration-300" />
+                  <ArrowDown className="ml-4 md:ml-6 w-7 h-7 md:w-8 md:h-8 group-hover:translate-y-2 transition-all duration-500" />
                 </Button>
                 
-                {/* Elegant instruction */}
-                <p className="text-sm md:text-base text-vault-violet/70 font-light tracking-wide px-4">
+                {/* Refined instruction */}
+                <p className="text-lg md:text-xl text-vault-violet/80 font-light tracking-wide">
                   Your healing awaits
                 </p>
               </div>
-            </div>
-
-            {/* Minimal decorative element - no animation */}
-            <div className="absolute bottom-12 md:bottom-16 left-1/2 transform -translate-x-1/2 opacity-30">
-              <div className="w-px h-16 md:h-20 bg-gradient-to-b from-vault-gold/50 to-transparent"></div>
             </div>
           </div>
         )}
