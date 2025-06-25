@@ -31,12 +31,10 @@ jobs:
         env:
           REACT_APP_PERSPECTIVE_API_KEY: ${{ secrets.PERSPECTIVE_API_KEY }}
         run: |
-          echo "Building with API key..."
-          echo "REACT_APP_PERSPECTIVE_API_KEY=${{ secrets.PERSPECTIVE_API_KEY }}" > .env
-          tsc && vite build
-          cp CNAME dist/ 2>/dev/null || true
-          cp public/404.html dist/ 2>/dev/null || true
-          cp public/favicon.svg dist/favicon.ico 2>/dev/null || true
+          echo "Building with API key: $REACT_APP_PERSPECTIVE_API_KEY"
+          echo "REACT_APP_PERSPECTIVE_API_KEY=$REACT_APP_PERSPECTIVE_API_KEY" > .env
+          cat .env
+          npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
