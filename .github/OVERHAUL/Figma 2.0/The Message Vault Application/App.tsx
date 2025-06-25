@@ -60,11 +60,14 @@ type AppState = 'landing' | 'revealing' | 'taking' | 'leaving' | 'wall' | 'thank
 export default function App() {
   const [currentState, setCurrentState] = useState<AppState>('landing');
   const [currentMessage, setCurrentMessage] = useState<Message>(mockMessages[0]);
+  const [visitCount, setVisitCount] = useState(0);
   const [showSupporterModal, setShowSupporterModal] = useState(false);
+  const [isSupporter, setIsSupporter] = useState(false);
 
   // Simulate visit tracking
   useEffect(() => {
     const visits = parseInt(localStorage.getItem('vaultVisits') || '0');
+    setVisitCount(visits + 1);
     localStorage.setItem('vaultVisits', String(visits + 1));
 
     // Show supporter modal after 2-3 visits
@@ -113,6 +116,7 @@ export default function App() {
 
   const handleBecomeSponsor = (tier: string) => {
     console.log('Becoming sponsor with tier:', tier);
+    setIsSupporter(true);
     // In real app, integrate with Stripe/LemonSqueezy
     alert(`Thank you for becoming a ${tier} supporter! In a real app, this would redirect to payment.`);
   };
@@ -326,4 +330,4 @@ export default function App() {
       />
     </div>
   );
-} 
+}

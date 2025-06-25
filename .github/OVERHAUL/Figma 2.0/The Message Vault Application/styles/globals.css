@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Lora:wght@400;500&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -126,7 +122,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
 
   body {
@@ -202,40 +198,41 @@
       font-family: 'Lora', serif;
       font-size: 1.125rem;
       font-weight: 400;
-      line-height: 1.8;
-      color: var(--vault-bone-white);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
     }
 
     .tagline {
       font-family: 'Inter', sans-serif;
-      font-size: 1rem;
+      font-size: 0.875rem;
       font-weight: 400;
-      line-height: 1.6;
-      color: var(--vault-soft-violet-gray);
+      line-height: 1.5;
+      opacity: 0.8;
     }
   }
 }
 
 html {
-  scroll-behavior: smooth;
+  font-size: var(--font-size);
 }
 
+/* Custom utilities for brand colors */
 @layer utilities {
   .text-vault-coral { color: var(--vault-warm-coral); }
   .text-vault-violet { color: var(--vault-soft-violet-gray); }
   .text-vault-rosewood { color: var(--vault-rosewood); }
   .text-vault-bone { color: var(--vault-bone-white); }
   .text-vault-charcoal { color: var(--vault-deep-charcoal); }
-
+  
   .bg-vault-coral { background-color: var(--vault-warm-coral); }
   .bg-vault-violet { background-color: var(--vault-soft-violet-gray); }
   .bg-vault-rosewood { background-color: var(--vault-rosewood); }
   .bg-vault-bone { background-color: var(--vault-bone-white); }
   .bg-vault-charcoal { background-color: var(--vault-deep-charcoal); }
-
+  
   .border-vault-coral { border-color: var(--vault-warm-coral); }
   .border-vault-violet { border-color: var(--vault-soft-violet-gray); }
   .border-vault-rosewood { border-color: var(--vault-rosewood); }
   .border-vault-bone { border-color: var(--vault-bone-white); }
   .border-vault-charcoal { border-color: var(--vault-deep-charcoal); }
-} 
+}
