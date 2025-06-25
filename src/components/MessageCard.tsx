@@ -24,8 +24,9 @@ export function MessageCard({ message, onTakeAnother }: MessageCardProps) {
     if (!hasLiked && !isUpdatingHeart) {
       setIsUpdatingHeart(true);
       try {
-        const success = await messageService.addHeart(message.id);
-        if (success) {
+        // Don't try to update fallback or error messages in Firebase
+        if (message.id === 'fallback' || message.id === 'error' || message.id === 'error-fallback') {
+          // Just update locally for fallback messages
           setHasLiked(true);
           setHeartCount(prev => prev + 1);
           
@@ -34,6 +35,20 @@ export function MessageCard({ message, onTakeAnother }: MessageCardProps) {
           if (heartElement) {
             heartElement.classList.add('heart-bounce');
             setTimeout(() => heartElement.classList.remove('heart-bounce'), 500);
+          }
+        } else {
+          // Try to update in Firebase for real messages
+          const success = await messageService.addHeart(message.id);
+          if (success) {
+            setHasLiked(true);
+            setHeartCount(prev => prev + 1);
+            
+            // Add heart bounce animation
+            const heartElement = document.querySelector(`[data-heart-${message.id}]`);
+            if (heartElement) {
+              heartElement.classList.add('heart-bounce');
+              setTimeout(() => heartElement.classList.remove('heart-bounce'), 500);
+            }
           }
         }
       } catch (error) {

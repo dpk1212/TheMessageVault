@@ -110,10 +110,10 @@ export default function App() {
     await loadRandomMessage();
     setCurrentState('revealing');
     
-    // Transition to taking state after reveal animation
+    // Transition to taking state after 3 simple phases (5s total)
     setTimeout(() => {
       setCurrentState('taking');
-    }, 8000);
+    }, 5000);
   };
 
   const handleTakeAnother = () => {
@@ -125,10 +125,10 @@ export default function App() {
       await loadRandomMessage();
       setCurrentState('revealing');
       
-      // Move to taking state after full reveal
+      // Move to taking state after simple 3 phases
       setTimeout(() => {
         setCurrentState('taking');
-      }, 8000); // Extended for two-stage reveal
+      }, 5000);
     }, 1500);
   };
 
@@ -273,58 +273,42 @@ export default function App() {
           </div>
         )}
 
-        {/* Revealing State - Clean Two-Stage Reveal */}
+        {/* Revealing State - Simple 3 Phases */}
         {currentState === 'revealing' && (
           <div className="min-h-screen relative overflow-hidden">
-            {/* Beautiful background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-blue/40 to-vault-deep-charcoal">
-              <div className="absolute inset-0 bg-gradient-radial from-vault-gold/5 via-transparent to-transparent animate-pulse" style={{ animationDuration: '3s' }} />
+            {/* Background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-blue/40 to-vault-deep-charcoal" />
+
+            {/* PHASE 1: Soul reaching out (0-2s) */}
+            <div className="absolute inset-0 flex items-center justify-center z-30" style={{ animation: 'fadeInOut 2s ease-in-out forwards' }}>
+              <div className="text-center px-4">
+                <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide">
+                  Another soul is reaching out...
+                </h2>
+              </div>
             </div>
 
-            {/* STAGE 1: Who it's from (fades out after 4s) */}
-            <div className="absolute inset-0 flex items-center justify-center z-20" style={{ animation: 'fadeInOut 4s ease-in-out forwards' }}>
-              <div className="text-center px-4 md:px-6">
-                <div className="space-y-8 md:space-y-12">
+            {/* PHASE 2: Who it's from (2s-4s) */}
+            <div className="absolute inset-0 flex items-center justify-center z-20" style={{ animation: 'fadeInOut 2s ease-in-out forwards', animationDelay: '2s' }}>
+              <div className="text-center px-4">
+                <div className="space-y-6">
                   <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide">
                     This message comes from
                   </h2>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-coral font-light tracking-wide">
                     {currentMessage?.signoff}
                   </h2>
-                  
-                  <div className="flex items-center justify-center space-x-3 md:space-x-4">
-                    <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-vault-coral to-transparent opacity-60" />
-                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s' }} />
-                    <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-vault-coral to-transparent opacity-60" />
-                  </div>
-                  
-                  <p className="text-base md:text-xl text-vault-violet/80 max-w-2xl mx-auto leading-relaxed font-light">
-                    They chose to share these words with your heart
-                  </p>
                 </div>
               </div>
             </div>
 
-            {/* STAGE 2: Message reveal (appears after Stage 1) */}
-            <div className="absolute inset-0 flex items-center justify-center z-10" style={{ animation: 'delayedFadeIn 8s ease-out forwards', animationDelay: '4s' }}>
-              <div className="w-full max-w-5xl mx-auto px-4 md:px-6">
-                <div className="text-center space-y-8 md:space-y-12">
-                  
-                  <h3 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide">
-                    Their message for you:
-                  </h3>
-                  
-                  <div className="flex items-center justify-center space-x-2 md:space-x-3 mb-8">
-                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '2s' }} />
-                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '2s', animationDelay: '0.7s' }} />
-                    <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '2s', animationDelay: '1.4s' }} />
-                  </div>
-                  
-                  <MessageCard 
-                    message={currentMessage} 
-                    onTakeAnother={handleTakeAnother}
-                  />
-                </div>
+            {/* PHASE 3: Message card (4s+) */}
+            <div className="absolute inset-0 flex items-center justify-center z-10" style={{ animation: 'fadeIn 1s ease-out forwards', animationDelay: '4s', opacity: 0 }}>
+              <div className="w-full max-w-5xl mx-auto px-4">
+                <MessageCard 
+                  message={currentMessage} 
+                  onTakeAnother={handleTakeAnother}
+                />
               </div>
             </div>
           </div>
