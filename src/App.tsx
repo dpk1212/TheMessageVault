@@ -22,22 +22,17 @@ const convertFirebaseMessage = (fbMessage: FirebaseMessage) => ({
 type AppState = 'landing' | 'revealing' | 'taking' | 'leaving' | 'wall' | 'thank-you' | 'transitioning' | 'analytics';
 
 export default function App() {
-  const [currentState, setCurrentState] = useState<AppState>('landing');
+  // Check for analytics route FIRST - before any other state
+  const isAnalyticsRoute = window.location.pathname === '/analytics' || window.location.hash === '#analytics';
+  
+  const [currentState, setCurrentState] = useState<AppState>(isAnalyticsRoute ? 'analytics' : 'landing');
   const [currentMessage, setCurrentMessage] = useState<any>(null);
   const [showSupporterModal, setShowSupporterModal] = useState(false);
   const [vaultStats, setVaultStats] = useState({ messagesTaken: 0, messagesLeft: 0 });
 
-  // Check for analytics route
+  // Load initial vault stats and seed data - skip entirely for analytics
   useEffect(() => {
-    if (window.location.pathname === '/analytics' || window.location.hash === '#analytics') {
-      setCurrentState('analytics');
-      return;
-    }
-  }, []);
-
-  // Load initial vault stats and seed data
-  useEffect(() => {
-    if (currentState === 'analytics') return; // Skip for analytics view
+    if (isAnalyticsRoute) return; // Skip for analytics view
     
     const loadStats = async () => {
       try {
@@ -54,10 +49,16 @@ export default function App() {
       }
     };
     loadStats();
-  }, [currentState]);
+  }, [isAnalyticsRoute]);
 
-  // Simulate visit tracking
+  // Simulate visit tracking - skip for analytics
   useEffect(() => {
+    if (isAnalyticsRoute) return; // Skip for analytics view
+    
+    // Only do automatic redirect on first load, not on refreshes of specific states
+    const hasBeenRedirected = sessionStorage.getItem('hasBeenRedirected');
+    if (hasBeenRedirected) return;
+    
     const visits = parseInt(localStorage.getItem('vaultVisits') || '0');
     localStorage.setItem('vaultVisits', String(visits + 1));
 
@@ -69,11 +70,14 @@ export default function App() {
       }, 3000);
     }
 
-    // For returning visitors, skip landing and go straight to taking
-    if (visits > 1) {
-      handleTakeMessage();
+    // For returning visitors, skip landing and go straight to taking (no animations)
+    if (visits > 1 && currentState === 'landing') {
+      sessionStorage.setItem('hasBeenRedirected', 'true');
+      loadRandomMessage().then(() => {
+        setCurrentState('taking'); // Go directly to taking state, skip animations
+      });
     }
-  }, []);
+  }, [isAnalyticsRoute, currentState]);
 
   const refreshStatsFromFirebase = async () => {
     try {
