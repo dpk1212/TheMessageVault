@@ -187,6 +187,70 @@ export const supporterService = {
 
 // Analytics and stats
 export const statsService = {
+  // Get message analytics for community insights
+  async getMessageAnalytics() {
+    try {
+      const messagesRef = collection(db, 'messages');
+      const q = query(messagesRef, where('status', '==', 'active'));
+      const snapshot = await getDocs(q);
+      
+      if (snapshot.empty) return null;
+      
+      const messages = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      } as Message));
+      
+      // Category breakdown
+      const categoryStats = messages.reduce((acc: any, msg) => {
+        acc[msg.tag] = (acc[msg.tag] || 0) + 1;
+        return acc;
+      }, {});
+      
+      // Top categories by count
+      const topCategories = Object.entries(categoryStats)
+        .map(([tag, count]) => ({ tag, count: count as number }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 6);
+      
+      // Most hearted messages by category
+      const topHeartedByCategory = messages
+        .filter(msg => msg.hearts > 0)
+        .sort((a, b) => b.hearts - a.hearts)
+        .slice(0, 8);
+      
+      // Popular signoff patterns
+      const signoffStats = messages.reduce((acc: any, msg) => {
+        const signoff = msg.signoff;
+        acc[signoff] = (acc[signoff] || { count: 0, totalHearts: 0 });
+        acc[signoff].count += 1;
+        acc[signoff].totalHearts += msg.hearts;
+        return acc;
+      }, {});
+      
+      const topSignoffs = Object.entries(signoffStats)
+        .map(([signoff, stats]: [string, any]) => ({
+          signoff,
+          count: stats.count,
+          avgHearts: Math.round(stats.totalHearts / stats.count)
+        }))
+        .filter(item => item.count > 1) // Only show signoffs that appear multiple times
+        .sort((a, b) => b.avgHearts - a.avgHearts)
+        .slice(0, 6);
+      
+      return {
+        totalMessages: messages.length,
+        totalHearts: messages.reduce((sum, msg) => sum + msg.hearts, 0),
+        topCategories,
+        topHeartedByCategory,
+        topSignoffs
+      };
+    } catch (error) {
+      console.error('Error getting message analytics:', error);
+      return null;
+    }
+  },
+
   // Get vault statistics
   async getVaultStats(): Promise<VaultStats> {
     try {
