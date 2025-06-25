@@ -7,7 +7,6 @@ import { Heart } from 'lucide-react';
 interface SupporterModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onBecomeSponsor: (tier: string) => void;
 }
 
 const supportTiers = [
@@ -16,31 +15,38 @@ const supportTiers = [
     amount: '$3',
     name: 'Kindness',
     description: 'Help 10 people feel seen',
-    features: ['Access to Supporter Wall', 'Warm fuzzy feelings']
+    features: ['Access to Supporter Wall', 'Warm fuzzy feelings'],
+    stripeLink: 'https://buy.stripe.com/8x2eVeabkc7hbOzagc7EQ05'
   },
   {
     id: 'compassion', 
     amount: '$5',
     name: 'Compassion',
     description: 'Help 25 people find hope',
-    features: ['All Kindness benefits', 'Premium message access', 'Save favorite messages']
+    features: ['All Kindness benefits', 'Premium message access', 'Save favorite messages'],
+    stripeLink: 'https://buy.stripe.com/aFa4gA1EOdbl6uffAw7EQ04'
   },
   {
     id: 'healing',
     amount: '$10',
     name: 'Healing',
     description: 'Help 50 people through difficult times',
-    features: ['All previous benefits', 'Early access to new features', 'Monthly gratitude letter']
+    features: ['All previous benefits', 'Early access to new features', 'Monthly gratitude letter'],
+    stripeLink: 'https://buy.stripe.com/00wbJ26Z86MX4m7gEA7EQ03'
   }
 ];
 
-export function SupporterModal({ isOpen, onClose, onBecomeSponsor }: SupporterModalProps) {
+export function SupporterModal({ isOpen, onClose }: SupporterModalProps) {
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
 
   const handleSponsor = () => {
     if (selectedTier) {
-      onBecomeSponsor(selectedTier);
-      onClose();
+      const tier = supportTiers.find(t => t.id === selectedTier);
+      if (tier) {
+        // Redirect to Stripe payment link
+        window.open(tier.stripeLink, '_blank');
+        onClose();
+      }
     }
   };
 

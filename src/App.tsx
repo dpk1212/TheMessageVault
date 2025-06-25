@@ -55,7 +55,7 @@ const mockMessages: Message[] = [
   }
 ];
 
-type AppState = 'landing' | 'revealing' | 'taking' | 'leaving' | 'wall' | 'thank-you';
+type AppState = 'landing' | 'revealing' | 'taking' | 'leaving' | 'wall' | 'thank-you' | 'transitioning';
 
 export default function App() {
   const [currentState, setCurrentState] = useState<AppState>('landing');
@@ -97,7 +97,19 @@ export default function App() {
   };
 
   const handleTakeAnother = () => {
-    setCurrentMessage(getRandomMessage());
+    // Start dramatic transition
+    setCurrentState('transitioning');
+    
+    // Get new message after dramatic pause
+    setTimeout(() => {
+      setCurrentMessage(getRandomMessage());
+      setCurrentState('revealing');
+      
+      // Move to taking state after full reveal
+      setTimeout(() => {
+        setCurrentState('taking');
+      }, 8000); // Extended for two-stage reveal
+    }, 1500);
   };
 
   const handleLeaveMessage = (newMessage: { text: string; tag: string; signoff: string }) => {
@@ -109,12 +121,6 @@ export default function App() {
       setCurrentState('taking');
       setCurrentMessage(getRandomMessage());
     }, 3000);
-  };
-
-  const handleBecomeSponsor = (tier: string) => {
-    console.log('Becoming sponsor with tier:', tier);
-    // In real app, integrate with Stripe/LemonSqueezy
-    alert(`Thank you for becoming a ${tier} supporter! In a real app, this would redirect to payment.`);
   };
 
   return (
@@ -205,7 +211,32 @@ export default function App() {
           </div>
         )}
 
-        {/* Revealing State - Emotionally Powerful Mobile-Optimized Experience */}
+        {/* Transitioning State - Dramatic Pause */}
+        {currentState === 'transitioning' && (
+          <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
+            {/* Intense dramatic background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-vault-deep-charcoal via-vault-deep-blue/40 to-vault-deep-charcoal">
+              <div className="absolute inset-0 bg-gradient-radial from-vault-gold/5 via-transparent to-transparent animate-pulse" style={{ animationDuration: '3s' }} />
+            </div>
+
+            <div className="relative z-10 text-center px-4 md:px-6">
+              <div className="space-y-8 md:space-y-12">
+                <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide fade-in">
+                  Another soul is reaching out...
+                </h2>
+                
+                {/* Dramatic anticipation elements */}
+                <div className="flex items-center justify-center space-x-3 md:space-x-4">
+                  <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-vault-coral to-transparent opacity-60" />
+                  <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '1.5s' }} />
+                  <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-vault-coral to-transparent opacity-60" />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Revealing State - Two-Stage Dramatic Reveal */}
         {currentState === 'revealing' && (
           <div className="min-h-screen relative overflow-hidden">
             {/* Dramatic background with emotional depth */}
@@ -221,14 +252,14 @@ export default function App() {
               {/* Emotional buildup sequence */}
               <div className="w-full max-w-5xl mx-auto text-center space-y-8 md:space-y-12">
                 
-                {/* Sacred introduction - mobile optimized with longer duration */}
-                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '1s' }}>
+                {/* STAGE 1: Reveal who it's from (dramatic signoff reveal) */}
+                <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '0.5s' }}>
                   <div className="space-y-4">
-                    <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-bone font-light tracking-wide leading-tight px-4">
-                      Someone left this message
+                    <h2 className="text-xl md:text-3xl lg:text-4xl text-vault-sage/80 font-light tracking-wide leading-tight px-4">
+                      This message comes
                     </h2>
                     <h2 className="text-2xl md:text-4xl lg:text-5xl text-vault-coral font-light tracking-wide leading-tight px-4">
-                      just for you
+                      {currentMessage.signoff}
                     </h2>
                   </div>
                   
@@ -240,15 +271,21 @@ export default function App() {
                   </div>
                   
                   <p className="text-base md:text-xl text-vault-violet/80 max-w-2xl mx-auto leading-relaxed font-light px-4">
-                    In this moment, across time and space, a stranger's heart reaches yours
+                    They chose to share these words with your heart
                   </p>
                 </div>
 
                 {/* Extended emotional breathing space */}
-                <div className="h-12 md:h-20" />
+                <div className="h-16 md:h-24" />
 
-                {/* The sacred reveal - mobile optimized with longer anticipation */}
+                {/* STAGE 2: The sacred message reveal */}
                 <div className="text-reveal space-y-6 md:space-y-8" style={{ animationDelay: '4s' }}>
+                  <div className="space-y-4">
+                    <h3 className="text-lg md:text-2xl text-vault-bone/90 font-light tracking-wide px-4">
+                      Their message for you:
+                    </h3>
+                  </div>
+                  
                   {/* Extended anticipation dots */}
                   <div className="flex items-center justify-center space-x-2 md:space-x-3">
                     <div className="w-3 h-3 bg-vault-coral rounded-full animate-pulse" style={{ animationDuration: '2s' }} />
@@ -257,7 +294,7 @@ export default function App() {
                   </div>
                   
                   {/* The moment of revelation */}
-                  <div className="ethereal-glow" style={{ animationDelay: '5.5s' }}>
+                  <div className="ethereal-glow" style={{ animationDelay: '6s' }}>
                     <MessageCard 
                       message={currentMessage} 
                       onTakeAnother={handleTakeAnother}
@@ -266,7 +303,7 @@ export default function App() {
                 </div>
 
                 {/* Sacred closing */}
-                <div className="text-reveal pt-8 md:pt-12" style={{ animationDelay: '7s' }}>
+                <div className="text-reveal pt-8 md:pt-12" style={{ animationDelay: '7.5s' }}>
                   <p className="text-sm md:text-base text-vault-sage/70 max-w-lg mx-auto font-light italic leading-relaxed px-4">
                     "In the depths of winter, I finally learned that within me there lay an invincible summer." — Camus
                   </p>
@@ -413,7 +450,6 @@ export default function App() {
       <SupporterModal
         isOpen={showSupporterModal}
         onClose={() => setShowSupporterModal(false)}
-        onBecomeSponsor={handleBecomeSponsor}
       />
     </div>
   );
