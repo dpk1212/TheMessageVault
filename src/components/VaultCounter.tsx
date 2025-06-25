@@ -4,7 +4,6 @@ interface VaultCounterProps {
 }
 
 export function VaultCounter({ messagesTaken, messagesLeft }: VaultCounterProps) {
-  const total = messagesTaken + messagesLeft;
   const connectionPercentage = 74; // Enhanced visualization
 
   return (
