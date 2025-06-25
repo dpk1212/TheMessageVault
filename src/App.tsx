@@ -39,12 +39,8 @@ export default function App() {
         await seedService.addAdditionalMessages();
         // Temporarily removed localStorage check to ensure messages get added
         
-        // Load stats
-        const stats = await statsService.getVaultStats();
-        setVaultStats({
-          messagesTaken: stats.messagesTaken,
-          messagesLeft: stats.messagesLeft
-        });
+        // Load initial stats from Firebase
+        await refreshStatsFromFirebase();
       } catch (error) {
         console.error('Error loading vault stats:', error);
       }
@@ -71,22 +67,39 @@ export default function App() {
     }
   }, []);
 
+  const refreshStatsFromFirebase = async () => {
+    try {
+      const freshStats = await statsService.getVaultStats();
+      setVaultStats({
+        messagesTaken: freshStats.messagesTaken,
+        messagesLeft: freshStats.messagesLeft
+      });
+      console.log('Stats refreshed from Firebase:', freshStats);
+      return freshStats;
+    } catch (error) {
+      console.error('Error refreshing stats from Firebase:', error);
+      return null;
+    }
+  };
+
   const loadRandomMessage = async () => {
     try {
       const fbMessage = await messageService.getRandomMessage();
       if (fbMessage) {
         const message = convertFirebaseMessage(fbMessage);
         setCurrentMessage(message);
-        // Increment messages taken counter
+        
+        // Increment messages taken counter in Firebase
+        console.log('Incrementing messagesTaken in Firebase...');
         await statsService.incrementMessagesTaken();
-        // Update local stats
-        setVaultStats(prev => ({
-          ...prev,
-          messagesTaken: prev.messagesTaken + 1
-        }));
+        
+        // Always refresh stats from Firebase - no local state manipulation
+        await refreshStatsFromFirebase();
+        
         return message;
       } else {
         // Fallback to a default message if Firebase is empty
+        console.log('No Firebase message found, using fallback');
         const fallbackMessage = {
           id: 'fallback',
           text: "You are stronger than you know, braver than you feel, and more loved than you can imagine.",
@@ -95,6 +108,7 @@ export default function App() {
           hearts: 0
         };
         setCurrentMessage(fallbackMessage);
+        // Don't increment counter for fallback messages
         return fallbackMessage;
       }
     } catch (error) {
@@ -108,6 +122,7 @@ export default function App() {
         hearts: 0
       };
       setCurrentMessage(errorMessage);
+      // Don't increment counter for error messages
       return errorMessage;
     }
   };
@@ -145,11 +160,8 @@ export default function App() {
         console.log('Message saved to Firebase with ID:', messageId);
         setCurrentState('thank-you');
         
-        // Update local stats
-        setVaultStats(prev => ({
-          ...prev,
-          messagesLeft: prev.messagesLeft + 1
-        }));
+        // Refresh stats from Firebase (addMessage already increments messagesLeft)
+        await refreshStatsFromFirebase();
         
         // Auto redirect after thank you
         setTimeout(async () => {
