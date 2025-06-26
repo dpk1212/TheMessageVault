@@ -5,10 +5,14 @@ import { SupporterModal } from './components/SupporterModal';
 import { VaultCounter } from './components/VaultCounter';
 import { SupporterWall } from './components/SupporterWall';
 import { AnalyticsDashboard } from './components/AnalyticsDashboard';
+import { LightCandleForm } from './components/LightCandleForm';
+import { CandleWall } from './components/CandleWall';
+import { CandleSuccess } from './components/CandleSuccess';
 import { Button } from './components/ui/button';
-import { PenTool, MessageCircle, Heart, ArrowDown } from 'lucide-react';
+import { PenTool, MessageCircle, Heart, ArrowDown, Flame } from 'lucide-react';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { messageService, statsService, seedService, analyticsService, type Message as FirebaseMessage } from './services/firebase';
+import { candleService } from './services/candles';
 
 // Convert Firebase message to component message format
 const convertFirebaseMessage = (fbMessage: FirebaseMessage) => ({
@@ -19,7 +23,7 @@ const convertFirebaseMessage = (fbMessage: FirebaseMessage) => ({
   hearts: fbMessage.hearts
 });
 
-type AppState = 'landing' | 'revealing' | 'taking' | 'leaving' | 'wall' | 'thank-you' | 'transitioning' | 'analytics';
+type AppState = 'landing' | 'revealing' | 'taking' | 'leaving' | 'wall' | 'thank-you' | 'transitioning' | 'analytics' | 'candle-wall' | 'light-candle' | 'candle-success';
 
 export default function App() {
   // Check for analytics route FIRST - before any other state
@@ -308,6 +312,21 @@ export default function App() {
                 <p className="text-lg md:text-xl text-vault-violet/80 font-light tracking-wide">
                   Choose your path to healing
                 </p>
+                
+                {/* Candle Wall Access */}
+                <div className="pt-8">
+                  <Button
+                    onClick={() => setCurrentState('candle-wall')}
+                    variant="ghost"
+                    className="text-yellow-400 hover:bg-yellow-400/10 flex items-center gap-2 mx-auto"
+                  >
+                    <Flame className="w-4 h-4" />
+                    Visit the Candle Wall
+                  </Button>
+                  <p className="text-sm text-vault-violet/60 mt-2">
+                    Light a candle for support or send encouragement to others
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -400,6 +419,15 @@ export default function App() {
                     <Heart className="w-4 h-4" />
                     Supporter Wall
                   </Button>
+                  
+                  <Button
+                    onClick={() => setCurrentState('candle-wall')}
+                    variant="ghost"
+                    className="text-yellow-400 hover:bg-yellow-400/10 flex items-center gap-2"
+                  >
+                    <Flame className="w-4 h-4" />
+                    Candle Wall
+                  </Button>
                 </div>
               </div>
             </main>
@@ -440,7 +468,7 @@ export default function App() {
                   </Button>
                 </div>
               </div>
-      </main>
+            </main>
           </>
         )}
 
@@ -470,6 +498,30 @@ export default function App() {
         {/* Analytics Dashboard */}
         {currentState === 'analytics' && (
           <AnalyticsDashboard />
+        )}
+
+        {/* Candle Wall */}
+        {currentState === 'candle-wall' && (
+          <CandleWall
+            onBackToVault={() => setCurrentState('taking')}
+            onLightCandle={() => setCurrentState('light-candle')}
+          />
+        )}
+
+        {/* Light Candle Form */}
+        {currentState === 'light-candle' && (
+          <LightCandleForm
+            onSuccess={() => setCurrentState('candle-success')}
+            onCancel={() => setCurrentState('candle-wall')}
+          />
+        )}
+
+        {/* Candle Success */}
+        {currentState === 'candle-success' && (
+          <CandleSuccess
+            onViewCandles={() => setCurrentState('candle-wall')}
+            onBackToVault={() => setCurrentState('taking')}
+          />
         )}
 
         {/* Footer - only show on taking, leaving, and wall states */}
