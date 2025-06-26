@@ -12,7 +12,6 @@ import { Button } from './components/ui/button';
 import { PenTool, MessageCircle, Heart, ArrowDown, Flame } from 'lucide-react';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { messageService, statsService, seedService, analyticsService, type Message as FirebaseMessage } from './services/firebase';
-import { candleService } from './services/candles';
 
 // Convert Firebase message to component message format
 const convertFirebaseMessage = (fbMessage: FirebaseMessage) => ({
