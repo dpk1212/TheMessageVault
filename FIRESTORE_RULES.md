@@ -24,6 +24,15 @@ service cloud.firestore {
       allow read, write: if true;
     }
     
+    // Allow read/write access to candle collections
+    match /support_candles/{candleId} {
+      allow read, write: if true;
+    }
+    
+    match /candle_support/{supportId} {
+      allow read, write: if true;
+    }
+    
     // Allow read/write access to any other collections
     match /{document=**} {
       allow read, write: if true;
