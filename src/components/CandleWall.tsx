@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Textarea } from './ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
-import { Flame, Heart, MessageCircle, ArrowLeft, Send, Loader2, Trash2, Home } from 'lucide-react';
+import { Flame, Heart, MessageCircle, Send, Loader2, Home } from 'lucide-react';
 import { candleService, type SupportCandle } from '../services/candles';
 
 interface CandleWallProps {
@@ -19,7 +19,6 @@ export function CandleWall({ onBackToVault, onBackToLanding, onLightCandle }: Ca
   const [supportMessage, setSupportMessage] = useState('');
   const [sendingSupport, setSendingSupport] = useState(false);
   const [supportedCandles, setSupportedCandles] = useState<Set<string>>(new Set());
-  const [ownedCandles, setOwnedCandles] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     loadCandles();
@@ -31,21 +30,15 @@ export function CandleWall({ onBackToVault, onBackToLanding, onLightCandle }: Ca
       const candleData = await candleService.getActiveCandles();
       setCandles(candleData);
       
-      // Check which candles user has already supported and owns
+      // Check which candles user has already supported
       const supportedSet = new Set<string>();
-      const ownedSet = new Set<string>();
       for (const candle of candleData) {
         const hasSupported = await candleService.hasUserSupported(candle.id);
-        const isOwner = await candleService.isUserOwner(candle.id);
         if (hasSupported) {
           supportedSet.add(candle.id);
         }
-        if (isOwner) {
-          ownedSet.add(candle.id);
-        }
       }
       setSupportedCandles(supportedSet);
-      setOwnedCandles(ownedSet);
     } catch (error) {
       console.error('Error loading candles:', error);
     } finally {
