@@ -282,7 +282,7 @@ export default function App() {
                 <VaultCounter messagesTaken={vaultStats.messagesTaken} messagesLeft={vaultStats.messagesLeft} />
               </div>
               
-              {/* PROMINENT DUAL ACTION BUTTONS */}
+              {/* PROMINENT ACTION BUTTONS */}
               <div className="space-y-12 md:space-y-16 pb-16 md:pb-24">
                 <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
                   {/* TAKE A MESSAGE BUTTON */}
@@ -307,25 +307,26 @@ export default function App() {
                   </Button>
                 </div>
                 
-                {/* Refined instruction */}
-                <p className="text-lg md:text-xl text-vault-violet/80 font-light tracking-wide">
-                  Choose your path to healing
-                </p>
-                
-                {/* Candle Wall Access */}
-                <div className="pt-8">
+                {/* CANDLE WALL - PROMINENT FEATURE */}
+                <div className="max-w-3xl mx-auto">
                   <Button
                     onClick={() => setCurrentState('candle-wall')}
-                    variant="ghost"
-                    className="text-yellow-400 hover:bg-yellow-400/10 flex items-center gap-2 mx-auto"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-600 hover:from-yellow-400 hover:via-orange-400 hover:to-yellow-500 text-white px-12 md:px-16 py-6 md:py-8 text-xl md:text-2xl group rounded-full font-light tracking-wide border-2 border-yellow-400/60 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500"
                   >
-                    <Flame className="w-4 h-4" />
-                    Visit the Candle Wall
+                    <Flame className="ml-2 w-6 h-6 md:w-7 md:h-7 group-hover:scale-110 transition-all duration-500" />
+                    Community Candle Wall
+                    <Flame className="mr-2 w-6 h-6 md:w-7 md:h-7 group-hover:scale-110 transition-all duration-500" />
                   </Button>
-                  <p className="text-sm text-vault-violet/60 mt-2">
+                  <p className="text-lg md:text-xl text-vault-violet/80 font-light tracking-wide mt-4">
                     Light a candle for support or send encouragement to others
                   </p>
                 </div>
+                
+                {/* Refined instruction */}
+                <p className="text-lg md:text-xl text-vault-violet/70 font-light tracking-wide">
+                  Choose your path to healing
+                </p>
               </div>
             </div>
           </div>
@@ -503,6 +504,7 @@ export default function App() {
         {currentState === 'candle-wall' && (
           <CandleWall
             onBackToVault={() => setCurrentState('taking')}
+            onBackToLanding={() => setCurrentState('landing')}
             onLightCandle={() => setCurrentState('light-candle')}
           />
         )}

@@ -3,21 +3,23 @@ import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Textarea } from './ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
-import { Flame, Heart, MessageCircle, ArrowLeft, Send, Loader2 } from 'lucide-react';
+import { Flame, Heart, MessageCircle, ArrowLeft, Send, Loader2, Trash2, Home } from 'lucide-react';
 import { candleService, type SupportCandle } from '../services/candles';
 
 interface CandleWallProps {
   onBackToVault: () => void;
+  onBackToLanding: () => void;
   onLightCandle: () => void;
 }
 
-export function CandleWall({ onBackToVault, onLightCandle }: CandleWallProps) {
+export function CandleWall({ onBackToVault, onBackToLanding, onLightCandle }: CandleWallProps) {
   const [candles, setCandles] = useState<SupportCandle[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCandle, setSelectedCandle] = useState<SupportCandle | null>(null);
   const [supportMessage, setSupportMessage] = useState('');
   const [sendingSupport, setSendingSupport] = useState(false);
   const [supportedCandles, setSupportedCandles] = useState<Set<string>>(new Set());
+  const [ownedCandles, setOwnedCandles] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     loadCandles();
@@ -29,15 +31,21 @@ export function CandleWall({ onBackToVault, onLightCandle }: CandleWallProps) {
       const candleData = await candleService.getActiveCandles();
       setCandles(candleData);
       
-      // Check which candles user has already supported
+      // Check which candles user has already supported and owns
       const supportedSet = new Set<string>();
+      const ownedSet = new Set<string>();
       for (const candle of candleData) {
         const hasSupported = await candleService.hasUserSupported(candle.id);
+        const isOwner = await candleService.isUserOwner(candle.id);
         if (hasSupported) {
           supportedSet.add(candle.id);
         }
+        if (isOwner) {
+          ownedSet.add(candle.id);
+        }
       }
       setSupportedCandles(supportedSet);
+      setOwnedCandles(ownedSet);
     } catch (error) {
       console.error('Error loading candles:', error);
     } finally {
@@ -251,15 +259,24 @@ export function CandleWall({ onBackToVault, onLightCandle }: CandleWallProps) {
             </div>
           )}
           
-          {/* Back to Vault Button */}
-          <div className="text-center mt-12">
+          {/* Navigation Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
             <Button
               onClick={onBackToVault}
               variant="outline"
               className="border-vault-violet/30 text-vault-violet hover:bg-vault-violet/10"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Message Vault
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Message Vault
+            </Button>
+            
+            <Button
+              onClick={onBackToLanding}
+              variant="outline"
+              className="border-vault-coral/30 text-vault-coral hover:bg-vault-coral/10"
+            >
+              <Home className="w-4 h-4 mr-2" />
+              Home
             </Button>
           </div>
         </main>

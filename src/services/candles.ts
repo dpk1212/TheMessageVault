@@ -4,6 +4,7 @@ import {
   getDocs, 
   doc, 
   updateDoc, 
+  deleteDoc,
   increment, 
   query, 
   where, 
@@ -159,6 +160,62 @@ export const candleService = {
       return !snapshot.empty;
     } catch (error) {
       console.error('Error checking user support:', error);
+      return false;
+    }
+  },
+
+  // Delete a candle (only by the creator)
+  async deleteCandle(candleId: string): Promise<boolean> {
+    try {
+      const sessionId = await analyticsService.getCurrentSessionId();
+      
+      // First check if this user created the candle
+      const candleRef = doc(db, 'support_candles', candleId);
+      const candleDoc = await getDocs(query(
+        collection(db, 'support_candles'),
+        where('__name__', '==', candleId),
+        where('sessionId', '==', sessionId)
+      ));
+      
+      if (candleDoc.empty) {
+        console.log('Cannot delete: User is not the creator of this candle');
+        return false;
+      }
+      
+      // Delete the candle
+      await deleteDoc(candleRef);
+      
+      // Optionally: Also delete all support records for this candle
+      const supportQuery = query(
+        collection(db, 'candle_support'),
+        where('candleId', '==', candleId)
+      );
+      const supportDocs = await getDocs(supportQuery);
+      const deletePromises = supportDocs.docs.map(doc => deleteDoc(doc.ref));
+      await Promise.all(deletePromises);
+      
+      console.log('Candle and related support deleted successfully');
+      return true;
+    } catch (error) {
+      console.error('Error deleting candle:', error);
+      return false;
+    }
+  },
+
+  // Check if user owns a candle (created it)
+  async isUserOwner(candleId: string): Promise<boolean> {
+    try {
+      const sessionId = await analyticsService.getCurrentSessionId();
+      const candleQuery = query(
+        collection(db, 'support_candles'),
+        where('__name__', '==', candleId),
+        where('sessionId', '==', sessionId)
+      );
+      
+      const snapshot = await getDocs(candleQuery);
+      return !snapshot.empty;
+    } catch (error) {
+      console.error('Error checking candle ownership:', error);
       return false;
     }
   }
